@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vos Bonus — JAZ Trading Indicateurs</title>
+<meta name="description" content="Téléchargez vos 2 bonus offerts avec la Bibliothèque de Indicateurs JAZ Trading.">
+<style>
+  :root{
+    --jaz-blue:#0066FF;
+    --jaz-blue-light:#38BDF8;
+    --jaz-gold:#fbbf24;
+    --bg-main:#060911;
+    --bg-card:#0f172a;
+    --border-light:rgba(255,255,255,0.08);
+    --border-glow:rgba(0,102,255,0.35);
+    --text-main:#ffffff;
+    --text-muted:#94a3b8;
+    --max:720px;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-font-smoothing:antialiased;}
+  body{
+    margin:0;
+    min-height:100vh;
+    background:var(--bg-main);
+    background-image:radial-gradient(ellipse 900px 500px at 85% -10%, rgba(0,102,255,0.25), transparent 60%);
+    font-family:"Inter","Segoe UI",Arial,sans-serif;
+    color:var(--text-main);
+  }
+  h1,.brand,.tag{font-family:"Outfit","Inter",sans-serif;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 26px;}
+
+  .cover{padding:56px 0 40px;text-align:center;border-bottom:1px solid var(--border-light);}
+  .brand{font-weight:700;font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px;}
+  .brand b{color:var(--jaz-blue-light);}
+  .cover h1{
+    font-size:clamp(28px,4vw,38px);margin:0 0 14px;font-weight:800;letter-spacing:-0.5px;
+    text-wrap:balance;
+  }
+  .cover .rule{width:56px;height:3px;margin:0 auto 18px;background:linear-gradient(90deg,var(--jaz-blue),var(--jaz-blue-light));border-radius:2px;}
+  .cover p.sub{max-width:440px;margin:0 auto;color:var(--text-muted);font-size:15px;line-height:1.65;}
+
+  .content{padding:44px 0 60px;}
+
+  .bonus-card{
+    display:flex;align-items:center;gap:20px;
+    background:var(--bg-card);border:1px solid var(--border-light);border-left:3px solid var(--jaz-blue);
+    border-radius:14px;padding:24px 26px;margin-bottom:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.35);
+  }
+  .bonus-card .num{
+    flex:0 0 44px;width:44px;height:44px;
+    background:linear-gradient(135deg,var(--jaz-blue),#0047B3);
+    color:#fff;border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:17px;font-family:"Outfit",sans-serif;
+  }
+  .bonus-card .info{flex:1;min-width:0;}
+  .bonus-card .info .tag{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--jaz-gold);text-transform:uppercase;margin-bottom:5px;}
+  .bonus-card .info h2{margin:0 0 5px;font-size:18px;font-weight:700;text-wrap:balance;}
+  .bonus-card .info p{margin:0;font-size:13.5px;color:var(--text-muted);line-height:1.55;}
+
+  .dl-btn{
+    flex:0 0 auto;
+    display:inline-flex;align-items:center;gap:8px;
+    background:linear-gradient(135deg,var(--jaz-blue),#0047B3);
+    color:#fff;text-decoration:none;font-weight:700;font-size:14px;
+    padding:12px 20px;border-radius:8px;white-space:nowrap;
+    box-shadow:0 4px 16px rgba(0,102,255,0.35);
+    transition:transform .15s ease;
+  }
+  .dl-btn:hover{transform:translateY(-1px);}
+  .dl-btn:focus-visible{outline:2px solid var(--jaz-blue-light);outline-offset:2px;}
+  .dl-btn svg{width:16px;height:16px;flex:0 0 16px;}
+
+  .note{
+    background:rgba(0,102,255,0.08);border-left:3px solid var(--jaz-blue);padding:14px 18px;
+    border-radius:0 10px 10px 0;font-size:13.5px;color:#AFC2D4;margin-top:8px;
+  }
+
+  footer{
+    border-top:1px solid var(--border-light);
+    color:var(--text-muted);text-align:center;padding:26px 0;font-size:12px;letter-spacing:0.3px;
+  }
+  footer b{color:var(--text-main);}
+
+  @media(max-width:560px){
+    .bonus-card{flex-direction:column;align-items:flex-start;text-align:left;}
+    .dl-btn{width:100%;justify-content:center;}
+    .cover h1{font-size:26px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="wrap">
+    <div class="brand">JAZ <b>TRADING</b></div>
+    <h1>Vos 2 bonus offerts avec votre guide</h1>
+    <div class="rule"></div>
+    <p class="sub">En complément de votre Bibliothèque de 214 Indicateurs, téléchargez vos deux bonus — ils s'ouvrent hors ligne dans votre navigateur.</p>
+  </div>
+</div>
+
+<div class="content">
+  <div class="wrap">
+
+    <div class="bonus-card">
+      <div class="num">1</div>
+      <div class="info">
+        <div class="tag">Bonus 1</div>
+        <h2>Comment bien choisir tes indicateurs</h2>
+        <p>La méthode pour sélectionner les bons indicateurs dans la bibliothèque, un rôle stratégique à la fois.</p>
+      </div>
+      <a class="dl-btn" href="bonus-1-choisir-indicateurs.html" download="BONUS_1_Comment_bien_choisir_tes_indicateurs_JAZ_TRADING.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>
+        Télécharger
+      </a>
+    </div>
+
+    <div class="bonus-card">
+      <div class="num">2</div>
+      <div class="info">
+        <div class="tag">Bonus 2</div>
+        <h2>Les 5 erreurs fréquentes avec les indicateurs</h2>
+        <p>Les pièges les plus courants qui faussent l'analyse — et comment les éviter dès aujourd'hui.</p>
+      </div>
+      <a class="dl-btn" href="bonus-2-erreurs-indicateurs.html" download="BONUS_2_Les_5_erreurs_frequentes_JAZ_TRADING.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>
+        Télécharger
+      </a>
+    </div>
+
+    <div class="note">Le téléchargement démarre directement dans votre navigateur (pas d'inscription, pas d'e-mail à fournir).</div>
+
+  </div>
+</div>
+
+<footer><b>JAZ TRADING</b> — Bonus de la Bibliothèque de Indicateurs</footer>
+
+</body>
+</html>
