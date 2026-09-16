@@ -173,26 +173,28 @@
 </head>
 <body class="selection:bg-cyan-500 selection:text-black">
   <!-- ==================== 1. TICKER BOURSIER EN DIRECT ==================== -->
-  <div class="bg-[#010910] border-b border-white/10 text-xs font-mono py-2.5 overflow-hidden select-none relative z-50">
-    <div class="animate-ticker items-center space-x-10 text-slate-300">
-      <span class="inline-flex items-center space-x-2">
-        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span class="font-bold text-white tracking-wider">MARCH&Eacute;S INSTITUTIONNELS EN DIRECT :</span>
-      </span>
-      <span class="inline-flex items-center space-x-2"><span class="text-white font-semibold">EUR/USD</span><span class="text-slate-400">1.08420</span><span class="text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded font-bold">+0.32%</span></span>
-      <span class="inline-flex items-center space-x-2"><span class="text-white font-semibold">XAU/USD (OR)</span><span class="text-slate-400">2,912.45</span><span class="text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded font-bold">+1.18%</span></span>
-      <span class="inline-flex items-center space-x-2"><span class="text-white font-semibold">NAS100</span><span class="text-slate-400">21,480.10</span><span class="text-amber-400 bg-amber-500/15 px-2 py-0.5 rounded font-bold">-0.24%</span></span>
-      <span class="inline-flex items-center space-x-2"><span class="text-white font-semibold">US30 (DOW)</span><span class="text-slate-400">43,890.00</span><span class="text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded font-bold">+0.45%</span></span>
-      <span class="inline-flex items-center space-x-2"><span class="text-white font-semibold">BTC/USD</span><span class="text-slate-400">96,430.00</span><span class="text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded font-bold">+2.84%</span></span>
-      <span class="inline-flex items-center space-x-2 text-amber-400 font-bold">&bull; RATIO D'EX&Eacute;CUTION MOYEN : 1:3.8+ R:R</span>
-      <!-- Boucle infinie -->
-      <span class="inline-flex items-center space-x-2">
-        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span class="font-bold text-white tracking-wider">MARCH&Eacute;S INSTITUTIONNELS EN DIRECT :</span>
-      </span>
-      <span class="inline-flex items-center space-x-2"><span class="text-white font-semibold">EUR/USD</span><span class="text-slate-400">1.08420</span><span class="text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded font-bold">+0.32%</span></span>
-      <span class="inline-flex items-center space-x-2"><span class="text-white font-semibold">XAU/USD (OR)</span><span class="text-slate-400">2,912.45</span><span class="text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded font-bold">+1.18%</span></span>
-      <span class="inline-flex items-center space-x-2"><span class="text-white font-semibold">NAS100</span><span class="text-slate-400">21,480.10</span><span class="text-amber-400 bg-amber-500/15 px-2 py-0.5 rounded font-bold">-0.24%</span></span>
+  <div class="bg-[#010910] border-b border-white/10 relative z-50">
+    <div class="tradingview-widget-container">
+      <div class="tradingview-widget-container__widget"></div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+      {
+      "symbols": [
+        { "proName": "FX_IDC:EURUSD", "title": "EUR/USD" },
+        { "proName": "OANDA:XAUUSD", "title": "OR (XAU/USD)" },
+        { "proName": "NASDAQ:NDX", "title": "NAS100" },
+        { "proName": "DJ:DJI", "title": "US30 (DOW)" },
+        { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" },
+        { "proName": "XETR:DAX", "title": "GER40 (DAX)" },
+        { "proName": "BITSTAMP:BTCUSD", "title": "BTC/USD" },
+        { "proName": "BITSTAMP:ETHUSD", "title": "ETH/USD" }
+      ],
+      "showSymbolLogo": true,
+      "colorTheme": "dark",
+      "isTransparent": true,
+      "displayMode": "adaptive",
+      "locale": "fr"
+      }
+      </script>
     </div>
   </div>
   <!-- ==================== 2. HEADER ULTRA-PREMIUM ==================== -->
