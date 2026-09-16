@@ -122,6 +122,10 @@
       display: flex;
       width: 200%;
       animation: ticker 35s linear infinite;
+      white-space: nowrap;
+    }
+    .animate-ticker > span {
+      flex-shrink: 0;
     }
     @keyframes socialMarquee {
       0% { transform: translateX(0); }
@@ -219,7 +223,7 @@
     </div>
   </header>
   <!-- ==================== 3. SECTION HERO PRINCIPALE ==================== -->
-  <section class="relative pt-12 pb-10 overflow-hidden text-center">
+  <section class="relative pt-8 pb-6 sm:pt-12 sm:pb-10 overflow-hidden text-center">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
       <div class="flex items-center justify-center mb-5">
         <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-cyan-500/40 text-xs sm:text-sm font-semibold text-slate-300">
@@ -229,7 +233,7 @@
           <span class="text-amber-300 font-medium">Trading Institutionnel &amp; Outils d'&Eacute;lite</span>
         </span>
       </div>
-      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight" data-i18n="hero-h1">
+      <h1 class="text-2xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight" data-i18n="hero-h1">
         Le seul écosystème dont vous avez besoin pour trader avec <span class="bg-gradient-to-r from-cyan-400 via-sky-300 to-amber-400 bg-clip-text text-transparent">méthode, clarté et confiance.</span>
       </h1>
       <p class="mt-5 text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed" data-i18n="hero-p"></p>
@@ -412,7 +416,7 @@
       </div>
       <div class="space-y-8">
         <!-- ================= POSITION 1 : FORMATION COMPLETE ================= -->
-        <article id="module-01" class="glass-card rounded-2xl p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden border-purple-500/40">
+        <article id="module-01" class="glass-card rounded-2xl p-4 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden border-purple-500/40">
           <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-purple-500 to-violet-600"></div>
           <span class="absolute top-2 right-4 font-black text-8xl text-white/5 select-none pointer-events-none">01</span>
           <div class="flex-1 text-center md:text-left relative z-10">
@@ -420,7 +424,7 @@
               <span class="w-6 h-6 rounded-full bg-purple-500 text-white text-xs font-bold flex items-center justify-center font-mono">01</span>
               <span class="bg-purple-500/20 border border-purple-500/40 text-purple-300 text-xs sm:text-sm font-bold px-3 py-1 rounded-full" data-i18n="m06-badge">30 Leçons Complètes</span>
             </div>
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-white" data-i18n="m06-title">Formation compl&egrave;te sur le trading</h3>
+            <h3 class="text-xl sm:text-3xl font-extrabold text-white" data-i18n="m06-title">Formation compl&egrave;te sur le trading</h3>
             <p class="mt-3 text-slate-300 text-base sm:text-lg leading-relaxed max-w-lg" data-i18n="m06-hook">La formation complète pour devenir trader, encadré de A à Z.</p>
             <div class="flex flex-wrap items-center justify-center md:justify-start gap-2 mt-4">
               <span class="bg-white/5 border border-purple-400/30 text-purple-200 text-xs font-bold px-3 py-1.5 rounded-full" data-i18n="m06-feat1">🎯 Accompagnement inclus</span>
@@ -435,14 +439,14 @@
           </div>
             <div>
               <a href="https://jaztrading92.github.io/Jaz-contenu/page-de-vente-formation-complete.html" target="_blank" rel="noopener noreferrer"
-                 class="btn-lux inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-purple-500 to-violet-600 text-white font-extrabold text-sm sm:text-base shadow-xl hover:scale-105" data-i18n="m06-btn">
+                 class="btn-lux inline-flex items-center gap-3 px-6 py-3 sm:px-8 sm:py-4 rounded-full bg-gradient-to-r from-purple-500 to-violet-600 text-white font-extrabold text-sm sm:text-base shadow-xl hover:scale-105" data-i18n="m06-btn">
                 <span>Commencer la formation 🎓</span>
               </a>
             </div>
           </div>
         </article>
         <!-- ================= POSITION 2 : +200 INDICATEURS ================= -->
-        <article id="module-06" class="glass-card rounded-2xl p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden border-cyan-500/40">
+        <article id="module-06" class="glass-card rounded-2xl p-4 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden border-cyan-500/40">
           <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-cyan-400 via-emerald-400 to-blue-500"></div>
           <span class="absolute top-2 right-4 font-black text-8xl text-white/5 select-none pointer-events-none">02</span>
           <div class="flex-1 text-center md:text-left relative z-10">
@@ -451,7 +455,7 @@
               <span class="w-6 h-6 rounded-full bg-cyan-400 text-black text-xs font-bold flex items-center justify-center font-mono">02</span>
               <span class="bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs sm:text-sm font-bold px-3 py-1 rounded-full" data-i18n="m01-badge">Arsenal &Eacute;lite TradingView</span>
             </div>
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-white" data-i18n="m01-title">+200 Indicateurs Institutionnels Avanc&eacute;s</h3>
+            <h3 class="text-xl sm:text-3xl font-extrabold text-white" data-i18n="m01-title">+200 Indicateurs Institutionnels Avanc&eacute;s</h3>
             <p class="mt-3 text-slate-300 text-base sm:text-lg leading-relaxed max-w-lg" data-i18n="m01-hook">L'arsenal d'élite complet sur TradingView : algorithmes d'analyse du volume, rubans de moyennes mobiles, zones d'accumulation et détection de retournements.</p>
             
           </div>
@@ -463,14 +467,14 @@
           </div>
             <div>
               <a href="https://jaztrading92.github.io/Jaz-contenu/PAGE_DE_VENTE_INDICATEURS_INSTITUTIONNELS%201.html" target="_blank" rel="noopener noreferrer"
-                 class="btn-lux inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-cyan-400 to-emerald-400 text-black font-extrabold text-sm sm:text-base shadow-xl hover:scale-105" data-i18n="m01-btn">
+                 class="btn-lux inline-flex items-center gap-3 px-6 py-3 sm:px-8 sm:py-4 rounded-full bg-gradient-to-r from-cyan-400 to-emerald-400 text-black font-extrabold text-sm sm:text-base shadow-xl hover:scale-105" data-i18n="m01-btn">
                 <span>Acc&eacute;der aux +200 Indicateurs &#128202;</span>
               </a>
             </div>
           </div>
         </article>
         <!-- ================= POSITION 3 : CREATION DE STRATEGIE ================= -->
-        <article id="module-02" class="glass-card rounded-2xl p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+        <article id="module-02" class="glass-card rounded-2xl p-4 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
           <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-cyan-400 to-blue-600"></div>
           <span class="absolute top-2 right-4 font-black text-8xl text-white/5 select-none pointer-events-none">03</span>
           <div class="flex-1 text-center md:text-left relative z-10">
@@ -479,7 +483,7 @@
               <span class="w-6 h-6 rounded-full bg-cyan-400 text-black text-xs font-bold flex items-center justify-center font-mono">03</span>
               <span class="bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 text-xs sm:text-sm font-bold px-3 py-1 rounded-full" data-i18n="m02-badge">Guide strat&eacute;gique</span>
             </div>
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-white" data-i18n="m02-title">Guide de cr&eacute;ation de strat&eacute;gie</h3>
+            <h3 class="text-xl sm:text-3xl font-extrabold text-white" data-i18n="m02-title">Guide de cr&eacute;ation de strat&eacute;gie</h3>
             <p class="mt-3 text-slate-300 text-base sm:text-lg leading-relaxed max-w-lg" data-i18n="m02-hook">La méthode exacte pour construire une stratégie de trading solide, claire et applicable dès aujourd'hui — étape par étape.</p>
             
           </div>
@@ -491,14 +495,14 @@
           </div>
             <div>
               <a href="https://jaz-trading-strategie.vercel.app/" target="_blank" rel="noopener noreferrer"
-                 class="btn-lux inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-extrabold text-sm sm:text-base shadow-xl hover:scale-105" data-i18n="m02-btn">
+                 class="btn-lux inline-flex items-center gap-3 px-6 py-3 sm:px-8 sm:py-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-extrabold text-sm sm:text-base shadow-xl hover:scale-105" data-i18n="m02-btn">
                 <span>Voir le guide de cr&eacute;ation de strat&eacute;gie &#127919;</span>
               </a>
             </div>
           </div>
         </article>
         <!-- ================= POSITION 4 : PLAN DE TRADING ================= -->
-        <article id="module-03" class="glass-card rounded-2xl p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+        <article id="module-03" class="glass-card rounded-2xl p-4 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
           <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#00293b] to-blue-600"></div>
           <span class="absolute top-2 right-4 font-black text-8xl text-white/5 select-none pointer-events-none">04</span>
           <div class="flex-1 text-center md:text-left relative z-10">
@@ -507,7 +511,7 @@
               <span class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center font-mono">04</span>
               <span class="bg-blue-600/25 border border-blue-500/50 text-blue-300 text-xs sm:text-sm font-bold px-3 py-1 rounded-full" data-i18n="m03-badge">Guide op&eacute;rationnel</span>
             </div>
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-white" data-i18n="m03-title">Plan de trading professionnel</h3>
+            <h3 class="text-xl sm:text-3xl font-extrabold text-white" data-i18n="m03-title">Plan de trading professionnel</h3>
             <p class="mt-3 text-slate-300 text-base sm:text-lg leading-relaxed max-w-lg" data-i18n="m03-hook">Le cadre exact que suivent les traders sérieux avant chaque session, pour trader avec rigueur sans jamais improviser.</p>
             
           </div>
@@ -519,14 +523,14 @@
           </div>
             <div>
               <a href="https://jaztrading92.github.io/Jaz-contenu/PAGE_DE_VENTE_PLAN_DE_TRADING.html" target="_blank" rel="noopener noreferrer"
-                 class="btn-lux inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-[#00293b] to-blue-700 text-white font-extrabold text-sm sm:text-base border border-blue-400/50 hover:scale-105" data-i18n="m03-btn">
+                 class="btn-lux inline-flex items-center gap-3 px-6 py-3 sm:px-8 sm:py-4 rounded-full bg-gradient-to-r from-[#00293b] to-blue-700 text-white font-extrabold text-sm sm:text-base border border-blue-400/50 hover:scale-105" data-i18n="m03-btn">
                 <span>D&eacute;bloquer le plan de trading &#128203;</span>
               </a>
             </div>
           </div>
         </article>
         <!-- ================= POSITION 5 : LES LANGAGES DU MARCHE - OR/JAUNE ================= -->
-        <article id="module-04" class="glass-card rounded-2xl p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden border-amber-400/35">
+        <article id="module-04" class="glass-card rounded-2xl p-4 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden border-amber-400/35">
           <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-400 to-amber-500"></div>
           <span class="absolute top-2 right-4 font-black text-8xl text-white/5 select-none pointer-events-none">05</span>
           <div class="flex-1 text-center md:text-left relative z-10">
@@ -535,7 +539,7 @@
               <span class="w-6 h-6 rounded-full bg-amber-400 text-black text-xs font-bold flex items-center justify-center font-mono font-extrabold">05</span>
               <span class="bg-amber-400/20 border border-amber-400/40 text-amber-300 text-xs sm:text-sm font-bold px-3 py-1 rounded-full" data-i18n="m04-badge">Manuel d'&eacute;tudes</span>
             </div>
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-white" data-i18n="m04-title">Les langages du march&eacute;</h3>
+            <h3 class="text-xl sm:text-3xl font-extrabold text-white" data-i18n="m04-title">Les langages du march&eacute;</h3>
             <p class="mt-3 text-slate-300 text-base sm:text-lg leading-relaxed max-w-lg" data-i18n="m04-hook">Ce que la plupart des traders ne voient jamais sur un graphique — la psychologie du marché, le flux d'ordres réel et la décision institutionnelle.</p>
             
           </div>
@@ -547,23 +551,23 @@
           </div>
             <div>
               <a href="https://jaztrading92.github.io/Jaz-contenu/PAGE_DE_VENTE_JAZ_TRADING%201.html" target="_blank" rel="noopener noreferrer"
-                 class="btn-lux inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-black font-extrabold text-sm sm:text-base shadow-xl hover:scale-105" data-i18n="m04-btn">
+                 class="btn-lux inline-flex items-center gap-3 px-6 py-3 sm:px-8 sm:py-4 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-black font-extrabold text-sm sm:text-base shadow-xl hover:scale-105" data-i18n="m04-btn">
                 <span>Voir le guide complet &#128269;</span>
               </a>
             </div>
           </div>
         </article>
         <!-- ================= POSITION 6 : CANAL TELEGRAM VIP ================= -->
-        <article id="module-05" class="glass-card rounded-2xl p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden border-[#26A5E4]/40">
+        <article id="module-05" class="glass-card rounded-2xl p-4 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden border-[#26A5E4]/40">
           <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#26A5E4] to-cyan-300"></div>
           <span class="absolute top-2 right-4 font-black text-8xl text-white/5 select-none pointer-events-none">06</span>
           <div class="flex-1 text-center md:text-left relative z-10">
           
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-white" data-i18n="m05-title">Canal des signaux VIP</h3>
+            <h3 class="text-xl sm:text-3xl font-extrabold text-white" data-i18n="m05-title">Canal des signaux VIP</h3>
             <p class="mt-3 text-slate-300 text-base sm:text-lg leading-relaxed max-w-lg" data-i18n="m05-hook">Rejoins notre communauté officielle Telegram VIP et reçois les analyses de pré-marché ainsi que les prises de positions partagées en direct.</p>
             <div class="mt-6">
               <a href="https://t.me/jazgeneraltrading" target="_blank" rel="noopener noreferrer"
-                 class="btn-lux inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-[#26A5E4] to-blue-600 text-white font-extrabold text-sm sm:text-base shadow-xl hover:scale-105" data-i18n="m05-btn">
+                 class="btn-lux inline-flex items-center gap-3 px-6 py-3 sm:px-8 sm:py-4 rounded-full bg-gradient-to-r from-[#26A5E4] to-blue-600 text-white font-extrabold text-sm sm:text-base shadow-xl hover:scale-105" data-i18n="m05-btn">
                 <span>Rejoindre le canal Telegram VIP &#128225;</span>
               </a>
             </div>
@@ -579,9 +583,9 @@
           </div>
         </article>
         <!-- ================= POSITION 7 : STRATEGIES AUTOMATIQUES ================= -->
-        <article id="module-07" class="glass-card rounded-2xl p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 opacity-80 hover:opacity-100 transition-opacity">
+        <article id="module-07" class="glass-card rounded-2xl p-4 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 opacity-80 hover:opacity-100 transition-opacity">
           <div class="flex-1 text-center md:text-left">
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-white" data-i18n="m07-title">Nos strat&eacute;gies automatiques sur TradingView</h3>
+            <h3 class="text-xl sm:text-3xl font-extrabold text-white" data-i18n="m07-title">Nos strat&eacute;gies automatiques sur TradingView</h3>
             <p class="mt-3 text-slate-300 text-base sm:text-lg leading-relaxed max-w-lg" data-i18n="m07-hook">L'automatisation et les scripts algorithmiques sur TradingView développés par JAZ TRADING FIMC arrivent très bientôt.</p>
             <div class="mt-6">
               <button disabled class="px-8 py-4 rounded-full bg-white/5 border border-white/15 text-slate-500 font-extrabold text-sm sm:text-base cursor-not-allowed" data-i18n="m07-btn">
