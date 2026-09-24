@@ -170,7 +170,25 @@
     ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #0088d4; }
   </style>
-</head>
+  <style id="jzLangCss">
+    .jz-lang { position: relative; display: inline-block; z-index: 60; }
+    .jz-lang-btn { display: inline-flex; align-items: center; gap: 8px; background: rgba(7,24,38,.92); border: 1.5px solid rgba(0,136,212,.45); border-radius: 9999px; padding: 6px 12px; color: #fff; font-size: 13px; font-weight: 800; cursor: pointer; transition: all .25s ease; box-shadow: 0 4px 14px rgba(0,0,0,.5); }
+    .jz-lang-btn:hover { border-color: #00a3ff; background: rgba(10,32,51,.98); box-shadow: 0 0 16px rgba(0,136,212,.35); }
+    .jz-lang-cur-flag, .jz-lang-flag { display: inline-flex; line-height: 1; }
+    .jz-lang-cur-code { letter-spacing: .5px; }
+    .jz-lang-chev { color: #00a3ff; transition: transform .25s ease; }
+    .jz-lang.open .jz-lang-chev { transform: rotate(180deg); }
+    .jz-lang-menu { position: absolute; top: calc(100% + 8px); right: 0; width: 260px; max-width: calc(100vw - 32px); background: rgba(2,11,20,.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1.5px solid rgba(0,136,212,.45); border-radius: 14px; padding: 10px; box-shadow: 0 16px 40px rgba(0,0,0,.85), 0 0 25px rgba(0,136,212,.25); opacity: 0; visibility: hidden; transform: translateY(-8px) scale(.97); transition: all .25s cubic-bezier(.16,1,.3,1); }
+    [dir="rtl"] .jz-lang-menu { right: auto; left: 0; }
+    .jz-lang.open .jz-lang-menu { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+    .jz-lang-title { font-size: 10.5px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: .8px; padding: 4px 8px 8px; border-bottom: 1px solid rgba(255,255,255,.08); margin-bottom: 8px; }
+    .jz-lang-list { display: flex; flex-direction: column; gap: 4px; max-height: 340px; overflow-y: auto; }
+    .jz-lang-opt { display: flex; align-items: center; gap: 10px; width: 100%; background: transparent; border: 1px solid transparent; border-radius: 8px; padding: 8px 10px; color: #cbd5e1; font-size: 12.5px; font-weight: 700; cursor: pointer; text-align: start; transition: all .2s ease; }
+    .jz-lang-opt:hover { background: rgba(0,136,212,.12); border-color: rgba(0,136,212,.45); color: #fff; }
+    .jz-lang-opt.active { background: rgba(0,136,212,.22); border-color: #00a3ff; color: #fff; }
+    .jz-lang-name { flex: 1; }
+    .jz-lang-code { font-family: ui-monospace, monospace; font-size: 11px; font-weight: 800; color: #00a3ff; background: rgba(0,136,212,.15); padding: 1px 6px; border-radius: 4px; }
+  </style></head>
 <body class="selection:bg-cyan-500 selection:text-black">
   <!-- ==================== 1. TICKER BOURSIER EN DIRECT ==================== -->
   <div class="sticky top-0 z-50 bg-[#010910] border-b border-white/10">
@@ -222,10 +240,7 @@
         </div>
       </a>
       <div class="flex items-center gap-3">
-        <div class="flex items-center bg-white/5 border border-white/10 p-1 rounded-full">
-          <button type="button" class="px-3 py-1 text-xs font-bold rounded-full bg-cyan-500 text-black shadow-sm" id="lang-fr-btn" onclick="setLang('fr')">FR</button>
-          <button type="button" class="px-3 py-1 text-xs font-bold rounded-full text-slate-400 hover:text-white" id="lang-en-btn" onclick="setLang('en')">EN</button>
-        </div>
+        <div class="jz-lang" id="jzLang"></div>
         <a href="https://t.me/jazgeneraltrading" target="_blank" rel="noopener noreferrer"
            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/15 border border-cyan-500/40 text-cyan-400 font-bold text-xs sm:text-sm hover:bg-cyan-500 hover:text-black transition-all">
           <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M21.5 4.3L2.9 11.6c-1.27.5-1.26 1.2-.23 1.52l4.77 1.49 1.83 5.6c.22.6.4.85.8.85.4 0 .58-.18.8-.4l2.15-2.08 4.48 3.3c.82.46 1.42.22 1.63-.76l2.94-13.86c.3-1.2-.44-1.75-1.57-1.26zM8.9 14.2l9.3-5.87c.46-.28.88-.13.53.18l-7.9 7.13-.3 3.2-1.63-4.64z"/></svg>
@@ -903,7 +918,7 @@
       var e = toastEvents[Math.floor(Math.random() * toastEvents.length)];
       document.getElementById("toastAvatar").innerText = b.initials;
       document.getElementById("toastName").innerText = b.name;
-      document.getElementById("toastAction").innerText = b.name.split(" ")[0] + " " + e[currentLang];
+      document.getElementById("toastAction").innerText = b.name.split(" ")[0] + " " + (e[currentLang] || e.en);
       toast.classList.remove("translate-y-24", "opacity-0");
       toast.classList.add("translate-y-0", "opacity-100");
       setTimeout(function() {
@@ -918,6 +933,224 @@
       toast.classList.add("translate-y-24", "opacity-0");
     }
     setTimeout(showRandomToast, 3000);
+  </script>
+  <script id="jzLangScript">
+(function () {
+  var LANGS = ["fr", "en", "es", "ar", "zh", "de", "pt", "ru", "it", "ja", "hi"];
+  var NAMES = { fr: "Français", en: "English", es: "Español", ar: "العربية", zh: "中文 (Chinois)", de: "Deutsch", pt: "Português", ru: "Русский", it: "Italiano", ja: "日本語 (Japonais)", hi: "हिन्दी (Hindi)" };
+  var S = 'class="flag-icon" width="22" height="15" viewBox="0 0 640 480" style="vertical-align:middle;border-radius:2px;display:inline-block"';
+  var FLAGS = {
+    fr: '<svg ' + S + '><path fill="#fff" d="M0 0h640v480H0z"/><path fill="#002654" d="M0 0h213.3v480H0z"/><path fill="#ce1126" d="M426.7 0H640v480H426.7z"/></svg>',
+    en: '<svg ' + S + '><path fill="#012169" d="M0 0h640v480H0z"/><path fill="#fff" d="m75 0 245 180L565 0h75v60L435 240l205 180v60h-75L320 300 75 480H0v-60l205-180L0 60V0h75z"/><path fill="#C8102E" d="m424 288 216 158v34h-46L378 300l46-12zM0 480l196-144h46L26 480H0zM640 0 444 144h-46L614 0h26zM0 0l216 158-46 12L0 34V0z"/><path fill="#fff" d="M240 0h160v480H240zM0 160h640v160H0z"/><path fill="#C8102E" d="M266 0h108v480H266zM0 186h640v108H0z"/></svg>',
+    es: '<svg ' + S + '><path fill="#c60b1e" d="M0 0h640v480H0z"/><path fill="#ffc400" d="M0 120h640v240H0z"/></svg>',
+    ar: '<svg ' + S + '><path fill="#006c35" d="M0 0h640v480H0z"/><path fill="#fff" d="M120 280h400v20H120zM220 200h200v30H220z"/></svg>',
+    zh: '<svg ' + S + '><path fill="#de2910" d="M0 0h640v480H0z"/><polygon fill="#ffde00" points="160,80 178,136 238,136 190,172 208,228 160,192 112,228 130,172 82,136 142,136"/></svg>',
+    de: '<svg ' + S + '><path fill="#000" d="M0 0h640v160H0z"/><path fill="#d00" d="M0 160h640v160H0z"/><path fill="#ffce00" d="M0 320h640v160H0z"/></svg>',
+    pt: '<svg ' + S + '><path fill="#ff0000" d="M0 0h640v480H0z"/><path fill="#006600" d="M0 0h256v480H0z"/><circle cx="256" cy="240" r="80" fill="#ffff00"/></svg>',
+    ru: '<svg ' + S + '><path fill="#fff" d="M0 0h640v160H0z"/><path fill="#0039a6" d="M0 160h640v160H0z"/><path fill="#d52b1e" d="M0 320h640v160H0z"/></svg>',
+    it: '<svg ' + S + '><path fill="#fff" d="M0 0h640v480H0z"/><path fill="#009246" d="M0 0h213.3v480H0z"/><path fill="#ce2b37" d="M426.7 0H640v480H426.7z"/></svg>',
+    ja: '<svg ' + S + '><path fill="#fff" d="M0 0h640v480H0z"/><circle cx="320" cy="240" r="144" fill="#bc002d"/></svg>',
+    hi: '<svg ' + S + '><path fill="#f93" d="M0 0h640v160H0z"/><path fill="#fff" d="M0 160h640v160H0z"/><path fill="#128807" d="M0 320h640v160H0z"/><circle cx="320" cy="240" r="50" fill="none" stroke="#008" stroke-width="10"/></svg>'
+  };
+
+  // Each row: fr, en, es, ar, zh, de, pt, ru, it, ja, hi
+  var T = [
+    ["JAZ TRADING FIMC — Hub Officiel & Centre de Ressources", "JAZ TRADING FIMC — Official Hub & Resource Center", "JAZ TRADING FIMC — Hub oficial y centro de recursos", "JAZ TRADING FIMC — المركز الرسمي ومركز الموارد", "JAZ TRADING FIMC — 官方中心与资源中心", "JAZ TRADING FIMC — Offizieller Hub & Ressourcenzentrum", "JAZ TRADING FIMC — Hub oficial e centro de recursos", "JAZ TRADING FIMC — Официальный хаб и центр ресурсов", "JAZ TRADING FIMC — Hub ufficiale e centro risorse", "JAZ TRADING FIMC — 公式ハブ＆リソースセンター", "JAZ TRADING FIMC — आधिकारिक हब और संसाधन केंद्र"],
+    ["MARCHÉS EN DIRECT", "LIVE MARKETS", "MERCADOS EN DIRECTO", "الأسواق مباشرة", "实时行情", "MÄRKTE LIVE", "MERCADOS AO VIVO", "РЫНКИ ОНЛАЙН", "MERCATI IN DIRETTA", "ライブ相場", "लाइव बाज़ार"],
+    ["Écosystème & Hub Officiel", "Official Ecosystem & Hub", "Ecosistema y Hub Oficial", "المنظومة والمركز الرسمي", "官方生态系统与中心", "Offizielles Ökosystem & Hub", "Ecossistema e Hub Oficial", "Официальная экосистема и хаб", "Ecosistema e Hub Ufficiale", "公式エコシステム＆ハブ", "आधिकारिक इकोसिस्टम और हब"],
+    ["Canal VIP Telegram", "Telegram VIP Channel", "Canal VIP de Telegram", "قناة تيليجرام VIP", "Telegram VIP 频道", "Telegram-VIP-Kanal", "Canal VIP no Telegram", "VIP-канал в Telegram", "Canale VIP Telegram", "Telegram VIPチャンネル", "Telegram VIP चैनल"],
+    ["Canal Telegram VIP", "Telegram VIP Channel", "Canal VIP de Telegram", "قناة تيليجرام VIP", "Telegram VIP 频道", "Telegram-VIP-Kanal", "Canal VIP no Telegram", "VIP-канал в Telegram", "Canale VIP Telegram", "Telegram VIPチャンネル", "Telegram VIP चैनल"],
+    ["ÉCOSYSTÈME OFFICIEL JAZ TRADING FIMC", "OFFICIAL JAZ TRADING FIMC ECOSYSTEM", "ECOSISTEMA OFICIAL JAZ TRADING FIMC", "المنظومة الرسمية لـ JAZ TRADING FIMC", "JAZ TRADING FIMC 官方生态系统", "OFFIZIELLES JAZ TRADING FIMC ÖKOSYSTEM", "ECOSSISTEMA OFICIAL JAZ TRADING FIMC", "ОФИЦИАЛЬНАЯ ЭКОСИСТЕМА JAZ TRADING FIMC", "ECOSISTEMA UFFICIALE JAZ TRADING FIMC", "JAZ TRADING FIMC 公式エコシステム", "JAZ TRADING FIMC का आधिकारिक इकोसिस्टम"],
+    ["Trading Institutionnel & Outils d'Élite", "Institutional Trading & Elite Tools", "Trading Institucional y Herramientas de Élite", "تداول مؤسسي وأدوات النخبة", "机构级交易与精英工具", "Institutionelles Trading & Elite-Tools", "Trading Institucional e Ferramentas de Elite", "Институциональный трейдинг и элитные инструменты", "Trading Istituzionale e Strumenti d'Élite", "機関投資家レベルのトレード＆エリートツール", "संस्थागत ट्रेडिंग और एलीट टूल्स"],
+    ["Le seul écosystème dont vous avez besoin pour trader avec", "The only ecosystem you need to trade with", "El único ecosistema que necesitas para operar con", "المنظومة الوحيدة التي تحتاجها للتداول بـ", "你唯一需要的交易生态系统，助你交易更具", "Das einzige Ökosystem, das du brauchst, um zu traden – mit", "O único ecossistema de que você precisa para operar com", "Единственная экосистема, которая нужна вам для торговли с", "L'unico ecosistema di cui hai bisogno per fare trading con", "トレードに必要なのはこのエコシステムだけ。", "ट्रेड करने के लिए आपको बस यही एक इकोसिस्टम चाहिए —"],
+    ["méthode, clarté et confiance.", "method, clarity and confidence.", "método, claridad y confianza.", "منهجية ووضوح وثقة.", "方法、清晰与信心。", "Methode, Klarheit und Selbstvertrauen.", "método, clareza e confiança.", "методом, ясностью и уверенностью.", "metodo, chiarezza e fiducia.", "手法・明確さ・自信を持って。", "पद्धति, स्पष्टता और आत्मविश्वास के साथ।"],
+    ["Vous découvrez le trading", "New to trading", "Nuevo en el trading", "جديد في التداول", "交易新手", "Neu im Trading", "Novo no trading", "Новичок в трейдинге", "Nuovo al trading", "トレード初心者の方", "ट्रेडिंग में नए हैं"],
+    ["Démarrez avec des bases solides grâce à notre formation complète et nos guides méthodologiques pas à pas.", "Start on solid foundations with our complete course and step-by-step method guides.", "Empieza con bases sólidas gracias a nuestra formación completa y nuestras guías metodológicas paso a paso.", "ابدأ بأسس متينة بفضل دورتنا الشاملة وأدلتنا المنهجية خطوة بخطوة.", "通过我们的完整课程和循序渐进的方法指南，打下坚实基础。", "Starte mit einem soliden Fundament dank unseres kompletten Kurses und unserer Schritt-für-Schritt-Methodenguides.", "Comece com bases sólidas graças à nossa formação completa e aos nossos guias metodológicos passo a passo.", "Начните с прочной базы благодаря нашему полному курсу и пошаговым методическим руководствам.", "Parti con basi solide grazie alla nostra formazione completa e alle nostre guide metodologiche passo dopo passo.", "充実した講座とステップごとのメソッドガイドで、しっかりした基礎から始めましょう。", "हमारे संपूर्ण कोर्स और स्टेप-बाय-स्टेप गाइड्स के साथ मज़बूत नींव से शुरुआत करें।"],
+    ["Trader en quête de régularité", "Seeking consistency", "Trader en busca de regularidad", "متداول يبحث عن الاستمرارية", "追求稳定的交易者", "Trader auf der Suche nach Beständigkeit", "Trader em busca de consistência", "Трейдер в поиске стабильности", "Trader in cerca di costanza", "安定を目指すトレーダー", "निरंतरता चाहने वाले ट्रेडर"],
+    ["Structurez vos sessions avec notre plan de trading professionnel et une gestion stricte du risque.", "Structure your sessions with our professional trading plan and strict risk management.", "Estructura tus sesiones con nuestro plan de trading profesional y una gestión estricta del riesgo.", "نظّم جلساتك بخطة التداول الاحترافية لدينا وإدارة صارمة للمخاطر.", "借助我们的专业交易计划和严格的风险管理，让每次交易井然有序。", "Strukturiere deine Sessions mit unserem professionellen Trading-Plan und striktem Risikomanagement.", "Estruture suas sessões com o nosso plano de trading profissional e uma gestão rigorosa do risco.", "Структурируйте свои сессии с помощью нашего профессионального торгового плана и строгого риск-менеджмента.", "Struttura le tue sessioni con il nostro piano di trading professionale e una gestione rigorosa del rischio.", "プロのトレードプランと厳格なリスク管理で、セッションを体系化しましょう。", "हमारे प्रोफेशनल ट्रेडिंग प्लान और सख़्त रिस्क मैनेजमेंट के साथ अपने सेशन व्यवस्थित करें।"],
+    ["Trader expérimenté", "Experienced trader", "Trader experimentado", "متداول محترف", "资深交易者", "Erfahrener Trader", "Trader experiente", "Опытный трейдер", "Trader esperto", "経験豊富なトレーダー", "अनुभवी ट्रेडर"],
+    ["Affûtez vos analyses avec nos +200 indicateurs TradingView institutionnels, nos stratégies automatiques et nos signaux VIP.", "Sharpen your analysis with our +200 institutional TradingView indicators, automated strategies and VIP signals.", "Afina tus análisis con nuestros +200 indicadores institucionales de TradingView, nuestras estrategias automáticas y nuestras señales VIP.", "اصقل تحليلاتك مع أكثر من 200 مؤشر مؤسسي على TradingView واستراتيجياتنا الآلية وإشاراتنا VIP.", "借助我们 200+ 款机构级 TradingView 指标、自动化策略和 VIP 信号，让分析更犀利。", "Schärfe deine Analysen mit unseren +200 institutionellen TradingView-Indikatoren, automatisierten Strategien und VIP-Signalen.", "Afie suas análises com nossos +200 indicadores institucionais do TradingView, nossas estratégias automáticas e nossos sinais VIP.", "Оттачивайте анализ с нашими 200+ институциональными индикаторами TradingView, автоматическими стратегиями и VIP-сигналами.", "Affina le tue analisi con i nostri +200 indicatori istituzionali TradingView, le nostre strategie automatiche e i nostri segnali VIP.", "200以上の機関投資家向けTradingViewインジケーター、自動売買戦略、VIPシグナルで分析を磨きましょう。", "हमारे 200+ संस्थागत TradingView इंडिकेटर्स, ऑटोमेटेड रणनीतियों और VIP सिग्नल्स से अपना विश्लेषण निखारें।"],
+    ["Explorer les 7 Modules", "Explore the 7 Modules", "Explorar los 7 módulos", "استكشف الوحدات السبع", "探索 7 大模块", "Die 7 Module entdecken", "Explorar os 7 módulos", "Изучить 7 модулей", "Esplora i 7 moduli", "7つのモジュールを見る", "7 मॉड्यूल देखें"],
+    ["Rejoindre notre communauté Telegram", "Join our Telegram community", "Únete a nuestra comunidad de Telegram", "انضم إلى مجتمعنا على تيليجرام", "加入我们的 Telegram 社区", "Tritt unserer Telegram-Community bei", "Junte-se à nossa comunidade no Telegram", "Присоединиться к нашему сообществу в Telegram", "Unisciti alla nostra community Telegram", "Telegramコミュニティに参加", "हमारी Telegram कम्युनिटी से जुड़ें"],
+    ["SATISFAIT OU REMBOURSÉ", "SATISFIED OR REFUNDED", "SATISFECHO O REEMBOLSADO", "راضٍ أو نسترد أموالك", "不满意可退款", "ZUFRIEDEN ODER GELD ZURÜCK", "SATISFEITO OU REEMBOLSADO", "ДОВОЛЕН ИЛИ ВОЗВРАТ ДЕНЕГ", "SODDISFATTO O RIMBORSATO", "満足保証・返金対応", "संतुष्टि या पैसे वापस"],
+    ["(Selon notre politique de remboursement)", "(According to our refund policy)", "(Según nuestra política de reembolso)", "(وفق سياسة الاسترداد لدينا)", "（根据我们的退款政策）", "(Gemäß unserer Rückerstattungsrichtlinie)", "(Conforme a nossa política de reembolso)", "(Согласно нашей политике возврата)", "(Secondo la nostra politica di rimborso)", "（返金ポリシーに基づく）", "(हमारी रिफंड नीति के अनुसार)"],
+    ["Méthodologies Prêtes à l'Emploi", "Ready-to-Use Methods", "Metodologías listas para usar", "منهجيات جاهزة للاستخدام", "即用型方法论", "Sofort einsetzbare Methoden", "Metodologias prontas para usar", "Готовые к применению методики", "Metodologie pronte all'uso", "すぐに使えるメソッド", "तुरंत इस्तेमाल योग्य पद्धतियाँ"],
+    ["(+172 membres satisfaits)", "(+172 satisfied members)", "(+172 miembros satisfechos)", "(+172 عضوًا راضيًا)", "（172+ 位满意会员）", "(+172 zufriedene Mitglieder)", "(+172 membros satisfeitos)", "(+172 довольных участника)", "(+172 membri soddisfatti)", "（172名以上の満足した会員）", "(+172 संतुष्ट सदस्य)"],
+    ["Accès Direct & Instantané", "Direct & Instant Access", "Acceso directo e instantáneo", "وصول مباشر وفوري", "直接即时访问", "Direkter & sofortiger Zugang", "Acesso direto e instantâneo", "Прямой и мгновенный доступ", "Accesso diretto e immediato", "ダイレクト＆即時アクセス", "सीधा और तुरंत एक्सेस"],
+    ["NOS CANAUX ET RÉSEAUX OFFICIELS :", "OUR OFFICIAL CHANNELS & NETWORKS:", "NUESTROS CANALES Y REDES OFICIALES:", "قنواتنا وشبكاتنا الرسمية:", "我们的官方频道与社交网络：", "UNSERE OFFIZIELLEN KANÄLE & NETZWERKE:", "NOSSOS CANAIS E REDES OFICIAIS:", "НАШИ ОФИЦИАЛЬНЫЕ КАНАЛЫ И СОЦСЕТИ:", "I NOSTRI CANALI E SOCIAL UFFICIALI:", "公式チャンネル＆SNS：", "हमारे आधिकारिक चैनल और नेटवर्क:"],
+    ["Survolez pour mettre en pause", "Hover to pause", "Pasa el cursor para pausar", "مرّر المؤشر للإيقاف المؤقت", "悬停即可暂停", "Zum Pausieren darüberfahren", "Passe o cursor para pausar", "Наведите курсор, чтобы остановить", "Passa sopra per mettere in pausa", "ホバーで一時停止", "रोकने के लिए कर्सर रखें"],
+    ["Modules :", "Modules:", "Módulos:", "الوحدات:", "模块：", "Module:", "Módulos:", "Модули:", "Moduli:", "モジュール：", "मॉड्यूल:"],
+    ["01. Formation complète", "01. Complete course", "01. Formación completa", "01. الدورة الشاملة", "01. 完整课程", "01. Kompletter Kurs", "01. Formação completa", "01. Полный курс", "01. Formazione completa", "01. 総合講座", "01. संपूर्ण कोर्स"],
+    ["02. +200 Indicateurs", "02. +200 Indicators", "02. +200 indicadores", "02. +200 مؤشر", "02. 200+ 指标", "02. +200 Indikatoren", "02. +200 indicadores", "02. 200+ индикаторов", "02. +200 indicatori", "02. 200以上のインジケーター", "02. 200+ इंडिकेटर्स"],
+    ["03. Créer sa stratégie", "03. Build your strategy", "03. Crea tu estrategia", "03. ابنِ استراتيجيتك", "03. 打造你的策略", "03. Eigene Strategie erstellen", "03. Crie sua estratégia", "03. Создайте свою стратегию", "03. Crea la tua strategia", "03. 自分の戦略を作る", "03. अपनी रणनीति बनाएँ"],
+    ["04. Plan de trading", "04. Trading plan", "04. Plan de trading", "04. خطة التداول", "04. 交易计划", "04. Trading-Plan", "04. Plano de trading", "04. Торговый план", "04. Piano di trading", "04. トレードプラン", "04. ट्रेडिंग प्लान"],
+    ["05. Langages du marché", "05. Market languages", "05. Lenguajes del mercado", "05. لغات السوق", "05. 市场语言", "05. Sprachen des Marktes", "05. Linguagens do mercado", "05. Языки рынка", "05. Linguaggi del mercato", "05. 相場の言語", "05. बाज़ार की भाषाएँ"],
+    ["06. Canal Telegram VIP", "06. Telegram VIP channel", "06. Canal VIP de Telegram", "06. قناة تيليجرام VIP", "06. Telegram VIP 频道", "06. Telegram-VIP-Kanal", "06. Canal VIP no Telegram", "06. VIP-канал в Telegram", "06. Canale VIP Telegram", "06. Telegram VIPチャンネル", "06. Telegram VIP चैनल"],
+    ["07. Stratégies TradingView", "07. TradingView strategies", "07. Estrategias TradingView", "07. استراتيجيات TradingView", "07. TradingView 策略", "07. TradingView-Strategien", "07. Estratégias TradingView", "07. Стратегии TradingView", "07. Strategie TradingView", "07. TradingView戦略", "07. TradingView रणनीतियाँ"],
+    ["7 ressources JAZ TRADING FIMC", "7 JAZ TRADING FIMC resources", "7 recursos JAZ TRADING FIMC", "7 موارد من JAZ TRADING FIMC", "7 大 JAZ TRADING FIMC 资源", "7 Ressourcen von JAZ TRADING FIMC", "7 recursos JAZ TRADING FIMC", "7 ресурсов JAZ TRADING FIMC", "7 risorse JAZ TRADING FIMC", "JAZ TRADING FIMCの7つのリソース", "JAZ TRADING FIMC के 7 संसाधन"],
+    ["Choisis ta prochaine étape", "Choose your next step", "Elige tu próximo paso", "اختر خطوتك التالية", "选择你的下一步", "Wähle deinen nächsten Schritt", "Escolha o seu próximo passo", "Выбери свой следующий шаг", "Scegli il tuo prossimo passo", "次のステップを選ぼう", "अपना अगला कदम चुनें"],
+    ["30 Leçons Complètes", "30 Complete Lessons", "30 lecciones completas", "30 درسًا كاملًا", "30 节完整课程", "30 vollständige Lektionen", "30 aulas completas", "30 полных уроков", "30 lezioni complete", "30の充実レッスン", "30 संपूर्ण पाठ"],
+    ["Formation complète sur le trading", "Complete Trading Course", "Formación completa de trading", "الدورة الشاملة في التداول", "完整交易课程", "Kompletter Trading-Kurs", "Formação completa em trading", "Полный курс по трейдингу", "Formazione completa sul trading", "トレード総合講座", "ट्रेडिंग का संपूर्ण कोर्स"],
+    ["La formation complète pour devenir trader, encadré de A à Z.", "The complete course to become a trader, guided from A to Z.", "La formación completa para convertirte en trader, acompañado de la A a la Z.", "الدورة الشاملة لتصبح متداولًا، بإرشاد كامل من الألف إلى الياء.", "成为交易者的完整课程，从 A 到 Z 全程指导。", "Der komplette Kurs, um Trader zu werden – begleitet von A bis Z.", "A formação completa para se tornar trader, com acompanhamento de A a Z.", "Полный курс, чтобы стать трейдером, с сопровождением от А до Я.", "La formazione completa per diventare trader, seguito dalla A alla Z.", "トレーダーになるための総合講座。AからZまで徹底サポート。", "ट्रेडर बनने का संपूर्ण कोर्स, A से Z तक मार्गदर्शन के साथ।"],
+    ["Accompagnement inclus", "Coaching included", "Acompañamiento incluido", "المرافقة مشمولة", "含专属指导", "Begleitung inklusive", "Acompanhamento incluído", "Сопровождение включено", "Affiancamento incluso", "サポート付き", "मार्गदर्शन शामिल"],
+    ["Stratégies backtestées 10 et 20 ans", "Strategies backtested over 10 and 20 years", "Estrategias backtesteadas a 10 y 20 años", "استراتيجيات مختبرة تاريخيًا على 10 و20 عامًا", "经 10 年和 20 年回测的策略", "Über 10 und 20 Jahre backgetestete Strategien", "Estratégias com backtest de 10 e 20 anos", "Стратегии с бэктестом на 10 и 20 лет", "Strategie backtestate su 10 e 20 anni", "10年・20年でバックテスト済みの戦略", "10 और 20 साल पर बैकटेस्ट की गई रणनीतियाँ"],
+    ["Communauté des élèves", "Student community", "Comunidad de alumnos", "مجتمع الطلاب", "学员社区", "Schüler-Community", "Comunidade de alunos", "Сообщество учеников", "Community degli studenti", "受講生コミュニティ", "छात्रों की कम्युनिटी"],
+    ["Commencer la formation", "Start the course", "Empezar la formación", "ابدأ الدورة", "开始学习课程", "Kurs starten", "Começar a formação", "Начать курс", "Inizia la formazione", "講座を始める", "कोर्स शुरू करें"],
+    ["Arsenal Élite TradingView", "TradingView Elite Arsenal", "Arsenal Élite TradingView", "ترسانة النخبة على TradingView", "TradingView 精英武器库", "TradingView Elite-Arsenal", "Arsenal de Elite TradingView", "Элитный арсенал TradingView", "Arsenale Élite TradingView", "TradingViewエリート武器庫", "TradingView एलीट आर्सेनल"],
+    ["+200 Indicateurs Institutionnels Avancés", "+200 Advanced Institutional Indicators", "+200 indicadores institucionales avanzados", "أكثر من 200 مؤشر مؤسسي متقدم", "200+ 款高级机构级指标", "+200 fortgeschrittene institutionelle Indikatoren", "+200 indicadores institucionais avançados", "200+ продвинутых институциональных индикаторов", "+200 indicatori istituzionali avanzati", "200以上の高度な機関投資家向けインジケーター", "200+ एडवांस्ड संस्थागत इंडिकेटर्स"],
+    ["L'arsenal d'élite complet sur TradingView : algorithmes d'analyse du volume, rubans de moyennes mobiles, zones d'accumulation et détection de retournements.", "The complete elite arsenal on TradingView: volume analysis algorithms, moving average ribbons, accumulation zones and reversal detection.", "El arsenal de élite completo en TradingView: algoritmos de análisis de volumen, cintas de medias móviles, zonas de acumulación y detección de giros.", "ترسانة النخبة الكاملة على TradingView: خوارزميات تحليل الحجم، وأشرطة المتوسطات المتحركة، ومناطق التجميع، واكتشاف الانعكاسات.", "TradingView 上完整的精英武器库：成交量分析算法、均线带、吸筹区域与反转识别。", "Das komplette Elite-Arsenal auf TradingView: Volumenanalyse-Algorithmen, Moving-Average-Bänder, Akkumulationszonen und Umkehrerkennung.", "O arsenal de elite completo no TradingView: algoritmos de análise de volume, fitas de médias móveis, zonas de acumulação e detecção de reversões.", "Полный элитный арсенал на TradingView: алгоритмы анализа объёма, ленты скользящих средних, зоны накопления и обнаружение разворотов.", "L'arsenale d'élite completo su TradingView: algoritmi di analisi dei volumi, nastri di medie mobili, zone di accumulazione e rilevamento delle inversioni.", "TradingViewの完全なエリート武器庫：出来高分析アルゴリズム、移動平均リボン、蓄積ゾーン、反転検出。", "TradingView पर संपूर्ण एलीट आर्सेनल: वॉल्यूम विश्लेषण एल्गोरिदम, मूविंग एवरेज रिबन, एक्युमुलेशन ज़ोन और रिवर्सल डिटेक्शन।"],
+    ["Accéder aux +200 Indicateurs", "Access the +200 Indicators", "Acceder a los +200 indicadores", "الوصول إلى أكثر من 200 مؤشر", "获取 200+ 指标", "Zu den +200 Indikatoren", "Acessar os +200 indicadores", "Получить 200+ индикаторов", "Accedi ai +200 indicatori", "200以上のインジケーターを見る", "200+ इंडिकेटर्स एक्सेस करें"],
+    ["Guide stratégique", "Strategy Guide", "Guía estratégica", "دليل استراتيجي", "策略指南", "Strategie-Guide", "Guia estratégico", "Стратегическое руководство", "Guida strategica", "戦略ガイド", "रणनीति गाइड"],
+    ["Guide de création de stratégie", "Strategy Creation Guide", "Guía de creación de estrategia", "دليل إنشاء الاستراتيجية", "策略构建指南", "Leitfaden zur Strategieerstellung", "Guia de criação de estratégia", "Руководство по созданию стратегии", "Guida alla creazione di strategie", "戦略作成ガイド", "रणनीति निर्माण गाइड"],
+    ["La méthode exacte pour construire une stratégie de trading solide, claire et applicable dès aujourd'hui — étape par étape.", "The exact method to build a solid, clear trading strategy you can apply today — step by step.", "El método exacto para construir una estrategia de trading sólida, clara y aplicable desde hoy — paso a paso.", "الطريقة الدقيقة لبناء استراتيجية تداول متينة وواضحة وقابلة للتطبيق من اليوم — خطوة بخطوة.", "构建稳健、清晰、今天就能用的交易策略的精确方法——循序渐进。", "Die exakte Methode, um eine solide, klare und ab heute anwendbare Trading-Strategie aufzubauen – Schritt für Schritt.", "O método exato para construir uma estratégia de trading sólida, clara e aplicável desde hoje — passo a passo.", "Точный метод построения надёжной и понятной торговой стратегии, которую можно применять уже сегодня, — шаг за шагом.", "Il metodo esatto per costruire una strategia di trading solida, chiara e applicabile da oggi — passo dopo passo.", "今日から使える、堅実で明確なトレード戦略を構築するための正確な手法 — ステップごとに。", "आज से लागू होने वाली मज़बूत और स्पष्ट ट्रेडिंग रणनीति बनाने का सटीक तरीका — स्टेप बाय स्टेप।"],
+    ["Voir le guide de création de stratégie", "View the strategy creation guide", "Ver la guía de creación de estrategia", "عرض دليل إنشاء الاستراتيجية", "查看策略构建指南", "Leitfaden zur Strategieerstellung ansehen", "Ver o guia de criação de estratégia", "Смотреть руководство по созданию стратегии", "Vedi la guida alla creazione di strategie", "戦略作成ガイドを見る", "रणनीति निर्माण गाइड देखें"],
+    ["Guide opérationnel", "Operational Guide", "Guía operativa", "دليل تشغيلي", "实操指南", "Praxis-Guide", "Guia operacional", "Практическое руководство", "Guida operativa", "実践ガイド", "ऑपरेशनल गाइड"],
+    ["Plan de trading professionnel", "Professional Trading Plan", "Plan de trading profesional", "خطة تداول احترافية", "专业交易计划", "Professioneller Trading-Plan", "Plano de trading profissional", "Профессиональный торговый план", "Piano di trading professionale", "プロのトレードプラン", "प्रोफेशनल ट्रेडिंग प्लान"],
+    ["Le cadre exact que suivent les traders sérieux avant chaque session, pour trader avec rigueur sans jamais improviser.", "The exact framework serious traders follow before every session, to trade with discipline and never improvise.", "El marco exacto que siguen los traders serios antes de cada sesión, para operar con rigor sin improvisar jamás.", "الإطار الدقيق الذي يتبعه المتداولون الجادون قبل كل جلسة، للتداول بانضباط دون أي ارتجال.", "认真的交易者在每次交易前遵循的精确框架，让你严谨交易、绝不临场发挥。", "Der exakte Rahmen, dem ernsthafte Trader vor jeder Session folgen – für diszipliniertes Trading ohne Improvisation.", "O modelo exato que os traders sérios seguem antes de cada sessão, para operar com rigor sem nunca improvisar.", "Точная система, которой следуют серьёзные трейдеры перед каждой сессией, чтобы торговать дисциплинированно и никогда не импровизировать.", "Il quadro esatto che i trader seri seguono prima di ogni sessione, per fare trading con rigore senza mai improvvisare.", "本気のトレーダーが毎セッション前に従う正確なフレームワーク。即興に頼らず規律あるトレードを。", "गंभीर ट्रेडर्स हर सेशन से पहले जिस सटीक ढाँचे का पालन करते हैं — अनुशासन के साथ ट्रेड करें, कभी अंदाज़े से नहीं।"],
+    ["Débloquer le plan de trading", "Unlock the trading plan", "Desbloquear el plan de trading", "افتح خطة التداول", "解锁交易计划", "Trading-Plan freischalten", "Desbloquear o plano de trading", "Открыть торговый план", "Sblocca il piano di trading", "トレードプランを入手", "ट्रेडिंग प्लान अनलॉक करें"],
+    ["Manuel d'études", "Study Manual", "Manual de estudio", "دليل الدراسة", "学习手册", "Studienhandbuch", "Manual de estudos", "Учебное пособие", "Manuale di studio", "学習マニュアル", "अध्ययन मैनुअल"],
+    ["Les langages du marché", "The Languages of the Market", "Los lenguajes del mercado", "لغات السوق", "市场的语言", "Die Sprachen des Marktes", "As linguagens do mercado", "Языки рынка", "I linguaggi del mercato", "相場の言語", "बाज़ार की भाषाएँ"],
+    ["Ce que la plupart des traders ne voient jamais sur un graphique — la psychologie du marché, le flux d'ordres réel et la décision institutionnelle.", "What most traders never see on a chart — market psychology, real order flow and institutional decision-making.", "Lo que la mayoría de los traders nunca ve en un gráfico — la psicología del mercado, el flujo de órdenes real y la decisión institucional.", "ما لا يراه معظم المتداولين أبدًا على الرسم البياني — سيكولوجية السوق، وتدفق الأوامر الحقيقي، والقرار المؤسسي.", "大多数交易者在图表上永远看不到的东西——市场心理、真实订单流与机构决策。", "Was die meisten Trader nie auf einem Chart sehen – Marktpsychologie, echter Orderflow und institutionelle Entscheidungen.", "O que a maioria dos traders nunca vê num gráfico — a psicologia do mercado, o fluxo real de ordens e a decisão institucional.", "То, чего большинство трейдеров никогда не видит на графике, — психология рынка, реальный поток ордеров и институциональные решения.", "Ciò che la maggior parte dei trader non vede mai su un grafico — la psicologia del mercato, il flusso reale degli ordini e le decisioni istituzionali.", "ほとんどのトレーダーがチャートで決して見ないもの —— 相場心理、実際のオーダーフロー、機関投資家の意思決定。", "जो ज़्यादातर ट्रेडर्स चार्ट पर कभी नहीं देखते — बाज़ार का मनोविज्ञान, असली ऑर्डर फ़्लो और संस्थागत निर्णय।"],
+    ["Voir le guide complet", "View the full guide", "Ver la guía completa", "عرض الدليل الكامل", "查看完整指南", "Vollständigen Guide ansehen", "Ver o guia completo", "Смотреть полное руководство", "Vedi la guida completa", "ガイド全体を見る", "पूरी गाइड देखें"],
+    ["Canal des signaux VIP", "VIP Signals Channel", "Canal de señales VIP", "قناة إشارات VIP", "VIP 信号频道", "VIP-Signalkanal", "Canal de sinais VIP", "Канал VIP-сигналов", "Canale dei segnali VIP", "VIPシグナルチャンネル", "VIP सिग्नल चैनल"],
+    ["Rejoins notre communauté officielle Telegram VIP et reçois les analyses de pré-marché ainsi que les prises de positions partagées en direct.", "Join our official Telegram VIP community and get pre-market analysis plus trade entries shared live.", "Únete a nuestra comunidad oficial VIP de Telegram y recibe los análisis premercado y las entradas compartidas en directo.", "انضم إلى مجتمعنا الرسمي VIP على تيليجرام واحصل على تحليلات ما قبل السوق والصفقات المشاركة مباشرة.", "加入我们的官方 Telegram VIP 社区，获取盘前分析以及实时分享的建仓点位。", "Tritt unserer offiziellen Telegram-VIP-Community bei und erhalte Pre-Market-Analysen sowie live geteilte Positionseröffnungen.", "Junte-se à nossa comunidade oficial VIP no Telegram e receba as análises pré-mercado e as entradas partilhadas ao vivo.", "Присоединяйтесь к нашему официальному VIP-сообществу в Telegram и получайте премаркет-анализ и входы в позиции в реальном времени.", "Unisciti alla nostra community ufficiale Telegram VIP e ricevi le analisi pre-market e le posizioni condivise in diretta.", "公式Telegram VIPコミュニティに参加して、プレマーケット分析とリアルタイムで共有されるエントリーを受け取りましょう。", "हमारी आधिकारिक Telegram VIP कम्युनिटी से जुड़ें और प्री-मार्केट विश्लेषण व लाइव साझा की गई पोज़िशन पाएँ।"],
+    ["Rejoindre le canal Telegram VIP", "Join the Telegram VIP channel", "Unirse al canal VIP de Telegram", "انضم إلى قناة تيليجرام VIP", "加入 Telegram VIP 频道", "Dem Telegram-VIP-Kanal beitreten", "Entrar no canal VIP do Telegram", "Вступить в VIP-канал Telegram", "Unisciti al canale VIP Telegram", "Telegram VIPチャンネルに参加", "Telegram VIP चैनल से जुड़ें"],
+    ["Communauté VIP Officielle", "Official VIP Community", "Comunidad VIP oficial", "مجتمع VIP الرسمي", "官方 VIP 社区", "Offizielle VIP-Community", "Comunidade VIP oficial", "Официальное VIP-сообщество", "Community VIP ufficiale", "公式VIPコミュニティ", "आधिकारिक VIP कम्युनिटी"],
+    ["Nos stratégies automatiques sur TradingView", "Our Automated Strategies on TradingView", "Nuestras estrategias automáticas en TradingView", "استراتيجياتنا الآلية على TradingView", "我们在 TradingView 上的自动化策略", "Unsere automatisierten Strategien auf TradingView", "Nossas estratégias automáticas no TradingView", "Наши автоматические стратегии на TradingView", "Le nostre strategie automatiche su TradingView", "TradingViewの自動売買戦略", "TradingView पर हमारी ऑटोमेटेड रणनीतियाँ"],
+    ["L'automatisation et les scripts algorithmiques sur TradingView développés par JAZ TRADING FIMC arrivent très bientôt.", "Automation and algorithmic TradingView scripts developed by JAZ TRADING FIMC are coming very soon.", "La automatización y los scripts algorítmicos de TradingView desarrollados por JAZ TRADING FIMC llegan muy pronto.", "الأتمتة والسكربتات الخوارزمية على TradingView التي طورتها JAZ TRADING FIMC قادمة قريبًا جدًا.", "由 JAZ TRADING FIMC 开发的 TradingView 自动化与算法脚本即将上线。", "Automatisierung und algorithmische TradingView-Skripte von JAZ TRADING FIMC kommen schon sehr bald.", "A automação e os scripts algorítmicos no TradingView desenvolvidos pela JAZ TRADING FIMC chegam muito em breve.", "Автоматизация и алгоритмические скрипты TradingView от JAZ TRADING FIMC появятся совсем скоро.", "L'automazione e gli script algoritmici su TradingView sviluppati da JAZ TRADING FIMC arrivano prestissimo.", "JAZ TRADING FIMCが開発したTradingViewの自動化・アルゴリズムスクリプトがまもなく登場します。", "JAZ TRADING FIMC द्वारा विकसित TradingView ऑटोमेशन और एल्गोरिदमिक स्क्रिप्ट्स बहुत जल्द आ रही हैं।"],
+    ["Obtenir nos stratégies automatiques sur TradingView", "Get our automated strategies on TradingView", "Obtener nuestras estrategias automáticas en TradingView", "احصل على استراتيجياتنا الآلية على TradingView", "获取我们的 TradingView 自动化策略", "Unsere automatisierten TradingView-Strategien holen", "Obter nossas estratégias automáticas no TradingView", "Получить наши автоматические стратегии на TradingView", "Ottieni le nostre strategie automatiche su TradingView", "TradingView自動売買戦略を入手", "TradingView पर हमारी ऑटोमेटेड रणनीतियाँ पाएँ"],
+    ["Bientôt disponible", "Coming soon", "Próximamente", "قريبًا", "即将推出", "Demnächst verfügbar", "Em breve", "Скоро", "Presto disponibile", "近日公開", "जल्द उपलब्ध"],
+    ["Aperçu à venir", "Preview coming soon", "Vista previa próximamente", "معاينة قريبًا", "预览即将推出", "Vorschau folgt", "Prévia em breve", "Превью скоро", "Anteprima in arrivo", "プレビュー近日公開", "प्रीव्यू जल्द आ रहा है"],
+    ["Centre officiel des ressources et formations pour traders francophones. Méthodologies rigoureuses, indicateurs institutionnels et accompagnement d'élite.", "Official hub of resources and courses for French-speaking traders. Rigorous methods, institutional indicators and elite coaching.", "Centro oficial de recursos y formaciones para traders francófonos. Metodologías rigurosas, indicadores institucionales y acompañamiento de élite.", "المركز الرسمي للموارد والدورات للمتداولين الناطقين بالفرنسية. منهجيات صارمة ومؤشرات مؤسسية ومرافقة النخبة.", "面向法语交易者的官方资源与课程中心。严谨的方法论、机构级指标与精英指导。", "Offizielles Zentrum für Ressourcen und Kurse für französischsprachige Trader. Strenge Methoden, institutionelle Indikatoren und Elite-Begleitung.", "Centro oficial de recursos e formações para traders francófonos. Metodologias rigorosas, indicadores institucionais e acompanhamento de elite.", "Официальный центр ресурсов и курсов для франкоязычных трейдеров. Строгие методики, институциональные индикаторы и элитное сопровождение.", "Centro ufficiale di risorse e formazioni per trader francofoni. Metodologie rigorose, indicatori istituzionali e affiancamento d'élite.", "フランス語圏のトレーダー向け公式リソース＆講座センター。厳格なメソッド、機関投資家向けインジケーター、エリートサポート。", "फ़्रेंच भाषी ट्रेडर्स के लिए संसाधनों और कोर्सेज़ का आधिकारिक केंद्र। सख़्त पद्धतियाँ, संस्थागत इंडिकेटर्स और एलीट मार्गदर्शन।"],
+    ["Tous les systèmes opérationnels 7j/7", "All systems operational 7 days a week", "Todos los sistemas operativos 7 días a la semana", "جميع الأنظمة تعمل 7 أيام في الأسبوع", "所有系统全周 7 天正常运行", "Alle Systeme 7 Tage die Woche in Betrieb", "Todos os sistemas operacionais 7 dias por semana", "Все системы работают 7 дней в неделю", "Tutti i sistemi operativi 7 giorni su 7", "全システム週7日稼働中", "सभी सिस्टम हफ़्ते के सातों दिन चालू"],
+    ["Ressources Clés", "Key Resources", "Recursos clave", "الموارد الأساسية", "核心资源", "Wichtige Ressourcen", "Recursos-chave", "Ключевые ресурсы", "Risorse chiave", "主要リソース", "मुख्य संसाधन"],
+    ["Formation Complète", "Complete Course", "Formación completa", "الدورة الشاملة", "完整课程", "Kompletter Kurs", "Formação completa", "Полный курс", "Formazione completa", "総合講座", "संपूर्ण कोर्स"],
+    ["Guide de stratégie", "Strategy Guide", "Guía de estrategia", "دليل الاستراتيجية", "策略指南", "Strategie-Guide", "Guia de estratégia", "Руководство по стратегии", "Guida alla strategia", "戦略ガイド", "रणनीति गाइड"],
+    ["Plan de trading", "Trading Plan", "Plan de trading", "خطة التداول", "交易计划", "Trading-Plan", "Plano de trading", "Торговый план", "Piano di trading", "トレードプラン", "ट्रेडिंग प्लान"],
+    ["Langages du marché", "Market Languages", "Lenguajes del mercado", "لغات السوق", "市场语言", "Sprachen des Marktes", "Linguagens do mercado", "Языки рынка", "Linguaggi del mercato", "相場の言語", "बाज़ार की भाषाएँ"],
+    ["Canaux Officiels", "Official Channels", "Canales oficiales", "القنوات الرسمية", "官方频道", "Offizielle Kanäle", "Canais oficiais", "Официальные каналы", "Canali ufficiali", "公式チャンネル", "आधिकारिक चैनल"],
+    ["Telegram VIP Direct", "Telegram VIP Live", "Telegram VIP en directo", "تيليجرام VIP مباشر", "Telegram VIP 实时", "Telegram VIP live", "Telegram VIP ao vivo", "Telegram VIP онлайн", "Telegram VIP in diretta", "Telegram VIPライブ", "Telegram VIP लाइव"],
+    ["YouTube Analyses", "YouTube Analysis", "Análisis en YouTube", "تحليلات يوتيوب", "YouTube 分析", "YouTube-Analysen", "Análises no YouTube", "Аналитика на YouTube", "Analisi su YouTube", "YouTube分析", "YouTube विश्लेषण"],
+    ["TikTok Officiel", "Official TikTok", "TikTok oficial", "تيك توك الرسمي", "官方 TikTok", "Offizielles TikTok", "TikTok oficial", "Официальный TikTok", "TikTok ufficiale", "公式TikTok", "आधिकारिक TikTok"],
+    ["Avertissement Légal", "Legal Disclaimer", "Aviso legal", "إخلاء المسؤولية القانوني", "法律声明", "Rechtlicher Hinweis", "Aviso legal", "Юридическое предупреждение", "Avvertenza legale", "法的免責事項", "क़ानूनी अस्वीकरण"],
+    ["Le trading comporte des risques financiers. Les contenus proposés ont une vocation purement pédagogique et éducative.", "Trading involves financial risk. The content provided is purely educational.", "El trading conlleva riesgos financieros. Los contenidos ofrecidos tienen una finalidad puramente pedagógica y educativa.", "ينطوي التداول على مخاطر مالية. المحتوى المقدم لأغراض تعليمية وتربوية بحتة.", "交易存在财务风险。所提供的内容仅用于教学与教育目的。", "Trading birgt finanzielle Risiken. Die angebotenen Inhalte dienen ausschließlich pädagogischen Zwecken.", "O trading envolve riscos financeiros. Os conteúdos oferecidos têm finalidade puramente pedagógica e educativa.", "Трейдинг сопряжён с финансовыми рисками. Предлагаемые материалы носят исключительно образовательный характер.", "Il trading comporta rischi finanziari. I contenuti proposti hanno finalità puramente didattiche ed educative.", "トレードには金銭的リスクが伴います。提供するコンテンツは教育のみを目的としています。", "ट्रेडिंग में वित्तीय जोखिम होते हैं। प्रस्तुत सामग्री पूरी तरह शैक्षिक उद्देश्य के लिए है।"],
+    ["Mentions Légales", "Legal Notice", "Aviso legal", "الإشعار القانوني", "法律信息", "Impressum", "Informações legais", "Правовая информация", "Note legali", "法的表記", "क़ानूनी सूचना"],
+    ["Conditions Générales", "Terms & Conditions", "Términos y condiciones", "الشروط العامة", "通用条款", "AGB", "Termos e condições", "Общие условия", "Condizioni generali", "利用規約", "नियम और शर्तें"],
+    ["2026 JAZ TRADING FIMC. Tous droits réservés.", "2026 JAZ TRADING FIMC. All rights reserved.", "2026 JAZ TRADING FIMC. Todos los derechos reservados.", "2026 JAZ TRADING FIMC. جميع الحقوق محفوظة.", "2026 JAZ TRADING FIMC. 版权所有。", "2026 JAZ TRADING FIMC. Alle Rechte vorbehalten.", "2026 JAZ TRADING FIMC. Todos os direitos reservados.", "2026 JAZ TRADING FIMC. Все права защищены.", "2026 JAZ TRADING FIMC. Tutti i diritti riservati.", "2026 JAZ TRADING FIMC. 無断転載を禁じます。", "2026 JAZ TRADING FIMC. सर्वाधिकार सुरक्षित।"],
+    ["Excellence Institutionnelle", "Institutional Excellence", "Excelencia institucional", "التميز المؤسسي", "机构级卓越", "Institutionelle Exzellenz", "Excelência institucional", "Институциональное превосходство", "Eccellenza istituzionale", "機関投資家レベルの卓越性", "संस्थागत उत्कृष्टता"],
+    ["Discipline & Rigueur", "Discipline & Rigor", "Disciplina y rigor", "الانضباط والصرامة", "纪律与严谨", "Disziplin & Präzision", "Disciplina e rigor", "Дисциплина и строгость", "Disciplina e rigore", "規律と厳格さ", "अनुशासन और सख़्ती"],
+    ["Construis tes propres stratégies de trading", "Build your own trading strategies", "Construye tus propias estrategias de trading", "ابنِ استراتيجيات التداول الخاصة بك", "打造你自己的交易策略", "Baue deine eigenen Trading-Strategien", "Construa as suas próprias estratégias de trading", "Создавай собственные торговые стратегии", "Costruisci le tue strategie di trading", "自分だけのトレード戦略を作ろう", "अपनी खुद की ट्रेडिंग रणनीतियाँ बनाएँ"],
+    ["CHOISIR LA LANGUE / SELECT LANGUAGE", "SELECT LANGUAGE", "ELEGIR IDIOMA", "اختر اللغة", "选择语言", "SPRACHE WÄHLEN", "ESCOLHER IDIOMA", "ВЫБРАТЬ ЯЗЫК", "SCEGLI LA LINGUA", "言語を選択", "भाषा चुनें"]
+  ];
+
+  var MAP = {};
+  T.forEach(function (row) { MAP[norm(row[0])] = row; });
+  function norm(s) { return s.replace(/\s+/g, " ").trim(); }
+  var EDGE = /^([\s\p{Extended_Pictographic}️‍]*)([\s\S]*?)([\s\p{Extended_Pictographic}️‍]*)$/u;
+  function tr(text, idx) {
+    var m = text.match(EDGE);
+    if (!m || !m[2]) return null;
+    var row = MAP[norm(m[2])];
+    if (!row) return null;
+    return m[1] + row[idx] + m[3];
+  }
+
+  var ORIG = new WeakMap();
+  var SKIP = "script,style,svg,#liveToast,.tradingview-widget-container,.jz-lang";
+  var titleOrig = document.title;
+  var current = "fr";
+
+  function apply(lang) {
+    var idx = LANGS.indexOf(lang);
+    if (idx < 0) { lang = "fr"; idx = 0; }
+    current = lang;
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        var p = n.parentElement;
+        if (!p || p.closest(SKIP)) return NodeFilter.FILTER_REJECT;
+        return /\S/.test(n.nodeValue) || ORIG.has(n) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var n;
+    while ((n = walker.nextNode())) {
+      if (!ORIG.has(n)) ORIG.set(n, n.nodeValue);
+      var o = ORIG.get(n);
+      var t = idx === 0 ? o : tr(o, idx);
+      n.nodeValue = t == null ? o : t;
+    }
+    document.querySelectorAll("img[alt]").forEach(function (img) {
+      if (!img.hasAttribute("data-alt-fr")) img.setAttribute("data-alt-fr", img.getAttribute("alt"));
+      var o = img.getAttribute("data-alt-fr");
+      if (idx === 0) { img.alt = o; return; }
+      var parts = o.split(" — ");
+      var first = tr(parts[0], idx);
+      img.alt = first == null ? o : [first].concat(parts.slice(1)).join(" — ");
+    });
+    var tt = idx === 0 ? titleOrig : tr(titleOrig, idx);
+    document.title = tt || titleOrig;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    window.currentLang = lang;
+    renderSelector();
+    try { localStorage.setItem("jaz_selected_lang", lang); } catch (e) {}
+  }
+
+  function renderSelector() {
+    var box = document.getElementById("jzLang");
+    if (!box) return;
+    box.querySelector(".jz-lang-cur-flag").innerHTML = FLAGS[current];
+    box.querySelector(".jz-lang-cur-code").textContent = current.toUpperCase();
+    var idx = LANGS.indexOf(current);
+    box.querySelector(".jz-lang-title").textContent = T[T.length - 1][idx];
+    box.querySelectorAll(".jz-lang-opt").forEach(function (b) {
+      b.classList.toggle("active", b.getAttribute("data-lang") === current);
+    });
+  }
+
+  function buildSelector() {
+    var box = document.getElementById("jzLang");
+    if (!box) return;
+    var html = '<button type="button" class="jz-lang-btn" aria-haspopup="true" aria-expanded="false">' +
+      '<span class="jz-lang-cur-flag"></span><span class="jz-lang-cur-code"></span>' +
+      '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="jz-lang-chev"><path d="M6 9l6 6 6-6"/></svg></button>' +
+      '<div class="jz-lang-menu"><div class="jz-lang-title"></div><div class="jz-lang-list">';
+    LANGS.forEach(function (l) {
+      html += '<button type="button" class="jz-lang-opt" data-lang="' + l + '"><span class="jz-lang-flag">' + FLAGS[l] +
+        '</span><span class="jz-lang-name">' + NAMES[l] + '</span><span class="jz-lang-code">' + l.toUpperCase() + '</span></button>';
+    });
+    html += "</div></div>";
+    box.innerHTML = html;
+    var btn = box.querySelector(".jz-lang-btn");
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var open = box.classList.toggle("open");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    box.querySelectorAll(".jz-lang-opt").forEach(function (b) {
+      b.addEventListener("click", function () {
+        apply(b.getAttribute("data-lang"));
+        box.classList.remove("open");
+        btn.setAttribute("aria-expanded", "false");
+      });
+    });
+    document.addEventListener("click", function (e) {
+      if (!box.contains(e.target)) { box.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); }
+    });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") box.classList.remove("open"); });
+  }
+
+  window.setLang = apply;
+  window.JAZ_HOME_TRANSLATE = apply;
+
+  function init() {
+    buildSelector();
+    var saved = "fr";
+    try { saved = localStorage.getItem("jaz_selected_lang") || "fr"; } catch (e) {}
+    apply(LANGS.indexOf(saved) >= 0 ? saved : "fr");
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
+})();
+
   </script>
 </body>
 </html>
