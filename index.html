@@ -431,7 +431,7 @@
       <a href="#module-03" class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-slate-200 font-bold text-xs hover:border-cyan-400 hover:text-cyan-400 transition-all whitespace-nowrap">04. Plan de trading</a>
       <a href="#module-04" class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-slate-200 font-bold text-xs hover:border-amber-400 hover:text-amber-400 transition-all whitespace-nowrap">05. Langages du march&eacute;</a>
       <a href="#module-05" class="px-3.5 py-1.5 rounded-full bg-white/5 border border-cyan-500/30 text-cyan-300 font-bold text-xs hover:border-cyan-400 hover:text-cyan-400 transition-all whitespace-nowrap">06. Canal Telegram VIP</a>
-      <a href="#module-07" class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-slate-400 font-bold text-xs hover:border-white/30 hover:text-slate-200 transition-all whitespace-nowrap">07. Strat&eacute;gies TradingView</a>
+      <a href="#module-07" class="px-3.5 py-1.5 rounded-full bg-white/5 border border-amber-400/30 text-amber-300 font-bold text-xs hover:border-amber-400 hover:text-amber-400 transition-all whitespace-nowrap">07. Strat&eacute;gies TradingView</a>
     </div>
   </nav>
   <!-- ==================== 6. LES 7 MODULES INSTITUTIONNELS ==================== -->
@@ -610,24 +610,26 @@
           </div>
         </article>
         <!-- ================= POSITION 7 : STRATEGIES AUTOMATIQUES ================= -->
-        <article id="module-07" class="glass-card rounded-2xl p-4 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 opacity-80 hover:opacity-100 transition-opacity">
-          <div class="flex-1 text-center md:text-left">
+        <article id="module-07" class="glass-card rounded-2xl p-4 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden border-amber-400/40">
+          <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-600"></div>
+          <span class="absolute top-2 right-4 font-black text-8xl text-white/5 select-none pointer-events-none">07</span>
+          <div class="flex-1 text-center md:text-left relative z-10">
             <h3 class="text-xl sm:text-3xl font-extrabold text-white" data-i18n="m07-title">Nos strat&eacute;gies automatiques sur TradingView</h3>
-            <p class="mt-3 text-slate-300 text-base sm:text-lg leading-relaxed max-w-lg" data-i18n="m07-hook">L'automatisation et les scripts algorithmiques sur TradingView développés par JAZ TRADING FIMC arrivent très bientôt.</p>
+            <p class="mt-3 text-slate-300 text-base sm:text-lg leading-relaxed max-w-lg" data-i18n="m07-hook">4 stratégies automatiques développées par JAZ TRADING FIMC, prêtes à trader pour toi sur TradingView, même lorsque tu es occupé.</p>
             <div class="mt-6">
-              <button disabled class="px-8 py-4 rounded-full bg-white/5 border border-white/15 text-slate-500 font-extrabold text-sm sm:text-base cursor-not-allowed" data-i18n="m07-btn">
-                Obtenir nos strat&eacute;gies automatiques sur TradingView &#128274;
-              </button>
+              <a href="strategies.html" target="_blank" rel="noopener"
+                 class="btn-lux inline-flex items-center gap-3 px-6 py-3 sm:px-8 sm:py-4 rounded-full bg-gradient-to-r from-amber-300 to-yellow-500 text-black font-extrabold text-sm sm:text-base shadow-xl hover:scale-105" data-i18n="m07-btn">
+                <span>Obtenir nos strat&eacute;gies automatiques sur TradingView &#128200;</span>
+              </a>
             </div>
           </div>
-          <div class="w-64 h-40 rounded-2xl border border-white/10 bg-white/5 flex flex-col items-center justify-center text-slate-500 gap-2">
+          <div class="w-64 h-40 rounded-2xl border border-amber-400/30 bg-amber-400/10 flex flex-col items-center justify-center text-amber-300 gap-2 p-4">
             <div class="flex items-center justify-center md:justify-start gap-2 mb-2">
-              <span class="w-6 h-6 rounded-full bg-slate-700 text-slate-300 text-xs font-bold flex items-center justify-center font-mono">07</span>
-              <span class="bg-white/10 text-slate-300 text-xs sm:text-sm font-bold px-3 py-1 rounded-full" data-i18n="soon-badge">Bient&ocirc;t disponible</span>
+              <span class="w-6 h-6 rounded-full bg-amber-400 text-black text-xs font-bold flex items-center justify-center font-mono">07</span>
+              <span class="bg-amber-400/20 border border-amber-400/40 text-amber-300 text-xs sm:text-sm font-bold px-3 py-1 rounded-full">Disponible maintenant</span>
             </div>
-
-            <span class="text-3xl">&#129302;</span>
-            <span class="text-xs font-bold text-slate-400" data-i18n="preview-soon">Aper&ccedil;u &agrave; venir</span>
+            <span class="text-3xl">&#128200;</span>
+            <span class="text-sm font-bold text-white">Essai 5 jours disponible</span>
           </div>
         </article>
       </div>
@@ -883,7 +885,7 @@
       "m06-feat2": { fr: "📊 Stratégies backtestées 10 et 20 ans", en: "📊 Strategies backtested 10 & 20 years" },
       "m06-feat3": { fr: "👥 Communauté des élèves", en: "👥 Students community" },
       "m07-title": { fr: "Nos strat\u00e9gies automatiques sur TradingView", en: "Our Automated Strategies on TradingView" },
-      "m07-hook": { fr: "L'automatisation et les scripts algorithmiques sur TradingView d\u00e9velopp\u00e9s par JAZ TRADING FIMC arrivent tr\u00e8s bient\u00f4t.", en: "Automation and algorithmic TradingView scripts developed by JAZ TRADING FIMC are coming very soon." },
+      "m07-hook": { fr: "4 strat\u00e9gies automatiques d\u00e9velopp\u00e9es par JAZ TRADING FIMC, pr\u00eates \u00e0 trader pour toi sur TradingView, m\u00eame lorsque tu es occup\u00e9.", en: "4 automated strategies developed by JAZ TRADING FIMC, ready to trade for you on TradingView, even when you're busy." },
       "m07-btn": { fr: "Obtenir nos strat\u00e9gies automatiques sur TradingView \ud83d\udd12", en: "Get our automated strategies on TradingView \ud83d\udd12" }
     };
     var currentLang = "fr";
@@ -1019,6 +1021,9 @@
     ["Nos stratégies automatiques sur TradingView", "Our Automated Strategies on TradingView", "Nuestras estrategias automáticas en TradingView", "استراتيجياتنا الآلية على TradingView", "我们在 TradingView 上的自动化策略", "Unsere automatisierten Strategien auf TradingView", "Nossas estratégias automáticas no TradingView", "Наши автоматические стратегии на TradingView", "Le nostre strategie automatiche su TradingView", "TradingViewの自動売買戦略", "TradingView पर हमारी ऑटोमेटेड रणनीतियाँ"],
     ["L'automatisation et les scripts algorithmiques sur TradingView développés par JAZ TRADING FIMC arrivent très bientôt.", "Automation and algorithmic TradingView scripts developed by JAZ TRADING FIMC are coming very soon.", "La automatización y los scripts algorítmicos de TradingView desarrollados por JAZ TRADING FIMC llegan muy pronto.", "الأتمتة والسكربتات الخوارزمية على TradingView التي طورتها JAZ TRADING FIMC قادمة قريبًا جدًا.", "由 JAZ TRADING FIMC 开发的 TradingView 自动化与算法脚本即将上线。", "Automatisierung und algorithmische TradingView-Skripte von JAZ TRADING FIMC kommen schon sehr bald.", "A automação e os scripts algorítmicos no TradingView desenvolvidos pela JAZ TRADING FIMC chegam muito em breve.", "Автоматизация и алгоритмические скрипты TradingView от JAZ TRADING FIMC появятся совсем скоро.", "L'automazione e gli script algoritmici su TradingView sviluppati da JAZ TRADING FIMC arrivano prestissimo.", "JAZ TRADING FIMCが開発したTradingViewの自動化・アルゴリズムスクリプトがまもなく登場します。", "JAZ TRADING FIMC द्वारा विकसित TradingView ऑटोमेशन और एल्गोरिदमिक स्क्रिप्ट्स बहुत जल्द आ रही हैं।"],
     ["Obtenir nos stratégies automatiques sur TradingView", "Get our automated strategies on TradingView", "Obtener nuestras estrategias automáticas en TradingView", "احصل على استراتيجياتنا الآلية على TradingView", "获取我们的 TradingView 自动化策略", "Unsere automatisierten TradingView-Strategien holen", "Obter nossas estratégias automáticas no TradingView", "Получить наши автоматические стратегии на TradingView", "Ottieni le nostre strategie automatiche su TradingView", "TradingView自動売買戦略を入手", "TradingView पर हमारी ऑटोमेटेड रणनीतियाँ पाएँ"],
+    ["4 stratégies automatiques développées par JAZ TRADING FIMC, prêtes à trader pour toi sur TradingView, même lorsque tu es occupé.", "4 automated strategies developed by JAZ TRADING FIMC, ready to trade for you on TradingView, even when you're busy.", "4 estrategias automáticas desarrolladas por JAZ TRADING FIMC, listas para operar por ti en TradingView, incluso cuando estás ocupado.", "4 استراتيجيات آلية طورتها JAZ TRADING FIMC، جاهزة للتداول نيابةً عنك على TradingView، حتى عندما تكون مشغولًا.", "JAZ TRADING FIMC 开发的 4 个自动化策略，在 TradingView 上替你交易，即使你正忙也不例外。", "4 automatisierte Strategien von JAZ TRADING FIMC, bereit, auf TradingView für dich zu traden – auch wenn du beschäftigt bist.", "4 estratégias automáticas desenvolvidas pela JAZ TRADING FIMC, prontas para operar por você no TradingView, mesmo quando você está ocupado.", "4 автоматические стратегии от JAZ TRADING FIMC, готовые торговать за тебя на TradingView, даже когда ты занят.", "4 strategie automatiche sviluppate da JAZ TRADING FIMC, pronte a fare trading per te su TradingView, anche quando sei occupato.", "JAZ TRADING FIMCが開発した4つの自動売買戦略。忙しいときでも、TradingViewであなたの代わりにトレードします。", "JAZ TRADING FIMC द्वारा विकसित 4 ऑटोमेटेड रणनीतियाँ, जो TradingView पर आपके लिए ट्रेड करती हैं, तब भी जब आप व्यस्त हों।"],
+    ["Disponible maintenant", "Available now", "Disponible ahora", "متاح الآن", "现已推出", "Jetzt verfügbar", "Disponível agora", "Доступно сейчас", "Disponibile ora", "公開中", "अभी उपलब्ध"],
+    ["Essai 5 jours disponible", "5-day trial available", "Prueba de 5 días disponible", "تجربة لمدة 5 أيام متاحة", "可试用 5 天", "5 Tage Testphase verfügbar", "Teste de 5 dias disponível", "Доступна пробная версия на 5 дней", "Prova di 5 giorni disponibile", "5日間のお試しあり", "5 दिन का ट्रायल उपलब्ध"],
     ["Bientôt disponible", "Coming soon", "Próximamente", "قريبًا", "即将推出", "Demnächst verfügbar", "Em breve", "Скоро", "Presto disponibile", "近日公開", "जल्द उपलब्ध"],
     ["Aperçu à venir", "Preview coming soon", "Vista previa próximamente", "معاينة قريبًا", "预览即将推出", "Vorschau folgt", "Prévia em breve", "Превью скоро", "Anteprima in arrivo", "プレビュー近日公開", "प्रीव्यू जल्द आ रहा है"],
     ["Centre officiel des ressources et formations pour traders francophones. Méthodologies rigoureuses, indicateurs institutionnels et accompagnement d'élite.", "Official hub of resources and courses for French-speaking traders. Rigorous methods, institutional indicators and elite coaching.", "Centro oficial de recursos y formaciones para traders francófonos. Metodologías rigurosas, indicadores institucionales y acompañamiento de élite.", "المركز الرسمي للموارد والدورات للمتداولين الناطقين بالفرنسية. منهجيات صارمة ومؤشرات مؤسسية ومرافقة النخبة.", "面向法语交易者的官方资源与课程中心。严谨的方法论、机构级指标与精英指导。", "Offizielles Zentrum für Ressourcen und Kurse für französischsprachige Trader. Strenge Methoden, institutionelle Indikatoren und Elite-Begleitung.", "Centro oficial de recursos e formações para traders francófonos. Metodologias rigorosas, indicadores institucionais e acompanhamento de elite.", "Официальный центр ресурсов и курсов для франкоязычных трейдеров. Строгие методики, институциональные индикаторы и элитное сопровождение.", "Centro ufficiale di risorse e formazioni per trader francofoni. Metodologie rigorose, indicatori istituzionali e affiancamento d'élite.", "フランス語圏のトレーダー向け公式リソース＆講座センター。厳格なメソッド、機関投資家向けインジケーター、エリートサポート。", "फ़्रेंच भाषी ट्रेडर्स के लिए संसाधनों और कोर्सेज़ का आधिकारिक केंद्र। सख़्त पद्धतियाँ, संस्थागत इंडिकेटर्स और एलीट मार्गदर्शन।"],
