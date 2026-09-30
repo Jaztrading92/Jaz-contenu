@@ -8,8 +8,8 @@
 <script>
   // Adresses courtes : /strategies/, /strategie, /STRATEGIES… → /strategies
   (function () {
-    var p = location.pathname.toLowerCase().replace(/\/+$/, "");
-    var routes = { "/strategies": "/strategies", "/strategie": "/strategies", "/strategy": "/strategies", "/strategies.htm": "/strategies", "/accueil": "/", "/index": "/" };
+    var p = location.pathname.toLowerCase().replace(/\.html?$/, "").replace(/\/+$/, "");
+    var routes = { "/strategies": "/strategies", "/strategie": "/strategies", "/strategy": "/strategies", "/strategies.htm": "/strategies", "/accueil": "/", "/index": "/", "/formations": "/formation", "/formation-complete": "/formation", "/indicateur": "/indicateurs", "/plan": "/plan-de-trading", "/plan-trading": "/plan-de-trading", "/langages": "/langages-du-marche", "/langage-du-marche": "/langages-du-marche", "/creer-strategie": "/creer-sa-strategie", "/strategie-guide": "/creer-sa-strategie" };
     if (routes[p] && routes[p] !== location.pathname) location.replace(routes[p] + location.search + location.hash);
   })();
 </script>
