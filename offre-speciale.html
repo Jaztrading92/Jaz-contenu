@@ -207,6 +207,15 @@
 
     .sticky { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(1, 9, 16, .92); backdrop-filter: blur(12px); border-top: 1px solid var(--line); transform: translateY(110%); transition: transform .35s var(--ease); }
     .sticky.show { transform: none; }
+
+    /* Compte à rebours : l'offre s'arrête vraiment à zéro */
+    .timer { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 18px auto 0; max-width: 520px; padding: 10px 16px; border: 1px solid var(--red-border); border-radius: 14px; background: rgba(239, 68, 68, .08); font-size: 14px; color: var(--text); text-align: center; }
+    .timer b { font-family: 'Outfit', sans-serif; font-size: 22px; color: #fff; letter-spacing: .04em; font-variant-numeric: tabular-nums; }
+    .timer.in-box { margin: 0 0 16px; }
+    .expired { display: none; text-align: center; padding: 18px 16px; border: 1px solid var(--line); border-radius: 14px; color: var(--muted); }
+    .expired b { display: block; color: #fff; font-size: 18px; margin-bottom: 4px; }
+    body.offre-finie .js-checkout, body.offre-finie .cta-top, body.offre-finie .sticky, body.offre-finie .timer, body.offre-finie .only { display: none !important; }
+    body.offre-finie .expired { display: block; }
     .sticky .btn { max-width: 520px; margin: 0 auto; padding: 14px 18px; font-size: 15px; }
 
     .lightbox { position: fixed; inset: 0; z-index: 80; display: none; place-items: center; padding: 16px; background: rgba(1,9,16,.92); cursor: zoom-out; }
@@ -257,6 +266,7 @@
       <p>Ton Pack Stratège JAZ arrive par e-mail. Avant d'y accéder, une dernière opportunité t'est réservée.</p>
       <div class="bar" aria-hidden="true"><span></span><span class="todo"></span></div>
       <div class="bar-lbl">ÉTAPE 2 SUR 2</div>
+      <div class="timer" role="timer">Ton offre expire dans <b class="js-timer">15:00</b></div>
     </section>
 
     <!-- 2. Hero + mockup -->
@@ -379,6 +389,8 @@
             <div class="big">24,99 $</div>
             <div class="eur">soit environ 14 300 FCFA · paiement unique pour 1 mois</div>
           </div>
+          <div class="timer in-box" role="timer">Il te reste <b class="js-timer">15:00</b></div>
+          <div class="expired"><b>Cette offre a expiré</b>Le prix de 24,99 $ n'était disponible que 15 minutes après l'achat de ton pack.</div>
           <a href="https://zvczwoyi.mychariow.market/prd_2srkcmub/checkout" class="btn js-checkout"><span class="lg">OUI, J'AJOUTE OR BETA JAZ + BTC H1 + LE PLAN</span><span class="sm">OUI, J'AJOUTE LE DUO + LE PLAN</span><small>24,99 $ au lieu de 34,97 $</small></a>
           <p class="only">Ce prix de 24,99 $ n'existe <b>que sur cette page</b>, juste après l'achat de ton pack.</p>
         </div>
@@ -443,6 +455,22 @@
       });
       lb.addEventListener('click', function () { lb.classList.remove('open'); });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lb.classList.remove('open'); });
+
+      // Compte à rebours de 15 minutes, mémorisé pour chaque visiteur
+      var DUREE = 15 * 60 * 1000, CLE = 'jaz_offre_debut', debut = Date.now();
+      try {
+        var d = parseInt(localStorage.getItem(CLE) || '0', 10);
+        if (d && d <= Date.now()) debut = d; else localStorage.setItem(CLE, String(debut));
+      } catch (e) {}
+      var cases = document.querySelectorAll('.js-timer');
+      function tic() {
+        var reste = debut + DUREE - Date.now();
+        if (reste <= 0) { document.body.classList.add('offre-finie'); return; }
+        var s = Math.ceil(reste / 1000), txt = String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+        cases.forEach(function (c) { c.textContent = txt; });
+        setTimeout(tic, 1000);
+      }
+      tic();
 
       var pass = [];
       location.search.replace(/^\?/, '').split('&').forEach(function (kv) { if (/^(utm_[a-z]+|fbclid)=/.test(kv)) pass.push(kv); });
