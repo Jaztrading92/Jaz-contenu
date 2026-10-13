@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statistiques | JAZ TRADING FIMC</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/jpeg" href="s31.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg: #010910; --card: rgba(7, 24, 38, .9); --line: rgba(255,255,255,.09); --text: #dbe4ee; --muted: #94a3b8; --blue: #0088d4; --sky: #38bdf8; --light: #00d2ff; --red: #ef4444; --up: #22c3a6; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: radial-gradient(ellipse at 50% -10%, #0a2a4a 0%, var(--bg) 60%) fixed; background-color: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; padding: 24px 16px 60px; }
+    .wrap { max-width: 860px; margin: 0 auto; }
+    header { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+    .brand { font: 800 13px Outfit; letter-spacing: .22em; color: var(--sky); }
+    h1 { font: 900 clamp(26px, 6vw, 36px)/1.1 Outfit; color: #fff; margin-top: 6px; }
+    .sub { color: var(--muted); font-size: 13.5px; margin-top: 6px; }
+    button { font: 800 14px 'Plus Jakarta Sans'; color: #fff; background: linear-gradient(135deg, var(--light), var(--blue)); border: 0; border-radius: 999px; padding: 11px 18px; cursor: pointer; }
+    .totaux { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 22px; }
+    .tot { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px; }
+    .tot b { display: block; font: 900 30px Outfit; color: #fff; }
+    .tot span { font-size: 12.5px; color: var(--muted); font-weight: 700; }
+    h2 { font: 800 13px Outfit; letter-spacing: .14em; color: var(--sky); margin: 22px 0 10px; }
+    .row { background: var(--card); border: 1px solid rgba(0,136,212,.25); border-radius: 16px; margin-bottom: 8px; overflow: hidden; }
+    .row-h { display: grid; grid-template-columns: 1fr auto auto 22px; align-items: center; gap: 14px; padding: 14px 16px; cursor: pointer; }
+    .nom b { display: block; color: #fff; font: 800 16px Outfit; }
+    .nom small { color: var(--muted); font-size: 12px; }
+    .val { text-align: center; min-width: 58px; }
+    .val b { display: block; font: 900 20px Outfit; color: #fff; }
+    .val span { font-size: 11px; color: var(--muted); font-weight: 700; }
+    .chev { color: var(--muted); font-size: 14px; transition: transform .2s; text-align: center; }
+    .row.open .chev { transform: rotate(180deg); }
+    .det { display: none; padding: 0 16px 16px; border-top: 1px solid var(--line); }
+    .row.open .det { display: block; }
+    .nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
+    .num { background: rgba(255,255,255,.035); border: 1px solid var(--line); border-radius: 12px; padding: 10px; text-align: center; }
+    .num b { display: block; font: 900 20px Outfit; color: #fff; }
+    .num span { font-size: 11.5px; color: var(--muted); font-weight: 700; }
+    .num.clic b { color: var(--up); }
+    .dur-t { font-size: 12px; font-weight: 800; letter-spacing: .08em; color: var(--sky); margin: 16px 0 8px; }
+    .bar { display: flex; height: 12px; border-radius: 99px; overflow: hidden; background: rgba(255,255,255,.06); }
+    .bar i { display: block; height: 100%; }
+    .leg { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 8px; }
+    .leg div { font-size: 11.5px; color: var(--muted); }
+    .leg b { display: block; color: #fff; font: 800 15px Outfit; }
+    .leg em { font-style: normal; display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 4px; }
+    .lien { display: inline-block; margin-top: 12px; color: var(--sky); font-size: 13px; font-weight: 700; text-decoration: none; }
+    .attente { color: var(--muted); font-size: 13px; margin-top: 12px; }
+    .note { color: var(--muted); font-size: 12.5px; line-height: 1.6; margin-top: 24px; }
+    @media (max-width: 560px) { .row-h { gap: 8px; padding: 12px; } .val { min-width: 46px; } .val b { font-size: 18px; } .leg { grid-template-columns: repeat(3, 1fr); } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <div class="brand">JAZ TRADING FIMC</div>
+        <h1>Statistiques du site</h1>
+        <div class="sub" id="maj">Chargement…</div>
+      </div>
+      <button type="button" id="rafraichir">Actualiser</button>
+    </header>
+    <div class="totaux">
+      <div class="tot"><b id="t-jour">–</b><span>visites aujourd'hui (tout le site)</span></div>
+      <div class="tot"><b id="t-total">–</b><span>visites au total</span></div>
+    </div>
+    <div id="liste"></div>
+    <p class="note">Touche une page pour voir combien de temps les visiteurs y sont restés, combien ont cliqué sur un bouton d'achat et les visites d'hier. Le temps passé est enregistré quand le visiteur quitte la page ou change d'application. Tes propres visites ne sont plus comptées sur cet appareil dès que tu as ouvert cette page une fois. Aucune donnée personnelle n'est enregistrée : seulement des nombres. Comptage actif depuis le 13 octobre 2026.</p>
+  </div>
+  <script>
+    try { localStorage.setItem('jaz_pas_compter', '1'); } catch (e) {}
+    var API = 'https://abacus.jasoncameron.dev/get/jaztradingfmic-site/';
+    var GROUPES = [
+      ['SITE', [['accueil', 'Page d\'accueil', '']]],
+      ['PAGES DE VENTE', [
+        ['pack-strategie', 'Pack Stratège JAZ', 'pack-strategie'],
+        ['plan-de-trading', 'Plan de trading', 'plan-de-trading'],
+        ['indicateurs', '+200 indicateurs institutionnels', 'indicateurs'],
+        ['langages-du-marche', 'Les Langages du Marché', 'langages-du-marche'],
+        ['guide-de-strategie', 'Créer sa propre stratégie', 'guide-de-strategie'],
+        ['strategies', 'Stratégies automatiques', 'strategies'],
+        ['formation', 'Formation complète', 'formation']
+      ]],
+      ['PAGES APRÈS ACHAT', [
+        ['offre-speciale', 'Après le Pack · 21,80 €', 'offre-speciale'],
+        ['offre-gold', 'Après le guide stratégie · 12,99 €', 'offre-gold'],
+        ['offre-pack', 'Après Les Langages du Marché · 15,99 €', 'offre-pack'],
+        ['offre-guide', 'Après les indicateurs · 15,99 €', 'offre-guide'],
+        ['offre-btc', 'Après le Plan · 8,99 €', 'offre-btc']
+      ]]
+    ];
+    var DUR = [['a', 'moins de 10 s', '#ef4444'], ['b', '10 à 30 s', '#f87171'], ['c', '30 s à 1 min', '#38bdf8'], ['d', '1 à 3 min', '#0088d4'], ['e', 'plus de 3 min', '#22c3a6']];
+    var auj = new Date().toISOString().slice(0, 10), hier = new Date(Date.now() - 864e5).toISOString().slice(0, 10);
+
+    // File d'attente : le service limite les lectures rapides, on lit une valeur à la fois
+    var file = [], actif = false;
+    function lire(cle) { return new Promise(function (ok) { file.push([cle, ok]); suivant(); }); }
+    function suivant() {
+      if (actif || !file.length) return;
+      actif = true;
+      var it = file[0], ac = new AbortController(), minuteur = setTimeout(function () { ac.abort(); }, 10000);
+      function fin(n) { clearTimeout(minuteur); file.shift(); it[1](n); actif = false; setTimeout(suivant, 2000); }
+      fetch(API + it[0], { cache: 'no-store', signal: ac.signal }).then(function (r) {
+        if (r.status === 429) { clearTimeout(minuteur); actif = false; document.getElementById('maj').textContent = 'Pause de quelques secondes (limite du service)…'; setTimeout(suivant, 20000); return; }
+        if (!r.ok) { fin(0); return; }
+        return r.json().then(function (j) { fin(j.value || 0); });
+      }).catch(function () { fin(0); });
+    }
+    var cache = {};
+    try { cache = JSON.parse(localStorage.getItem('jaz_stats_cache') || '{}'); } catch (e) {}
+    function garder() { try { localStorage.setItem('jaz_stats_cache', JSON.stringify(cache)); } catch (e) {} }
+
+    function construire() {
+      var html = '';
+      GROUPES.forEach(function (g) {
+        html += '<h2>' + g[0] + '</h2>';
+        g[1].forEach(function (p) {
+          var c = cache[p[0]] || {};
+          html += '<div class="row" data-k="' + p[0] + '"><div class="row-h"><div class="nom"><b>' + p[1] + '</b><small>jaztradingfmic.com/' + p[2] + '</small></div>' +
+            '<div class="val"><b class="v-jour">' + (c.jour != null ? c.jour : '…') + '</b><span>aujourd\'hui</span></div>' +
+            '<div class="val"><b class="v-total">' + (c.vues != null ? c.vues : '…') + '</b><span>total</span></div><div class="chev">▾</div></div>' +
+            '<div class="det"><div class="attente">Chargement des détails…</div></div></div>';
+        });
+      });
+      document.getElementById('liste').innerHTML = html;
+      document.querySelectorAll('.row-h').forEach(function (h) {
+        h.addEventListener('click', function () { var row = h.parentNode; row.classList.toggle('open'); if (row.classList.contains('open')) details(row); });
+      });
+    }
+
+    function details(row) {
+      var k = row.getAttribute('data-k'), det = row.querySelector('.det');
+      var cles = ['vues-' + hier, 'clics'].concat(DUR.map(function (d) { return 'duree-' + d[0]; }));
+      Promise.all(cles.map(function (c) { return lire(k + '-' + c); })).then(function (v) {
+        var c = cache[k] || {}, vues = c.vues || 0, dur = v.slice(2), mesur = dur.reduce(function (a, b) { return a + b; }, 0);
+        var taux = vues ? Math.round(v[1] / vues * 100) : 0;
+        var url = 'https://jaztradingfmic.com/' + (k === 'accueil' ? '' : k);
+        det.innerHTML = '<div class="nums"><div class="num"><b>' + v[0] + '</b><span>hier</span></div><div class="num clic"><b>' + v[1] + '</b><span>clics achat (' + taux + ' %)</span></div><div class="num"><b>' + mesur + '</b><span>durées mesurées</span></div></div>' +
+          '<div class="dur-t">TEMPS PASSÉ SUR LA PAGE</div><div class="bar">' + dur.map(function (n, i) { return '<i style="width:' + (mesur ? n / mesur * 100 : 0) + '%;background:' + DUR[i][2] + '"></i>'; }).join('') + '</div>' +
+          '<div class="leg">' + dur.map(function (n, i) { return '<div><b>' + n + '</b><em style="background:' + DUR[i][2] + '"></em>' + DUR[i][1] + '</div>'; }).join('') + '</div>' +
+          '<a class="lien" href="' + url + '" target="_blank" rel="noopener">Ouvrir la page</a>';
+      });
+    }
+
+    function charger() {
+      var pages = [];
+      GROUPES.forEach(function (g) { g[1].forEach(function (p) { pages.push(p[0]); }); });
+      var reste = pages.length * 2;
+      document.getElementById('maj').textContent = 'Mise à jour en cours…';
+      pages.forEach(function (k) {
+        var row = document.querySelector('.row[data-k="' + k + '"]');
+        cache[k] = cache[k] || {};
+        lire(k + '-vues-' + auj).then(function (n) { cache[k].jour = n; row.querySelector('.v-jour').textContent = n; fini(); });
+      });
+      pages.forEach(function (k) {
+        var row = document.querySelector('.row[data-k="' + k + '"]');
+        lire(k + '-vues').then(function (n) { cache[k].vues = n; row.querySelector('.v-total').textContent = n; fini(); });
+      });
+      function fini() {
+        garder();
+        if (--reste) { document.getElementById('maj').textContent = 'Mise à jour en cours… (' + (pages.length * 2 - reste) + '/' + pages.length * 2 + ')'; return; }
+        var tj = 0, tt = 0; pages.forEach(function (k) { tj += cache[k].jour || 0; tt += cache[k].vues || 0; });
+        document.getElementById('t-jour').textContent = tj;
+        document.getElementById('t-total').textContent = tt;
+        document.getElementById('maj').textContent = 'Mis à jour à ' + new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+      }
+    }
+    construire();
+    document.getElementById('rafraichir').addEventListener('click', charger);
+    charger();
+  </script>
+</body>
+</html>
