@@ -241,7 +241,7 @@
     .timer.in-box { margin: 0 0 16px; }
     .expired { display: none; text-align: center; padding: 18px 16px; border: 1px solid var(--line); border-radius: 14px; color: var(--muted); }
     .expired b { display: block; color: #fff; font-size: 18px; margin-bottom: 4px; }
-    body.offre-finie .js-checkout, body.offre-finie .cta-top, body.offre-finie .sticky, body.offre-finie .timer, body.offre-finie .only { display: none !important; }
+    body.offre-finie .js-checkout, body.offre-finie .cta-top, body.offre-finie .sticky, body.offre-finie .only { display: none !important; }
     body.offre-finie .expired { display: block; }
     .sticky .btn { max-width: 520px; margin: 0 auto; padding: 14px 18px; font-size: 15px; }
 
@@ -455,7 +455,7 @@
       var cases = document.querySelectorAll('.js-timer');
       function tic() {
         var reste = debut + DUREE - Date.now();
-        if (reste <= 0) { document.body.classList.add('offre-finie'); return; }
+        if (reste <= 0) { cases.forEach(function (c) { c.textContent = '00:00'; }); document.body.classList.add('offre-finie'); return; }
         var s = Math.ceil(reste / 1000), txt = String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
         cases.forEach(function (c) { c.textContent = txt; });
         setTimeout(tic, 1000);
