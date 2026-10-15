@@ -5,168 +5,216 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Statistiques | JAZ TRADING FIMC</title>
   <meta name="robots" content="noindex, nofollow">
-  <link rel="icon" type="image/jpeg" href="s31.jpg">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root { --bg: #010910; --card: rgba(7, 24, 38, .9); --line: rgba(255,255,255,.09); --text: #dbe4ee; --muted: #94a3b8; --blue: #0088d4; --sky: #38bdf8; --light: #00d2ff; --red: #ef4444; --up: #22c3a6; }
+    :root {
+      --bg: #020a12; --panel: #06141f; --panel-2: #0a1c2b; --line: rgba(255,255,255,.08); --line-2: rgba(255,255,255,.14);
+      --ink: #ffffff; --ink-2: #c9d4df; --muted: #7f93a8;
+      --blue: #0088d4; --sky: #38bdf8; --light: #00d2ff; --red: #ef4444;
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: radial-gradient(ellipse at 50% -10%, #0a2a4a 0%, var(--bg) 60%) fixed; background-color: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; padding: 24px 16px 60px; }
-    .wrap { max-width: 860px; margin: 0 auto; }
-    header { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
-    .brand { font: 800 13px Outfit; letter-spacing: .22em; color: var(--sky); }
-    h1 { font: 900 clamp(26px, 6vw, 36px)/1.1 Outfit; color: #fff; margin-top: 6px; }
-    .sub { color: var(--muted); font-size: 13.5px; margin-top: 6px; }
-    button { font: 800 14px 'Plus Jakarta Sans'; color: #fff; background: linear-gradient(135deg, var(--light), var(--blue)); border: 0; border-radius: 999px; padding: 11px 18px; cursor: pointer; }
-    .totaux { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 22px; }
-    .tot { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px; }
-    .tot b { display: block; font: 900 30px Outfit; color: #fff; }
-    .tot span { font-size: 12.5px; color: var(--muted); font-weight: 700; }
-    h2 { font: 800 13px Outfit; letter-spacing: .14em; color: var(--sky); margin: 22px 0 10px; }
-    .row { background: var(--card); border: 1px solid rgba(0,136,212,.25); border-radius: 16px; margin-bottom: 8px; overflow: hidden; }
-    .row-h { display: grid; grid-template-columns: 1fr auto auto 22px; align-items: center; gap: 14px; padding: 14px 16px; cursor: pointer; }
-    .nom b { display: block; color: #fff; font: 800 16px Outfit; }
-    .nom small { color: var(--muted); font-size: 12px; }
-    .val { text-align: center; min-width: 58px; }
-    .val b { display: block; font: 900 20px Outfit; color: #fff; }
-    .val span { font-size: 11px; color: var(--muted); font-weight: 700; }
-    .chev { color: var(--muted); font-size: 14px; transition: transform .2s; text-align: center; }
-    .row.open .chev { transform: rotate(180deg); }
-    .det { display: none; padding: 0 16px 16px; border-top: 1px solid var(--line); }
-    .row.open .det { display: block; }
-    .nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
-    .num { background: rgba(255,255,255,.035); border: 1px solid var(--line); border-radius: 12px; padding: 10px; text-align: center; }
-    .num b { display: block; font: 900 20px Outfit; color: #fff; }
-    .num span { font-size: 11.5px; color: var(--muted); font-weight: 700; }
-    .num.clic b { color: var(--up); }
-    .dur-t { font-size: 12px; font-weight: 800; letter-spacing: .08em; color: var(--sky); margin: 16px 0 8px; }
-    .bar { display: flex; height: 12px; border-radius: 99px; overflow: hidden; background: rgba(255,255,255,.06); }
-    .bar i { display: block; height: 100%; }
-    .leg { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 8px; }
-    .leg div { font-size: 11.5px; color: var(--muted); }
-    .leg b { display: block; color: #fff; font: 800 15px Outfit; }
-    .leg em { font-style: normal; display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 4px; }
-    .lien { display: inline-block; margin-top: 12px; color: var(--sky); font-size: 13px; font-weight: 700; text-decoration: none; }
-    .attente { color: var(--muted); font-size: 13px; margin-top: 12px; }
-    .note { color: var(--muted); font-size: 12.5px; line-height: 1.6; margin-top: 24px; }
-    @media (max-width: 560px) { .row-h { gap: 8px; padding: 12px; } .val { min-width: 46px; } .val b { font-size: 18px; } .leg { grid-template-columns: repeat(3, 1fr); } }
+    body { background: var(--bg); color: var(--ink-2); font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; font-variant-numeric: tabular-nums; padding: 28px 16px 64px; }
+    .wrap { max-width: 1080px; margin: 0 auto; }
+
+    /* En-tête */
+    .top { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+    .id { display: flex; align-items: center; gap: 14px; }
+    .logo { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, var(--light), var(--blue)); flex: none; display: grid; place-items: center; font: 900 15px system-ui, sans-serif; color: #fff; letter-spacing: .02em; }
+    .brand { font: 800 11.5px system-ui, sans-serif; letter-spacing: .22em; color: var(--sky); }
+    h1 { font: 800 24px/1.15 system-ui, sans-serif; color: var(--ink); margin-top: 2px; }
+    .meta { display: flex; align-items: center; gap: 12px; }
+    .maj { font-size: 13px; color: var(--muted); text-align: right; line-height: 1.45; }
+    .maj b { color: var(--ink-2); font-weight: 700; }
+    .btn { font: 700 13.5px system-ui, sans-serif; color: #fff; background: var(--blue); border: 0; border-radius: 10px; padding: 10px 16px; cursor: pointer; }
+    .btn:hover { background: #0099ee; }
+    .btn:disabled { opacity: .6; cursor: default; }
+    .prog { height: 2px; background: var(--line); margin-top: -1px; overflow: hidden; }
+    .prog i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--light), var(--blue)); transition: width .3s; }
+
+    /* Chiffres clés */
+    .kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 24px 0 8px; }
+    .kpi { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px 16px 14px; }
+    .kpi .l { font-size: 12px; font-weight: 700; color: var(--muted); }
+    .kpi .v { font: 800 30px/1.1 system-ui, sans-serif; color: var(--ink); margin-top: 8px; }
+    .kpi .s { font-size: 12px; color: var(--muted); margin-top: 6px; }
+    .kpi.acc { border-color: rgba(0,136,212,.45); background: linear-gradient(180deg, rgba(0,136,212,.12), var(--panel)); }
+
+    /* Tableau */
+    .sect { margin-top: 28px; }
+    .sect-h { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+    .sect-h h2 { font: 800 13px system-ui, sans-serif; letter-spacing: .14em; color: var(--sky); }
+    .sect-h span { font-size: 12px; color: var(--muted); }
+    table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+    th { font-size: 11.5px; font-weight: 700; color: var(--muted); text-align: right; padding: 11px 14px; background: var(--panel-2); border-bottom: 1px solid var(--line); white-space: nowrap; }
+    th:first-child, td:first-child { text-align: left; }
+    th .grp { display: block; font-size: 10.5px; letter-spacing: .08em; color: var(--sky); margin-bottom: 2px; }
+    td { text-align: right; padding: 13px 14px; border-bottom: 1px solid var(--line); font-size: 15px; color: var(--ink); font-weight: 600; white-space: nowrap; }
+    tr:last-child td { border-bottom: 0; }
+    tbody tr:hover td { background: rgba(255,255,255,.025); }
+    td.page b { display: block; font-weight: 700; font-size: 14.5px; }
+    td.page a { font-size: 12px; color: var(--muted); text-decoration: none; font-weight: 500; }
+    td.page a:hover { color: var(--sky); }
+    td .hier { color: var(--ink-2); font-weight: 500; }
+    td.sep, th.sep { border-left: 1px solid var(--line); }
+    td .zero { color: var(--muted); font-weight: 500; }
+    .taux { display: block; font-size: 11.5px; color: var(--muted); font-weight: 500; margin-top: 2px; }
+
+    .note { margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 12.5px; line-height: 1.65; color: var(--muted); }
+    .note b { color: var(--ink-2); }
+
+    /* Téléphone : chaque ligne devient une fiche */
+    @media (max-width: 760px) {
+      .kpis { grid-template-columns: repeat(2, 1fr); }
+      .kpis .kpi:last-child { grid-column: span 2; }
+      .meta { width: 100%; justify-content: space-between; }
+      .maj { text-align: left; }
+      table, thead, tbody, tr, td { display: block; }
+      thead { display: none; }
+      table { background: none; border: 0; }
+      tr { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; margin-bottom: 10px; padding: 12px 14px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 8px; }
+      td { padding: 0; border: 0 !important; text-align: left; font-size: 17px; }
+      td.page { grid-column: span 3; padding-bottom: 8px; border-bottom: 1px solid var(--line) !important; }
+      td[data-l]::before { content: attr(data-l); display: block; font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 3px; }
+      tbody tr:hover td { background: none; }
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <header>
-      <div>
-        <div class="brand">JAZ TRADING FIMC</div>
-        <h1>Statistiques du site</h1>
-        <div class="sub" id="maj">Chargement…</div>
+    <div class="top">
+      <div class="id">
+        <span class="logo">JAZ</span>
+        <div><div class="brand">JAZ TRADING FIMC</div><h1>Statistiques du site</h1></div>
       </div>
-      <button type="button" id="rafraichir">Actualiser</button>
-    </header>
-    <div class="totaux">
-      <div class="tot"><b id="t-jour">–</b><span>visites aujourd'hui (tout le site)</span></div>
-      <div class="tot"><b id="t-total">–</b><span>visites au total</span></div>
+      <div class="meta">
+        <div class="maj" id="maj">Chargement…</div>
+        <button type="button" class="btn" id="rafraichir">Actualiser</button>
+      </div>
     </div>
-    <div id="liste"></div>
-    <p class="note">Touche une page pour voir combien de temps les visiteurs y sont restés, combien ont cliqué sur un bouton d'achat et les visites d'hier. Le temps passé est enregistré quand le visiteur quitte la page ou change d'application. Tes propres visites ne sont plus comptées sur cet appareil dès que tu as ouvert cette page une fois. Aucune donnée personnelle n'est enregistrée : seulement des nombres. Comptage actif depuis le 13 octobre 2026.</p>
+    <div class="prog"><i id="prog"></i></div>
+
+    <div class="kpis">
+      <div class="kpi acc"><div class="l">Visiteurs aujourd'hui</div><div class="v" id="k-vis-j">–</div><div class="s">tout le site</div></div>
+      <div class="kpi"><div class="l">Visiteurs hier</div><div class="v" id="k-vis-h">–</div><div class="s">tout le site</div></div>
+      <div class="kpi acc"><div class="l">Clics « acheter » aujourd'hui</div><div class="v" id="k-cli-j">–</div><div class="s">tout le site</div></div>
+      <div class="kpi"><div class="l">Clics « acheter » hier</div><div class="v" id="k-cli-h">–</div><div class="s">tout le site</div></div>
+      <div class="kpi"><div class="l">Temps moyen par visite</div><div class="v" id="k-temps">–</div><div class="s">toutes pages confondues</div></div>
+    </div>
+
+    <div id="sections"></div>
+
+    <p class="note"><b>Visiteurs</b> : personnes différentes sur la journée (une personne qui revient 3 fois compte pour 1). <b>Clics « acheter »</b> : clics sur un bouton qui mène au paiement Chariow. <b>Temps moyen</b> : temps passé sur la page, mesuré tant qu'elle est affichée à l'écran. Les journées suivent l'heure universelle (celle du Togo). Tes propres visites ne sont pas comptées sur cet appareil dès que tu as ouvert cette page une fois. Aucune donnée personnelle n'est enregistrée : seulement des nombres.</p>
   </div>
+
   <script>
     try { localStorage.setItem('jaz_pas_compter', '1'); } catch (e) {}
     var API = 'https://abacus.jasoncameron.dev/get/jaztradingfmic-site/';
-    var GROUPES = [
-      ['SITE', [['accueil', 'Page d\'accueil', '']]],
-      ['PAGES DE VENTE', [
-        ['pack-strategie', 'Pack Stratège JAZ', 'pack-strategie'],
-        ['plan-de-trading', 'Plan de trading', 'plan-de-trading'],
-        ['indicateurs', '+200 indicateurs institutionnels', 'indicateurs'],
-        ['langages-du-marche', 'Les Langages du Marché', 'langages-du-marche'],
-        ['guide-de-strategie', 'Créer sa propre stratégie', 'guide-de-strategie'],
-        ['strategies', 'Stratégies automatiques', 'strategies'],
-        ['formation', 'Formation complète', 'formation']
+    var SECTIONS = [
+      ['Site', [['accueil', 'Page d\'accueil']]],
+      ['Pages de vente', [
+        ['pack-strategie', 'Pack Stratège JAZ'], ['plan-de-trading', 'Plan de trading'], ['indicateurs', '+200 indicateurs institutionnels'],
+        ['langages-du-marche', 'Les Langages du Marché'], ['guide-de-strategie', 'Créer sa propre stratégie'], ['strategies', 'Stratégies automatiques'], ['formation', 'Formation complète']
       ]],
-      ['PAGES APRÈS ACHAT', [
-        ['offre-speciale', 'Après le Pack · 21,80 €', 'offre-speciale'],
-        ['offre-gold', 'Après le guide stratégie · 12,99 €', 'offre-gold'],
-        ['offre-pack', 'Après Les Langages du Marché · 15,99 €', 'offre-pack'],
-        ['offre-guide', 'Après les indicateurs · 15,99 €', 'offre-guide'],
-        ['offre-btc', 'Après le Plan · 8,99 €', 'offre-btc']
+      ['Pages après achat', [
+        ['offre-speciale', 'Offre après le Pack'], ['offre-gold', 'Offre après le guide stratégie'], ['offre-pack', 'Offre après Les Langages du Marché'],
+        ['offre-guide', 'Offre après les indicateurs'], ['offre-btc', 'Offre après le Plan']
       ]]
     ];
-    var DUR = [['a', 'moins de 10 s', '#ef4444'], ['b', '10 à 30 s', '#f87171'], ['c', '30 s à 1 min', '#38bdf8'], ['d', '1 à 3 min', '#0088d4'], ['e', 'plus de 3 min', '#22c3a6']];
-    var auj = new Date().toISOString().slice(0, 10), hier = new Date(Date.now() - 864e5).toISOString().slice(0, 10);
+    var PAGES = []; SECTIONS.forEach(function (s) { s[1].forEach(function (p) { PAGES.push(p[0]); }); });
+    var J = new Date().toISOString().slice(0, 10), H = new Date(Date.now() - 864e5).toISOString().slice(0, 10);
+    var nf = new Intl.NumberFormat('fr-FR');
 
-    // File d'attente : le service limite les lectures rapides, on lit une valeur à la fois
-    var file = [], actif = false;
-    function lire(cle) { return new Promise(function (ok) { file.push([cle, ok]); suivant(); }); }
+    // Mémoire locale : les chiffres d'hier ne changent plus, on ne les relit qu'une fois
+    var M = {}; try { M = JSON.parse(localStorage.getItem('jaz_stats2') || '{}'); } catch (e) {}
+    function garder() { try { localStorage.setItem('jaz_stats2', JSON.stringify(M)); } catch (e) {} }
+    function val(cle) { return M[cle]; }
+
+    // Lecture une à une (le service refuse les lectures trop rapides)
+    var file = [], actifs = 0, pause = false, total = 0, faits = 0, PAR = 4;
+    function lire(cle) { total++; return new Promise(function (ok) { file.push([cle, ok]); suivant(); }); }
+    function avance() { document.getElementById('prog').style.width = (total ? Math.round(faits / total * 100) : 0) + '%'; }
     function suivant() {
-      if (actif || !file.length) return;
-      actif = true;
-      var it = file[0], ac = new AbortController(), minuteur = setTimeout(function () { ac.abort(); }, 10000);
-      function fin(n) { clearTimeout(minuteur); file.shift(); it[1](n); actif = false; setTimeout(suivant, 2000); }
-      fetch(API + it[0], { cache: 'no-store', signal: ac.signal }).then(function (r) {
-        if (r.status === 429) { clearTimeout(minuteur); actif = false; document.getElementById('maj').textContent = 'Pause de quelques secondes (limite du service)…'; setTimeout(suivant, 20000); return; }
-        if (!r.ok) { fin(0); return; }
-        return r.json().then(function (j) { fin(j.value || 0); });
-      }).catch(function () { fin(0); });
-    }
-    var cache = {};
-    try { cache = JSON.parse(localStorage.getItem('jaz_stats_cache') || '{}'); } catch (e) {}
-    function garder() { try { localStorage.setItem('jaz_stats_cache', JSON.stringify(cache)); } catch (e) {} }
+      while (!pause && actifs < PAR && file.length) {
+        (function (it) {
+          actifs++;
+          var ac = new AbortController(), m = setTimeout(function () { ac.abort(); }, 10000);
+          function fin(n) { clearTimeout(m); M[it[0]] = n; faits++; avance(); it[1](n); actifs--; suivant(); }
+          fetch(API + it[0], { cache: 'no-store', signal: ac.signal }).then(function (r) {
+            if (r.status === 429) {
+              clearTimeout(m); actifs--; file.unshift(it);
+              if (!pause) { pause = true; etat('Lecture en pause quelques secondes…'); setTimeout(function () { pause = false; suivant(); }, 20000); }
+              return;
+            }
+            if (!r.ok) { fin(0); return; }
+            return r.json().then(function (j) { fin(j.value || 0); });
+          }).catch(function () { fin(0); });
+        })(file.shift());
+      }
+    }    function etat(t) { document.getElementById('maj').innerHTML = t; }
 
-    function construire() {
+    function nb(n) { return n == null ? '<span class="zero">…</span>' : (n ? nf.format(n) : '<span class="zero">0</span>'); }
+    function duree(s) { if (s == null) return '<span class="zero">…</span>'; if (!s) return '<span class="zero">–</span>'; s = Math.round(s); return s < 60 ? s + ' s' : Math.floor(s / 60) + ' min ' + String(s % 60).padStart(2, '0') + ' s'; }
+    function moyenne(k) { var v = val(k + '-v2'), t = val(k + '-temps10'); if (v == null || t == null) return null; return v ? t * 10 / v + 5 : 0; }
+
+    function dessiner() {
       var html = '';
-      GROUPES.forEach(function (g) {
-        html += '<h2>' + g[0] + '</h2>';
-        g[1].forEach(function (p) {
-          var c = cache[p[0]] || {};
-          html += '<div class="row" data-k="' + p[0] + '"><div class="row-h"><div class="nom"><b>' + p[1] + '</b><small>jaztradingfmic.com/' + p[2] + '</small></div>' +
-            '<div class="val"><b class="v-jour">' + (c.jour != null ? c.jour : '…') + '</b><span>aujourd\'hui</span></div>' +
-            '<div class="val"><b class="v-total">' + (c.vues != null ? c.vues : '…') + '</b><span>total</span></div><div class="chev">▾</div></div>' +
-            '<div class="det"><div class="attente">Chargement des détails…</div></div></div>';
+      SECTIONS.forEach(function (s) {
+        html += '<div class="sect"><div class="sect-h"><h2>' + s[0].toUpperCase() + '</h2><span>' + s[1].length + ' page' + (s[1].length > 1 ? 's' : '') + '</span></div><table><thead><tr>' +
+          '<th>Page</th><th class="sep"><span class="grp">VISITEURS</span>Aujourd\'hui</th><th>Hier</th><th class="sep"><span class="grp">CLICS « ACHETER »</span>Aujourd\'hui</th><th>Hier</th><th class="sep">Temps moyen</th><th>Visites totales</th></tr></thead><tbody>';
+        s[1].forEach(function (p) {
+          var k = p[0], vj = val(k + '-visiteurs-' + J), cj = val(k + '-clics-' + J);
+          var taux = vj ? '<span class="taux">' + Math.round(cj / vj * 100) + ' % des visiteurs</span>' : '';
+          html += '<tr><td class="page"><b>' + p[1] + '</b><a href="https://jaztradingfmic.com/' + (k === 'accueil' ? '' : k) + '" target="_blank" rel="noopener">jaztradingfmic.com/' + (k === 'accueil' ? '' : k) + '</a></td>' +
+            '<td class="sep" data-l="Visiteurs auj.">' + nb(vj) + '</td>' +
+            '<td data-l="Visiteurs hier"><span class="hier">' + nb(val(k + '-visiteurs-' + H)) + '</span></td>' +
+            '<td class="sep" data-l="Clics auj.">' + nb(cj) + (cj ? taux : '') + '</td>' +
+            '<td data-l="Clics hier"><span class="hier">' + nb(val(k + '-clics-' + H)) + '</span></td>' +
+            '<td class="sep" data-l="Temps moyen">' + duree(moyenne(k)) + '</td>' +
+            '<td data-l="Visites totales">' + nb(val(k + '-vues')) + '</td></tr>';
         });
+        html += '</tbody></table></div>';
       });
-      document.getElementById('liste').innerHTML = html;
-      document.querySelectorAll('.row-h').forEach(function (h) {
-        h.addEventListener('click', function () { var row = h.parentNode; row.classList.toggle('open'); if (row.classList.contains('open')) details(row); });
-      });
+      document.getElementById('sections').innerHTML = html;
+      var tv = 0, tt = 0, ok = true;
+      PAGES.forEach(function (k) { var v = val(k + '-v2'), t = val(k + '-temps10'); if (v == null || t == null) ok = false; else { tv += v; tt += t; } });
+      document.getElementById('k-vis-j').innerHTML = nb(val('site-visiteurs-' + J));
+      document.getElementById('k-vis-h').innerHTML = nb(val('site-visiteurs-' + H));
+      document.getElementById('k-cli-j').innerHTML = nb(val('site-clics-' + J));
+      document.getElementById('k-cli-h').innerHTML = nb(val('site-clics-' + H));
+      document.getElementById('k-temps').innerHTML = ok ? duree(tv ? tt * 10 / tv + 5 : 0) : '<span class="zero">…</span>';
     }
 
-    function details(row) {
-      var k = row.getAttribute('data-k'), det = row.querySelector('.det');
-      var cles = ['vues-' + hier, 'clics'].concat(DUR.map(function (d) { return 'duree-' + d[0]; }));
-      Promise.all(cles.map(function (c) { return lire(k + '-' + c); })).then(function (v) {
-        var c = cache[k] || {}, vues = c.vues || 0, dur = v.slice(2), mesur = dur.reduce(function (a, b) { return a + b; }, 0);
-        var taux = vues ? Math.round(v[1] / vues * 100) : 0;
-        var url = 'https://jaztradingfmic.com/' + (k === 'accueil' ? '' : k);
-        det.innerHTML = '<div class="nums"><div class="num"><b>' + v[0] + '</b><span>hier</span></div><div class="num clic"><b>' + v[1] + '</b><span>clics achat (' + taux + ' %)</span></div><div class="num"><b>' + mesur + '</b><span>durées mesurées</span></div></div>' +
-          '<div class="dur-t">TEMPS PASSÉ SUR LA PAGE</div><div class="bar">' + dur.map(function (n, i) { return '<i style="width:' + (mesur ? n / mesur * 100 : 0) + '%;background:' + DUR[i][2] + '"></i>'; }).join('') + '</div>' +
-          '<div class="leg">' + dur.map(function (n, i) { return '<div><b>' + n + '</b><em style="background:' + DUR[i][2] + '"></em>' + DUR[i][1] + '</div>'; }).join('') + '</div>' +
-          '<a class="lien" href="' + url + '" target="_blank" rel="noopener">Ouvrir la page</a>';
-      });
-    }
+    var minuterie = null;
+    function planifier() { clearTimeout(minuterie); minuterie = setTimeout(function () { dessiner(); garder(); }, 120); }
 
     function charger() {
-      var pages = [];
-      GROUPES.forEach(function (g) { g[1].forEach(function (p) { pages.push(p[0]); }); });
-      var reste = pages.length * 2;
-      document.getElementById('maj').textContent = 'Mise à jour en cours…';
-      pages.forEach(function (k) {
-        var row = document.querySelector('.row[data-k="' + k + '"]');
-        cache[k] = cache[k] || {};
-        lire(k + '-vues-' + auj).then(function (n) { cache[k].jour = n; row.querySelector('.v-jour').textContent = n; fini(); });
+      var btn = document.getElementById('rafraichir'); btn.disabled = true;
+      total = 0; faits = 0; avance();
+      etat('Mise à jour en cours…');
+      var cles = [];
+      // 1. Aujourd'hui (toujours relu)
+      cles.push('site-visiteurs-' + J, 'site-clics-' + J);
+      PAGES.forEach(function (k) { cles.push(k + '-visiteurs-' + J, k + '-clics-' + J); });
+      // 2. Hier (relu seulement s'il n'est pas déjà en mémoire)
+      ['site-visiteurs-' + H, 'site-clics-' + H].concat(PAGES.reduce(function (a, k) { return a.concat([k + '-visiteurs-' + H, k + '-clics-' + H]); }, [])).forEach(function (c) { if (val(c) == null) cles.push(c); });
+      // 3. Temps moyen et totaux : relus au plus toutes les 30 minutes
+      var totaux = !M._tot || Date.now() - M._tot > 30 * 60 * 1000;
+      if (totaux) PAGES.forEach(function (k) { cles.push(k + '-temps10', k + '-v2', k + '-vues'); });
+      var reste = cles.length;
+      cles.forEach(function (c) {
+        lire(c).then(function () {
+          planifier();
+          if (--reste === 0) {
+            M._maj = Date.now(); if (totaux) M._tot = Date.now(); garder(); dessiner(); btn.disabled = false;
+            document.getElementById('prog').style.width = '0';
+            etat(jourTexte() + '<br>Mis à jour à <b>' + new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }) + '</b>');
+          }
+        });
       });
-      pages.forEach(function (k) {
-        var row = document.querySelector('.row[data-k="' + k + '"]');
-        lire(k + '-vues').then(function (n) { cache[k].vues = n; row.querySelector('.v-total').textContent = n; fini(); });
-      });
-      function fini() {
-        garder();
-        if (--reste) { document.getElementById('maj').textContent = 'Mise à jour en cours… (' + (pages.length * 2 - reste) + '/' + pages.length * 2 + ')'; return; }
-        var tj = 0, tt = 0; pages.forEach(function (k) { tj += cache[k].jour || 0; tt += cache[k].vues || 0; });
-        document.getElementById('t-jour').textContent = tj;
-        document.getElementById('t-total').textContent = tt;
-        document.getElementById('maj').textContent = 'Mis à jour à ' + new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
-      }
     }
-    construire();
+    function jourTexte() { var d = new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }); return d.charAt(0).toUpperCase() + d.slice(1); }
+
+    dessiner();
+    if (M._maj) etat(jourTexte() + '<br>Derniers chiffres de <b>' + new Date(M._maj).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }) + '</b>, mise à jour…');
     document.getElementById('rafraichir').addEventListener('click', charger);
     charger();
   </script>
