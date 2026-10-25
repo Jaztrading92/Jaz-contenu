@@ -143,6 +143,8 @@
     .hero-visual:has(.cover-solo) { display: flex; justify-content: center; max-width: 420px; }
     .cover-solo { position: relative; z-index: 1; width: 62%; max-width: 230px; height: auto; filter: drop-shadow(0 30px 40px rgba(0,0,0,.6)); animation: floatSolo 6s ease-in-out infinite; }
     @keyframes floatSolo { 50% { transform: translateY(-10px); } }
+    .hero-visual:has(.cover-video) { display: flex; justify-content: center; max-width: 420px; }
+    .cover-video { position: relative; z-index: 1; display: block; width: 92%; max-width: 360px; aspect-ratio: 540 / 726; height: auto; object-fit: cover; background: transparent; -webkit-mask-image: radial-gradient(ellipse 72% 70% at 50% 50%, #000 62%, transparent 100%); mask-image: radial-gradient(ellipse 72% 70% at 50% 50%, #000 62%, transparent 100%); }
     .plus-badge { position: absolute; z-index: 3; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 32px; background: linear-gradient(135deg, var(--blue-light), var(--blue-dark)); box-shadow: 0 0 0 6px rgba(1,9,16,.85), 0 10px 30px var(--blue-glow); }
     .hero-cta { margin-top: 28px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
     .hero-price { font-size: 15px; color: var(--muted); }
@@ -536,7 +538,7 @@
         <p class="hero-sub" data-i18n="hero.sub">La méthode pas à pas pour bâtir ta propre stratégie, et l'arsenal d'indicateurs avancés pour l'analyser. Tout est expliqué simplement, à ton rythme.</p>
 
         <div class="hero-visual">
-          <img class="cover-solo" src="livre-unique.webp" alt="Créer sa propre stratégie avec des indicateurs institutionnels avancés">
+          <video class="cover-video" autoplay muted loop playsinline preload="auto" poster="pack-strategie-anim.webp" aria-label="Le guide et le manuel des indicateurs réunis dans le Pack Stratège JAZ"><source src="pack-strategie-anim.webm" type="video/webm"></video>
         </div>
 
         <div class="hero-cta">
