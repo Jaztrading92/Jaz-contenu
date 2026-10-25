@@ -538,7 +538,7 @@
         <p class="hero-sub" data-i18n="hero.sub">La méthode pas à pas pour bâtir ta propre stratégie, et l'arsenal d'indicateurs avancés pour l'analyser. Tout est expliqué simplement, à ton rythme.</p>
 
         <div class="hero-visual">
-          <video class="cover-video" autoplay muted loop playsinline preload="auto" poster="pack-strategie-anim.webp" aria-label="Le guide et le manuel des indicateurs réunis dans le Pack Stratège JAZ"><source src="pack-strategie-anim.webm" type="video/webm"></video>
+          <video class="cover-video" autoplay muted playsinline preload="auto" poster="pack-strategie-anim.webp" aria-label="Le guide et le manuel des indicateurs réunis dans le Pack Stratège JAZ"><source src="pack-strategie-anim.webm" type="video/webm"></video>
         </div>
 
         <div class="hero-cta">
@@ -932,6 +932,19 @@
     var q = (location.search.match(/[?&]lang=(\w+)/) || [])[1];
     apply(q || saved);
   })();
+  </script>
+<script>
+    // Animation du Pack jouée une fois en 4 secondes, puis arrêtée sur l'image du pack complet
+    (function () {
+      var v = document.querySelector('video.cover-video'); if (!v) return;
+      var FIN = 16.5, DUREE = 4;
+      function regler() { v.playbackRate = FIN / DUREE; }
+      v.addEventListener('loadedmetadata', regler); v.addEventListener('play', regler); regler();
+      (function surveiller() {
+        if (v.currentTime >= FIN) { v.pause(); v.currentTime = FIN; return; }
+        requestAnimationFrame(surveiller);
+      })();
+    })();
   </script>
 </body>
 </html>
