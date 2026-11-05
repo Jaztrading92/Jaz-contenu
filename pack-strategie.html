@@ -272,7 +272,17 @@
     .lib p { color: var(--muted); font-size: 13.5px; line-height: 1.5; }
     .lib-stars { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 20px; color: var(--muted); font-size: 14px; text-align: center; }
     @media (max-width: 960px) { .learn-grid { grid-template-columns: repeat(2, 1fr); } .lib-grid { grid-template-columns: repeat(3, 1fr); } }
-    @media (max-width: 760px) { .learn-grid { grid-template-columns: 1fr; } .lib-grid { grid-template-columns: repeat(2, 1fr); } .lib:last-child { grid-column: span 2; } }    /* Résultats */
+    @media (max-width: 760px) { .learn-grid { grid-template-columns: 1fr; } .lib-grid { grid-template-columns: repeat(2, 1fr); } .lib:last-child { grid-column: span 2; } }
+    /* Aperçu vidéo de la bibliothèque */
+    .demo { margin-top: 48px; }
+    .demo-head { text-align: center; margin-bottom: 20px; }
+    .demo-head h3 { font-size: clamp(22px, 3vw, 30px); font-weight: 800; margin-top: 8px; }
+    .demo-head p { color: var(--muted); margin-top: 6px; }
+    .demo-video { position: relative; max-width: 980px; margin: 0 auto; border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--blue-border); background: #000; box-shadow: 0 24px 60px rgba(0,0,0,.5); }
+    .demo-video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
+    .demo-cta { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 22px; text-align: center; }
+    .demo-cta small { color: var(--muted); font-size: 13px; }
+    /* Résultats */
     .carousel { position: relative; }
     .car-track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 4px 2px 8px; }
     .car-track::-webkit-scrollbar { display: none; }
@@ -614,7 +624,22 @@
             <div class="lib"><div class="lib-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg></div><h4 data-i18n="lb.3h">Volume &amp; force</h4><p data-i18n="lb.3p">Savoir qui a vraiment la main.</p></div>
             <div class="lib"><div class="lib-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h3l3-7 4 14 3-9 2 2h5"/></svg></div><h4 data-i18n="lb.4h">Volatilité</h4><p data-i18n="lb.4p">Éviter les marchés pièges.</p></div>
             <div class="lib"><div class="lib-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg></div><h4 data-i18n="lb.5h">Stop Loss</h4><p data-i18n="lb.5p">Protéger ton capital comme une institution.</p></div>
-          </div></div></div>
+          </div></div>
+        <!-- Aperçu vidéo de la bibliothèque -->
+        <div class="demo reveal">
+          <div class="demo-head">
+            <span class="eyebrow">APERÇU RÉEL</span>
+            <h3>Regarde ce qui t'attend <span class="grad">à l'intérieur</span></h3>
+            <p>La vraie bibliothèque : chaque indicateur avec son guide d'utilisation pas à pas.</p>
+          </div>
+          <div class="demo-video">
+            <video id="demoVid" muted playsinline loop controls controlslist="nodownload noplaybackrate" disablepictureinpicture preload="none" poster="bibliotheque-apercu.jpg"><source src="bibliotheque-presentation.mp4" type="video/mp4"></video>
+          </div>
+          <div class="demo-cta">
+            <a href="#offre" class="btn">Je débloque la bibliothèque</a>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- 6. RÉSULTATS -->
@@ -641,6 +666,21 @@
           </div>
           <div class="car-nav">
             <div class="car-dots" id="carDots"></div>
+          </div>
+        </div>
+        <div class="carousel reveal" style="margin-top: 28px;">
+          <div class="car-track" id="carTrack2">
+            <figure class="car-slide"><img src="preuve-123.jpg" alt="Stratégie Volatility 50" loading="lazy"><figcaption class="car-cap"><span>VOLATILITY 50</span><small data-i18n="rs.tag">TRADINGVIEW</small></figcaption></figure>
+            <figure class="car-slide"><img src="preuve-124.jpg" alt="Stratégie Boom 900" loading="lazy"><figcaption class="car-cap"><span>BOOM 900</span><small data-i18n="rs.tag">TRADINGVIEW</small></figcaption></figure>
+            <figure class="car-slide"><img src="preuve-125.jpg" alt="Stratégie Volatility 75 (1s)" loading="lazy"><figcaption class="car-cap"><span>VOLATILITY 75 (1s)</span><small data-i18n="rs.tag">TRADINGVIEW</small></figcaption></figure>
+            <figure class="car-slide"><img src="preuve-126.jpg" alt="Stratégie XAUUSD" loading="lazy"><figcaption class="car-cap"><span>XAUUSD</span><small data-i18n="rs.tag">TRADINGVIEW</small></figcaption></figure>
+            <figure class="car-slide"><img src="preuve-127.jpg" alt="Stratégie XAUUSD" loading="lazy"><figcaption class="car-cap"><span>XAUUSD</span><small data-i18n="rs.tag">TRADINGVIEW</small></figcaption></figure>
+            <figure class="car-slide"><img src="preuve-128.jpg" alt="Stratégie USDCHF" loading="lazy"><figcaption class="car-cap"><span>USDCHF</span><small data-i18n="rs.tag">TRADINGVIEW</small></figcaption></figure>
+            <figure class="car-slide"><img src="preuve-129.jpg" alt="Stratégie DE30EUR" loading="lazy"><figcaption class="car-cap"><span>DE30EUR</span><small data-i18n="rs.tag">TRADINGVIEW</small></figcaption></figure>
+            <figure class="car-slide"><img src="preuve-130.jpg" alt="Stratégie Boom 900" loading="lazy"><figcaption class="car-cap"><span>BOOM 900</span><small data-i18n="rs.tag">TRADINGVIEW</small></figcaption></figure>
+          </div>
+          <div class="car-nav">
+            <div class="car-dots" id="carDots2"></div>
           </div>
         </div>
       </div>
@@ -784,7 +824,6 @@
       var flag = opt && opt.querySelector('svg');
       document.getElementById('curFlag').innerHTML = flag ? flag.outerHTML : '';
       try { localStorage.setItem('jaz_selected_lang', lang); } catch (e) {}
-      updateCarousel();
     }
 
     // Sélecteur de langue
@@ -817,60 +856,72 @@
       });
     });
 
-    // Carrousel des stratégies : défile tout seul, se déplace au doigt ou à la souris,
-    // et reprend 3 secondes après que la personne a lâché (comme la page formation)
-    var track = document.getElementById('carTrack');
-    var slides = track.querySelectorAll('.car-slide');
-    var dotsBox = document.getElementById('carDots');
-    var cur = 0, auto = null, resume = null, dragging = false, moved = false, startX = 0, startLeft = 0;
-    slides.forEach(function (s, i) {
-      var d = document.createElement('button');
-      d.type = 'button'; d.className = 'car-dot'; d.setAttribute('aria-label', String(i + 1));
-      d.addEventListener('click', function () { interact(); goTo(i); });
-      dotsBox.appendChild(d);
-    });
-    var dots = dotsBox.querySelectorAll('.car-dot');
-    function offsetOf(i) { return slides[i].offsetLeft - slides[0].offsetLeft; }
-    function setDots(i) { dots.forEach(function (d, k) { d.classList.toggle('active', k === i); }); }
-    function goTo(i) {
-      if (i < 0) i = slides.length - 1; if (i >= slides.length) i = 0;
-      cur = i;
-      var x = offsetOf(i);
-      track.scrollTo({ left: document.documentElement.dir === 'rtl' ? -x : x, behavior: 'smooth' });
-      setDots(i);
+    // Carrousels des stratégies : défilent tout seuls, se déplacent au doigt ou à la souris,
+    // et reprennent 3 secondes après que la personne a lâché (comme la page formation).
+    // sens = 1 : les captures partent vers la gauche ; sens = -1 : elles partent vers la droite
+    function carrousel(track, dotsBox, sens) {
+      var orig = Array.prototype.slice.call(track.querySelectorAll('.car-slide')), n = orig.length;
+      // copie des captures à la suite : la boucle est infinie, sans saut visible
+      orig.forEach(function (s) { var c = s.cloneNode(true); c.setAttribute('aria-hidden', 'true'); track.appendChild(c); });
+      track.style.scrollSnapType = 'none';
+      var rtl = function () { return document.documentElement.dir === 'rtl' ? -1 : 1; };
+      var longueur = function () { return track.children[n].offsetLeft - orig[0].offsetLeft; };
+      var pas = function () { return n > 1 ? orig[1].offsetLeft - orig[0].offsetLeft : 1; };
+      var pos = 0, tenu = false, reprise = 0, synchro = true, dragging = false, moved = false, startX = 0, startLeft = 0, avant = 0;
+      orig.forEach(function (s, i) {
+        var d = document.createElement('button');
+        d.type = 'button'; d.className = 'car-dot'; d.setAttribute('aria-label', String(i + 1));
+        d.addEventListener('click', function () { pos = i * pas(); track.scrollLeft = rtl() * pos; reprise = Date.now() + 2500; });
+        dotsBox.appendChild(d);
+      });
+      var dots = dotsBox.querySelectorAll('.car-dot');
+      function boucle(t) {
+        var dt = Math.min(50, t - (avant || t)); avant = t;
+        var L = longueur();
+        if (L > 0) {
+          if (tenu || Date.now() < reprise) { synchro = true; }
+          else {
+            if (synchro) { pos = Math.abs(track.scrollLeft); synchro = false; }
+            pos += sens * dt * 0.04;          // environ 40 px par seconde
+            if (pos >= L) pos -= L; if (pos < 0) pos += L;
+            track.scrollLeft = rtl() * pos;
+          }
+          var a = Math.abs(track.scrollLeft); if (a >= L) { track.scrollLeft = rtl() * (a - L); } else if (a <= 0 && !tenu && sens < 0) { track.scrollLeft = rtl() * (a + L); }
+          var k = Math.round((Math.abs(track.scrollLeft) % L) / pas()) % n;
+          dots.forEach(function (d, i) { d.classList.toggle('active', i === k); });
+        }
+        requestAnimationFrame(boucle);
+      }
+      // souris : glisser pour déplacer
+      track.addEventListener('mousedown', function (e) { dragging = true; moved = false; tenu = true; startX = e.pageX; startLeft = track.scrollLeft; track.classList.add('is-dragging'); });
+      window.addEventListener('mousemove', function (e) { if (!dragging) return; var dx = e.pageX - startX; if (Math.abs(dx) > 4) moved = true; e.preventDefault(); track.scrollLeft = startLeft - dx * 1.4; });
+      window.addEventListener('mouseup', function () { if (!dragging) return; dragging = false; tenu = false; reprise = Date.now() + 1200; track.classList.remove('is-dragging'); setTimeout(function () { moved = false; }, 0); });
+      // un glissé ne doit pas ouvrir le zoom de la capture
+      track.addEventListener('click', function (e) { if (moved) { e.stopPropagation(); e.preventDefault(); moved = false; } }, true);
+      // tactile : on fait défiler au doigt, et ça repart tout seul quand on lâche
+      track.addEventListener('touchstart', function () { tenu = true; }, { passive: true });
+      track.addEventListener('touchend', function () { tenu = false; reprise = Date.now() + 1200; }, { passive: true });
+      track.addEventListener('wheel', function () { reprise = Date.now() + 1500; }, { passive: true });
+      if (sens < 0) { pos = longueur(); track.scrollLeft = rtl() * pos; }
+      requestAnimationFrame(boucle);
     }
-    function updateCarousel() {
-      var pos = Math.abs(track.scrollLeft) + track.offsetWidth / 2;
-      slides.forEach(function (s, i) { var l = offsetOf(i); if (pos >= l && pos < l + s.offsetWidth + 16) { cur = i; } });
-      setDots(cur);
+    // Aperçu vidéo : se lance sans son quand il arrive à l'écran ; la barre de lecture permet d'avancer,
+    // de revenir en arrière et d'activer le son. Si la personne met en pause, on ne relance pas à sa place.
+    var demo = document.getElementById('demoVid'), demoPause = false;
+    if (demo) {
+      demo.addEventListener('pause', function () { if (demo.dataset.auto !== '1') demoPause = true; demo.dataset.auto = ''; });
+      demo.addEventListener('play', function () { demoPause = false; });
     }
-    function play() { stop(); auto = setInterval(function () { goTo(cur + 1); }, 4000); }
-    function stop() { if (auto) { clearInterval(auto); auto = null; } }
-    function interact() { stop(); clearTimeout(resume); resume = setTimeout(play, 3000); }
-    track.addEventListener('scroll', function () { window.requestAnimationFrame(updateCarousel); }, { passive: true });
-    // souris : glisser pour déplacer
-    track.addEventListener('mousedown', function (e) {
-      dragging = true; moved = false; stop(); clearTimeout(resume);
-      startX = e.pageX; startLeft = track.scrollLeft; track.classList.add('is-dragging');
-    });
-    window.addEventListener('mousemove', function (e) {
-      if (!dragging) return;
-      var dx = e.pageX - startX; if (Math.abs(dx) > 4) moved = true;
-      e.preventDefault(); track.scrollLeft = startLeft - dx * 1.4;
-    });
-    window.addEventListener('mouseup', function () {
-      if (!dragging) return;
-      dragging = false; track.classList.remove('is-dragging');
-      updateCarousel(); goTo(cur); interact(); setTimeout(function () { moved = false; }, 0);
-    });
-    // un glissé ne doit pas ouvrir le zoom de la capture
-    track.addEventListener('click', function (e) { if (moved) { e.stopPropagation(); e.preventDefault(); moved = false; } }, true);
-    // tactile
-    track.addEventListener('touchstart', function () { stop(); clearTimeout(resume); }, { passive: true });
-    track.addEventListener('touchend', interact, { passive: true });
-    track.addEventListener('wheel', interact, { passive: true });
-    setDots(0);
-    play();
+    if (demo && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { es.forEach(function (e) {
+        if (e.isIntersecting) { if (!demoPause) { var p = demo.play(); if (p && p.catch) p.catch(function () {}); } }
+        else if (!demo.paused) { demo.dataset.auto = '1'; demo.pause(); }
+      }); }, { threshold: .4 }).observe(demo);
+    } else if (demo) { demo.preload = 'auto'; demo.autoplay = true; }
+
+    // ancienne rangée : vers la droite ; nouvelles preuves : vers la gauche
+    carrousel(document.getElementById('carTrack'), document.getElementById('carDots'), -1);
+    carrousel(document.getElementById('carTrack2'), document.getElementById('carDots2'), 1);
 
     // Zoom des captures
     var lb = document.getElementById('lightbox'), lbImg = document.getElementById('lbImg');
