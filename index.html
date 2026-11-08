@@ -221,7 +221,28 @@
     .jz-lang-opt.active { background: rgba(0,136,212,.22); border-color: #00a3ff; color: #fff; }
     .jz-lang-name { flex: 1; }
     .jz-lang-code { font-family: ui-monospace, monospace; font-size: 11px; font-weight: 800; color: #00a3ff; background: rgba(0,136,212,.15); padding: 1px 6px; border-radius: 4px; }
-  </style></head>
+  </style>
+<style id="allegement-jaz">
+  /* Allègement : tailles plus légères, moins d'espaces vides (comme la page du pack) */
+  body h1[data-i18n="hero-h1"] { font-size: clamp(22px, 4.4vw, 42px) !important; line-height: 1.18 !important; }
+  body [data-i18n="hero-p"] { font-size: clamp(14px, 1.8vw, 16px) !important; margin-top: 10px !important; }
+  body h2 { font-size: clamp(20px, 3.4vw, 34px) !important; line-height: 1.2 !important; }
+  #modules { padding-top: 24px !important; padding-bottom: 24px !important; }
+  #modules article.glass-card { padding: 16px !important; gap: 14px !important; }
+  #modules article.glass-card + article.glass-card, #modules article.glass-card ~ article.glass-card { margin-top: 0; }
+  #modules article h3 { font-size: clamp(17px, 2.4vw, 24px) !important; }
+  #modules article p { font-size: 13.5px !important; line-height: 1.5 !important; margin-top: 6px !important; }
+  #modules article .mockup-img { max-height: 170px !important; width: auto !important; margin-inline: auto; }
+  #modules article a.h-full { height: auto !important; }
+  #resultats-clients { padding-top: 20px !important; padding-bottom: 20px !important; }
+  section { scroll-margin-top: 120px; }
+  .btn-lux { padding: 11px 22px !important; font-size: 14.5px !important; }
+  @media (min-width: 1024px) {
+    #modules article .mockup-img { max-height: 230px !important; }
+    #modules article.glass-card { padding: 24px 28px !important; }
+  }
+</style>
+</head>
 <body class="selection:bg-cyan-500 selection:text-black">
   <!-- ==================== 1. TICKER BOURSIER EN DIRECT ==================== -->
   <div class="sticky top-0 z-50 bg-[#010910] border-b border-white/10">
@@ -280,57 +301,14 @@
   <!-- ==================== 3. SECTION HERO PRINCIPALE ==================== -->
   <section class="relative pt-6 pb-8 sm:pt-12 sm:pb-12 overflow-hidden text-center">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
-      <div class="flex items-center justify-center mb-5">
-        <span class="hero-pill inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-blue-600/40 via-sky-500/20 to-blue-600/40 border border-sky-400/60 text-xs sm:text-sm font-semibold text-slate-200">
-          <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-          <span class="text-white font-bold">&Eacute;COSYST&Egrave;ME OFFICIEL JAZ TRADING FIMC</span>
-          <span class="text-slate-600">|</span>
-          <span class="text-sky-300 font-bold">Trading Institutionnel &amp; Outils d'&Eacute;lite</span>
-        </span>
-      </div>
       <h1 class="text-[28px] sm:text-5xl lg:text-[56px] font-extrabold tracking-tight text-white leading-[1.15]" data-i18n="hero-h1">
         Le seul écosystème dont vous avez besoin pour trader avec <span class="bg-gradient-to-r from-[#00D2FF] via-[#38BDF8] to-[#2563EB] bg-clip-text text-transparent">méthode, clarté et confiance.</span>
       </h1>
       <p class="mt-5 text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed" data-i18n="hero-p"></p>
-      <!-- LES 3 PROFILS CIBLES (SIMPLE & 100% MARKETING) -->
-      <div class="mt-6 sm:mt-8 grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto text-left">
-        <div class="prof-card p-5 rounded-2xl bg-gradient-to-br from-blue-600/25 via-[#071a30]/80 to-sky-500/10 border border-sky-400/40 hover:border-sky-300 transition-all">
-          <div class="flex items-center gap-2.5 mb-2">
-            <span class="w-7 h-7 rounded-xl bg-gradient-to-br from-[#00D2FF] to-[#2563EB] text-white shadow-lg flex items-center justify-center font-bold text-xs font-mono">01</span>
-            <h4 class="text-white font-extrabold text-sm" data-i18n="prof1-title">Vous d&eacute;couvrez le trading</h4>
-          </div>
-          <p class="text-xs text-slate-300 leading-relaxed" data-i18n="prof1-desc">
-            D&eacute;marrez avec des bases solides gr&acirc;ce &agrave; notre formation compl&egrave;te et nos guides m&eacute;thodologiques pas &agrave; pas.
-          </p>
-        </div>
-        <div class="prof-card p-5 rounded-2xl bg-gradient-to-br from-blue-600/25 via-[#071a30]/80 to-sky-500/10 border border-sky-400/40 hover:border-sky-300 transition-all">
-          <div class="flex items-center gap-2.5 mb-2">
-            <span class="w-7 h-7 rounded-xl bg-gradient-to-br from-[#00D2FF] to-[#2563EB] text-white shadow-lg flex items-center justify-center font-bold text-xs font-mono">02</span>
-            <h4 class="text-white font-extrabold text-sm" data-i18n="prof2-title">Trader en qu&ecirc;te de r&eacute;gularit&eacute;</h4>
-          </div>
-          <p class="text-xs text-slate-300 leading-relaxed" data-i18n="prof2-desc">
-            Structurez vos sessions avec notre plan de trading professionnel et une gestion stricte du risque.
-          </p>
-        </div>
-        <div class="prof-card p-5 rounded-2xl bg-gradient-to-br from-blue-600/25 via-[#071a30]/80 to-sky-500/10 border border-sky-400/40 hover:border-sky-300 transition-all">
-          <div class="flex items-center gap-2.5 mb-2">
-            <span class="w-7 h-7 rounded-xl bg-gradient-to-br from-[#00D2FF] to-[#2563EB] text-white shadow-lg flex items-center justify-center font-bold text-xs font-mono">03</span>
-            <h4 class="text-white font-extrabold text-sm" data-i18n="prof3-title">Trader exp&eacute;riment&eacute;</h4>
-          </div>
-          <p class="text-xs text-slate-300 leading-relaxed" data-i18n="prof3-desc">
-            Aff&ucirc;tez vos analyses avec nos +200 indicateurs TradingView institutionnels, nos strat&eacute;gies automatiques et nos entr&eacute;es VIP.
-          </p>
-        </div>
-      </div>
       <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
         <a href="#modules" class="btn-lux inline-flex items-center gap-3 px-6 py-3 sm:px-8 sm:py-4 rounded-full bg-gradient-to-r from-blue-500 to-blue-700 text-white font-extrabold text-sm sm:text-base md:whitespace-nowrap shadow-xl hover:scale-105">
           Explorer les 8 Modules <svg class="cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
               </a>
-      </div>
-      <div class="mt-6 sm:mt-8 pt-5 border-t border-white/10 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm text-slate-400">
-        <div class="flex items-center gap-2"><span class="text-sky-400 font-bold text-base">&#10003;</span> M&eacute;thodologies Pr&ecirc;tes &agrave; l'Emploi</div>
-        <div class="flex items-center gap-2"><span class="text-sky-400 text-base">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <strong class="text-white">4,5 / 5</strong> (+172 membres satisfaits)</div>
-        <div class="flex items-center gap-2"><span class="text-sky-400 font-bold text-base">&#10003;</span> Acc&egrave;s Direct &amp; Instantan&eacute;</div>
       </div>
     </div>
   </section>
@@ -435,7 +413,8 @@
   <!-- ==================== 5. QUICK NAV BAR (ORDRE STRICT 4, 1, 3, 2, 7, 5, 6) ==================== -->
   <nav class="sticky top-[58px] z-30 bg-gradient-to-r from-[#030712]/95 via-[#061a33]/95 to-[#030712]/95 backdrop-blur-md border-b border-sky-400/25 py-3">
     <div class="max-w-6xl mx-auto px-4 flex items-center gap-2.5 overflow-x-auto no-scrollbar">
-      <span class="text-xs font-bold uppercase tracking-wider text-sky-400 whitespace-nowrap mr-2">Modules :</span>
+      <span class="text-xs font-bold uppercase tracking-wider text-sky-400 whitespace-nowrap mr-2">Modules :</span>
+
       <a href="#module-07" class="navchip px-3.5 py-1.5 rounded-full bg-gradient-to-r from-blue-600/45 to-sky-500/20 border border-sky-400/50 text-white font-bold text-xs hover:from-blue-500/70 hover:to-sky-400/40 hover:border-sky-300 transition-all whitespace-nowrap">01. Strat&eacute;gies TradingView</a>
       <a href="#module-01" class="navchip px-3.5 py-1.5 rounded-full bg-gradient-to-r from-blue-600/45 to-sky-500/20 border border-sky-400/50 text-white font-bold text-xs hover:from-blue-500/70 hover:to-sky-400/40 hover:border-sky-300 transition-all whitespace-nowrap">02. Formation compl&egrave;te</a>
       <a href="#module-08" class="navchip px-3.5 py-1.5 rounded-full bg-gradient-to-r from-blue-600/45 to-sky-500/20 border border-sky-400/50 text-white font-bold text-xs hover:from-blue-500/70 hover:to-sky-400/40 hover:border-sky-300 transition-all whitespace-nowrap">03. Pack Strat&egrave;ge</a>
@@ -557,7 +536,8 @@
               <span class="bg-blue-500/20 border border-blue-500/40 text-sky-300 text-xs sm:text-sm font-bold px-3 py-1 rounded-full">Automatisation TradingView</span>
             </div>
             <h3 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight" data-i18n="m07-title">Nos strat&eacute;gies automatiques sur TradingView</h3>
-            <p class="mt-3 text-slate-300 text-base sm:text-lg leading-relaxed max-w-lg" data-i18n="m07-hook">4 stratégies automatiques développées par JAZ TRADING FIMC, prêtes à trader pour toi sur TradingView, même lorsque tu es occupé.</p>
+            <p class="mt-3 text-slate-300 text-base sm:text-lg leading-relaxed max-w-lg" data-i18n="m07-hook">4 stratégies automatiques développées par JAZ TRADING FIMC, prêtes à trader pour toi sur TradingView, même lorsque tu es occupé.</p>
+
           </div>
           <div class="w-full lg:w-[400px] flex-shrink-0 flex flex-col items-center gap-4">
             <div class="mockup-container">
@@ -753,7 +733,8 @@
             </div>
           
             <h3 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight" data-i18n="m05-title">Canal des entr&eacute;es VIP</h3>
-            <p class="mt-3 text-slate-300 text-base sm:text-lg leading-relaxed max-w-lg" data-i18n="m05-hook">Rejoins notre communauté officielle Telegram VIP et reçois les analyses de pré-marché ainsi que les prises de positions partagées en direct.</p>
+            <p class="mt-3 text-slate-300 text-base sm:text-lg leading-relaxed max-w-lg" data-i18n="m05-hook">Rejoins notre communauté officielle Telegram VIP et reçois les analyses de pré-marché ainsi que les prises de positions partagées en direct.</p>
+
           </div>
           <div class="w-full lg:w-[400px] flex-shrink-0 flex flex-col items-center gap-4">
             <div class="mockup-container">
