@@ -305,10 +305,171 @@ body{top:0!important}.goog-text-highlight{background:none!important;box-shadow:n
 @keyframes tickerMove{to{transform:translateX(-50%)}}
 [dir=rtl] .ticker-track{animation-name:tickerMoveRtl}@keyframes tickerMoveRtl{to{transform:translateX(50%)}}
 @media (prefers-reduced-motion:reduce){.ticker-track{animation:none}}
-@media (max-width:600px){.hcard .top{flex-wrap:wrap}.hcard .v{white-space:nowrap;font-size:clamp(28px,9vw,36px)}.hstats b{white-space:nowrap;font-size:15px}.cout .row b{white-space:nowrap;font-size:22px}.skpi b{white-space:nowrap}.seg{max-width:100%;flex-wrap:wrap;justify-content:center}.seg button{padding-left:10px;padding-right:10px}}html{overflow-x:clip}img,video,canvas,svg{max-width:100%}</style></head><body>
-<div class="bar">Offre de lancement : <b>−25 % sur ta première période</b> pour les 30 premiers clients · <b>Essai 5 jours</b> disponible</div>
+@media (max-width:600px){.hcard .top{flex-wrap:wrap}.hcard .v{white-space:nowrap;font-size:clamp(28px,9vw,36px)}.hstats b{white-space:nowrap;font-size:15px}.cout .row b{white-space:nowrap;font-size:22px}.skpi b{white-space:nowrap}.seg{max-width:100%;flex-wrap:wrap;justify-content:center}.seg button{padding-left:10px;padding-right:10px}}html{overflow-x:clip}img,video,canvas,svg{max-width:100%}
+/* Les 4 stratégies en cartes cliquables, détail ouvert au clic */
+.shint{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 0 14px;font-size:14px;font-weight:700;color:var(--gold2,#38BDF8);text-align:center;animation:hintPulse 2.2s ease-in-out infinite}
+.shint.off{display:none}.shic{flex-shrink:0;display:block;width:22px;height:22px;stroke-width:2;animation:shicDown 1.4s ease-in-out infinite}
+@keyframes shicDown{50%{transform:translateY(3px)}}
+@media (prefers-reduced-motion:reduce){.shic{animation:none}}
+@keyframes hintPulse{50%{opacity:.55}}
+#tabs.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}
+#tabs .tab{flex-direction:column;align-items:flex-start;gap:5px;text-align:left;padding:14px;border-radius:16px;background:var(--bg2);border:1px solid var(--line);border-top:3px solid var(--c);transition:transform .15s,border-color .15s,background .15s}
+#tabs .tab:hover{transform:translateY(-2px);border-color:var(--c)}
+#tabs .tab[aria-selected=true]{background:var(--card2);border-color:var(--c);box-shadow:0 0 0 1px var(--c) inset}
+#tabs .tn{display:flex;align-items:center;gap:7px;font-size:15.5px;color:#fff;font-weight:800}
+#tabs .tm{font-size:12px;font-weight:600;color:var(--mute)}
+#tabs .tk{font-size:13px;font-weight:600;color:var(--soft);line-height:1.3}#tabs .tk b{font-size:15px;color:#fff}#tabs .tk small{font-size:11.5px;color:var(--mute);font-weight:600}
+#tabs .tv{margin-top:4px;font-size:12.5px;font-weight:800;color:var(--c)}
+#tabs .tab[aria-selected=true] .tv{opacity:.6}
+#sDetail{display:none}#sDetail.open{display:grid;animation:sOpen .35s ease}
+@keyframes sOpen{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.sbar{grid-column:1 / -1;display:flex;justify-content:space-between;align-items:center}
+.sback,.sclose{font:inherit;font-size:13px;font-weight:700;color:var(--soft);background:transparent;border:1px solid var(--line);border-radius:10px;padding:7px 12px;cursor:pointer}
+.sclose{padding:7px 11px}
+.heroslot{padding-top:6px;padding-bottom:10px}
+.sprice{margin-top:14px;padding:16px;border-radius:18px;background:var(--card);border:1px solid var(--c);box-shadow:0 0 0 1px var(--c) inset,0 18px 40px -24px var(--c);animation:sOpen .3s ease}
+.sprice[hidden]{display:none}
+.sp-h{font-weight:800;font-size:15px;margin-bottom:10px;text-align:center}
+.sp-seg{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:4px;margin-bottom:8px}
+.sp-seg.sp-cur{grid-template-columns:repeat(3,1fr);max-width:240px;margin-left:auto;margin-right:auto}
+.sp-seg button{font:inherit;font-size:12.5px;font-weight:700;color:var(--soft);background:transparent;border:0;border-radius:9px;padding:7px 2px;cursor:pointer;line-height:1.2;display:flex;flex-direction:column;align-items:center;gap:1px}
+.sp-seg button .off{font-size:10.5px;color:var(--up)}
+.sp-seg button[aria-pressed=true]{background:var(--c);color:#03131F}.sp-seg button[aria-pressed=true] .off{color:#03131F}
+.sp-p{text-align:center;margin:10px 0 12px}
+.sp-p .amt{font-family:Sora,sans-serif;font-weight:800;font-size:32px;line-height:1.1}
+.sp-p .pdur{font-size:12.5px;color:var(--mute);margin-top:4px}
+.sp-l{display:flex;justify-content:center;gap:12px;font-size:13px;margin-top:4px}.sp-l .was{text-decoration:line-through;color:var(--mute)}.sp-l .perday{color:var(--gold2);font-weight:700}
+.hero .hgrid{grid-template-columns:minmax(0,1fr)}.hero .hgrid>.reveal{max-width:760px;margin:0 auto;text-align:center}
+#pack .pgrid{grid-template-columns:minmax(0,1fr)}#pack .pgrid>.reveal{max-width:760px;margin:0 auto;text-align:center}#pack .plist{text-align:left}
+.hero .kicker{justify-content:center}.hero .ctas{justify-content:center}.hero p.lead{margin-left:auto;margin-right:auto}
+@media (min-width:601px){.hero{padding:56px 0 30px}header.hero h1{font-size:clamp(28px,3.2vw,40px);line-height:1.2}}
+.modes{display:grid;gap:10px;margin:0 auto 18px;max-width:560px;text-align:left}
+.mode{display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:center;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.mode .mic{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(0,178,255,.14);color:var(--gold2)}
+.mode b{display:block;font-size:15px;color:#fff;margin-bottom:2px}.mode span:not(.mic){display:block;font-size:14px;line-height:1.45;color:var(--soft)}
+.lead2{font-size:13.5px;color:var(--mute);margin:0 auto 18px;max-width:560px}.lead2 b{color:var(--soft)}
+@media (min-width:601px){.modes{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){header.hero h1{font-size:clamp(21px,6vw,24px);line-height:1.25;letter-spacing:-.01em;margin:8px 0 10px}.hero p.lead{font-size:14.5px;line-height:1.5;margin-bottom:12px}
+.modes{gap:8px;margin-bottom:10px}.mode{grid-template-columns:36px 1fr;gap:10px;padding:10px 12px;border-radius:12px}.mode .mic{width:36px;height:36px;border-radius:10px}.mode .mic svg{width:18px;height:18px}
+#qBody h3{font-size:18px;margin-bottom:12px}#qBody .opt{padding:12px 14px;font-size:14.5px;border-radius:12px}
+.mode b{font-size:14px}.mode span:not(.mic){font-size:13px;line-height:1.4}.lead2{font-size:12.5px;margin-bottom:14px}.ticker{padding:4px 0}}
+.ft-risk{margin:14px 0 0;padding:10px 12px;border:1px solid rgba(248,113,113,.3);background:rgba(248,113,113,.06);border-radius:10px;font-size:12.5px;line-height:1.5;color:var(--soft)}.ft-risk b{color:#FCA5A5}
+/* Barre « Voir les tarifs » en bas : toujours visible, figée, plus fine */
+.mbar,.mbar.hide{opacity:1!important;pointer-events:auto!important;transition:none!important}
+@media (max-width:960px){.mbar,.mbar.hide{left:12px;right:12px;bottom:10px;transform:none!important;padding:4px;border-radius:14px}.mbar .btn{padding:10px 12px!important;font-size:14px!important;border-radius:11px}}
+@media (min-width:961px){.mbar,.mbar.hide{transform:translateX(-50%)!important;padding:4px;border-radius:14px}.mbar .btn{padding:10px 26px!important;font-size:14.5px!important}}
+footer{padding-bottom:80px!important}
+/* Boutons principaux plus fins sur téléphone */
+@media (max-width:600px){.ctas .btn,.final .btn,.squiz .btn,#sCta,.plan .btn.gold.full{padding-top:11px!important;padding-bottom:11px!important;font-size:14.5px}}
+.hero .hcta{display:flex;flex-direction:row;justify-content:center;gap:10px;flex-wrap:nowrap}
+.hero .hcta .btn{width:auto!important;flex:0 1 auto;padding:11px 20px!important;font-size:14.5px!important;border-radius:12px;white-space:nowrap}
+@media (max-width:600px){.hero .hcta .btn{flex:1 1 0;padding:11px 10px!important;font-size:13.5px!important}}
+/* « Le vrai problème » : rangée qui défile en continu sur téléphone (comme sur la page du pack) */
+@media (max-width:600px){
+#probleme .pains{display:flex!important;gap:12px;overflow-x:auto;scrollbar-width:none;margin:0 -18px;padding:2px 18px 4px;cursor:grab;user-select:none;-webkit-user-select:none;
+ -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+#probleme .pains::-webkit-scrollbar{display:none}
+#probleme .pains.is-dragging{cursor:grabbing}
+#probleme .pain{flex:0 0 clamp(230px,70vw,270px);align-content:start;row-gap:0;padding:14px 14px 15px;border-radius:16px;background:linear-gradient(160deg,var(--card),var(--bg2));border:1px solid var(--line);box-shadow:0 10px 24px -18px rgba(0,0,0,.8)}
+#probleme .pain{grid-template-columns:34px 1fr;column-gap:10px}#probleme .pain .ic{grid-row:auto;width:34px;height:34px;border-radius:10px;background:rgba(248,113,113,.12);color:#F87171;font-size:0}#probleme .pain .ic svg{width:18px;height:18px}#probleme .pain h3{align-self:center;margin:0;font-size:14.5px;line-height:1.25;white-space:normal}#probleme .pain p{grid-column:1 / -1;margin-top:9px;font-size:13px;line-height:1.5;color:var(--mute)}
+}
+.pain .ic svg{display:block}.pain .ic{color:#F87171}
+#plans .plan.focus{animation:planFocus 2.6s ease}
+@keyframes planFocus{0%,70%{box-shadow:0 0 0 3px var(--c,var(--gold)),0 0 28px -4px var(--c,var(--gold))}100%{box-shadow:none}}
+.squiz{display:flex;justify-content:center;margin-top:16px}
+@media (max-width:600px){.squiz .btn{width:100%;justify-content:center;padding:14px 18px}}
+@media (max-width:900px){#tabs.tabs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){#tabs.tabs{gap:10px}#tabs .tab{padding:12px}}
+/* Rythme des fonds : une section sur deux légèrement plus claire */
+#strategies,#fonctionnement,#simulateur,#faq{background:var(--bg)}
+#probleme,#tarifs,#quiz{background:var(--bg2)}
+#strategies .tks{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;margin-top:4px;padding-top:8px;border-top:1px solid var(--line)}
+#strategies .tk{display:flex;flex-direction:column;gap:1px}#strategies .tk small{line-height:1.25}
+/* Tailles confortables sur téléphone (même logique que la page du pack) */
+@media (max-width:600px){
+nav .wrap{height:54px}nav .logo-badge{width:36px;height:36px;border-radius:9px}
+.hero{padding:34px 0 34px}.hgrid{gap:26px}
+h1{font-size:30px;line-height:1.12;margin:10px 0 12px}
+h2{font-size:24px;line-height:1.15}
+.lead,.hero p.lead{font-size:15.5px;line-height:1.55}
+.sh{margin-bottom:18px}.sh p{font-size:15.5px;line-height:1.55}
+section{padding:34px 0}
+p{line-height:1.55}
+.hcard{padding:16px}.hch{height:200px}#hstats div{padding:8px 10px}#hstats small{line-height:1.3;display:block}
+#band{padding:18px 20px}
+.pains{gap:10px}.pain{padding:16px}.pain .ic{font-size:22px;height:auto;margin-bottom:6px}.pain h3{font-size:16.5px}.pain p{font-size:14.5px}
+.turn{padding:20px;gap:14px}.turn .big{font-size:40px}.turn h3{font-size:20px}.turn p{font-size:15px}
+.steps{gap:10px}.step{padding:18px}.step h3{font-size:18px}.step p{font-size:15px}
+.money{padding:14px 16px;font-size:15px}
+.tabs{gap:6px}.spanel{padding:16px}#sName{font-size:24px}.sch{height:220px}
+.thumbs{grid-template-columns:1fr 1fr;gap:8px}.thumbs > :first-child{grid-column:1 / -1}.thumbs > :not(:first-child){height:auto;aspect-ratio:16/10}
+.plan h3{font-size:19px}.plan .amt{font-size:30px}.plan .btn{padding-top:13px;padding-bottom:13px}.sgrid{gap:12px}.sfor{padding:12px 14px}
+.proofs{gap:12px}.proof > div{padding:10px 14px}
+.pgrid{gap:18px}#pack p{font-size:15.5px}
+.calc{gap:12px}.cin,.cout{padding:18px}.cout .row{padding:10px 0}
+.truth{gap:10px}.tcard{padding:14px}
+.quiz{padding:18px 14px}
+.ptog{gap:8px}.plans{gap:12px}.plan{padding:18px 16px}
+.faq details{padding:14px 0}.faq details p{font-size:15px}
+.final{padding:40px 20px}.final h2{font-size:24px}
+}
+/* Structure mobile : tout centré, blocs réguliers, rien de serré */
+@media (max-width:600px){
+.wrap{padding-left:18px;padding-right:18px}
+section{padding:40px 0}
+.sh{text-align:center;margin:0 auto 20px;max-width:340px}.sh .kicker{justify-content:center;font-size:11.5px}.sh h2{margin:8px 0 10px}.sh p{font-size:15px;color:var(--soft)}
+/* accroche */
+.hero{padding:30px 0 10px;text-align:center}.hero .kicker{justify-content:center;font-size:11.5px}
+.hero p.lead{font-size:15px;max-width:330px;margin:0 auto 18px}
+.ctas{flex-direction:column;gap:10px}.ctas .btn{width:100%;justify-content:center;padding:14px 18px}
+/* 4 stratégies */
+#strategies{padding-top:26px}
+.shint{font-size:13px;margin-bottom:12px}
+#tabs .tab{padding:12px 12px 11px;border-radius:14px}#tabs .tn{font-size:14.5px}#tabs .tm{font-size:11px}
+#tabs .tk b{font-size:15px}#tabs .tk small{font-size:10.5px}#tabs .tv{font-size:12px;margin-top:6px}
+.sbar{margin-bottom:2px}.cnote{font-size:12px;text-align:center;margin-top:12px}
+.heroslot{padding-top:0;padding-bottom:6px}.heroslot .hcard{border-radius:18px}
+/* le vrai problème : icône à gauche, texte à droite */
+.pains{grid-template-columns:1fr;gap:10px}
+.pain{display:grid;grid-template-columns:40px 1fr;column-gap:12px;align-items:start;padding:14px;text-align:left}
+.pain .ic{grid-row:1 / 3;width:40px;height:40px;border-radius:12px;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:20px;margin:0}
+.pain h3{font-size:15.5px;margin:2px 0 4px}.pain p{font-size:13.5px;line-height:1.5}
+.turn{margin-top:16px;padding:20px 18px;gap:6px;text-align:center}.turn .big{font-size:36px;line-height:1}.turn h3{font-size:18px}.turn p{font-size:14px}
+/* comment ça marche : étapes numérotées */
+.steps{gap:10px}.step{padding:16px 16px 16px 64px;text-align:left}
+.step:before{left:16px;right:auto;top:16px;width:34px;height:34px;border-radius:50%;background:rgba(0,178,255,.14);color:var(--gold2);font-size:14px;display:flex;align-items:center;justify-content:center}
+.step h3{font-size:16px;margin:0 0 4px}.step p{font-size:14px;line-height:1.5}
+.money{padding:14px;gap:12px;font-size:14px;line-height:1.5}.money > span{font-size:22px!important}
+/* tarifs : nom à gauche, prix à droite */
+.ptog{gap:10px;margin-bottom:6px}.seg button{font-size:13px}
+.incl{gap:6px 12px;font-size:13px;margin-bottom:18px}.incl b{font-size:14px}
+.plans{gap:12px}
+.plan{display:grid;grid-template-columns:1fr auto;column-gap:12px;align-items:center;padding:16px;border-radius:18px;border-left:3px solid var(--c,var(--gold))}
+.plan > *{grid-column:1 / -1}
+.plan h3{grid-column:1;grid-row:1;font-size:17px}
+.plan .who{grid-column:1;grid-row:2;margin:2px 0 0;font-size:12.5px}
+.plan .amt{grid-column:2;grid-row:1 / 3;font-size:26px;text-align:right;margin:0}
+.plan .pdur{font-size:12.5px;margin-top:8px;color:var(--mute)}
+.plan .was,.plan .perday{font-size:12.5px;margin:2px 0 0}.plan .was{grid-column:1}.plan .perday{grid-column:2;text-align:right}
+.plan .btn{margin-top:10px;padding:12px 16px!important}
+.plan.hot{padding-top:24px;border-left:2px solid var(--gold)}.plan .ptrial{font-size:13px;margin-top:6px}
+.costs{font-size:12.5px;text-align:center}
+/* preuves : 2 par ligne */
+.proofs{grid-template-columns:1fr 1fr;gap:10px}.proof{border-radius:14px}.proof div{padding:8px 10px;font-size:11.5px;line-height:1.4}
+/* pack */
+.pgrid{gap:16px}#pack .reveal{text-align:center}#pack p{font-size:14.5px!important;line-height:1.55}
+#pack .hch{height:230px!important}#pack .hcard small{font-size:11.5px}
+.plist{gap:8px}
+/* transparence : 2 par ligne */
+.truth{grid-template-columns:1fr 1fr;gap:10px}.tcard{padding:12px}.tcard h3{font-size:14px;margin-bottom:8px}.tcard div{font-size:12px;flex-direction:column;gap:0;padding:3px 0}.tcard div b{font-size:15px}
+/* simulateur, quiz, faq */
+.cin,.cout{padding:16px;border-radius:16px}
+.quiz{padding:16px 14px}
+.faq summary{font-size:15px}.faq details p{font-size:14px}
+.final{padding:36px 18px;text-align:center}.final h2{font-size:22px}
+}</style></head><body>
 <nav><div class="wrap"><a class="brand-box" href="./"><span class="logo-badge notranslate" translate="no"><img src="data:image/png;base64,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" alt="JAZ Trading"></span><span class="brand-meta"><span class="brand-title notranslate" translate="no">JAZ<span class="accent">.</span>TRADING</span><span class="brand-sub">FIMC · STRATÉGIES AUTOMATIQUES</span></span></a>
-<div class="links"><a href="#strategies">Les 4 stratégies</a><a href="#preuves">Preuves</a><a href="#simulateur">Simulateur</a><a href="#verite">Transparence</a><a href="#tarifs">Tarifs</a><a href="#faq">FAQ</a></div>
+<div class="links"><a href="#strategies">Les 4 stratégies</a><a href="#simulateur">Simulateur</a><a href="#tarifs">Tarifs</a><a href="#faq">FAQ</a></div>
 <div class="navr"><div class="lang notranslate" translate="no"><button class="lbtn" id="lbtn" aria-haspopup="true" aria-expanded="false" aria-label="Changer de langue"><img id="lflag" src="https://flagcdn.com/w40/fr.png" alt=""><span id="lcode">FR</span></button><div class="lmenu" id="lmenu" role="menu"></div></div></div></div></nav>
 <div class="ticker" role="marquee" aria-label="Trader, c'est bien. En automatique, c'est encore mieux."><div class="ticker-track" aria-hidden="true">
 <span>Trader, c'est bien. <b>En automatique, c'est encore mieux.</b></span><span>Trader, c'est bien. <b>En automatique, c'est encore mieux.</b></span><span>Trader, c'est bien. <b>En automatique, c'est encore mieux.</b></span><span>Trader, c'est bien. <b>En automatique, c'est encore mieux.</b></span>
@@ -319,30 +480,36 @@ body{top:0!important}.goog-text-highlight{background:none!important;box-shadow:n
  <div class="reveal">
   <span class="kicker">Trading automatique · Or · USD · Bitcoin</span>
   <h1>4 stratégies qui tradent pour toi. <em>Même lorsque tu es occupé.</em></h1>
-  <p class="lead">Active les stratégies automatiques de JAZ Trading : elles prennent les trades à ta place sur TradingView, 24h/24, sans émotion. Testées jusqu'à 20 ans sur l'historique réel. Ton argent reste sur <b>ton</b> compte.</p>
-  <div class="ctas"><a class="btn gold" href="#tarifs">Voir les tarifs</a><a class="btn ghost" href="#quiz">Quelle stratégie me faut-il ?</a></div>
- </div>
- <div class="hcard reveal">
-  <div class="top"><div><small>Les 4 stratégies JAZ réunies · compte de 100 000 $ · 1 % par trade · depuis 2006</small><div class="v" id="hv">+0 $</div></div><span class="pill" id="hp"></span></div>
-  <div class="hch"><canvas id="cHero" aria-label="Courbe de capital des 4 stratégies réunies"></canvas></div>
-  <div class="hstats" id="hstats"></div>
+  <p class="lead">Plus besoin de passer des heures à analyser les graphiques : <b>la stratégie fait l'analyse pour toi</b>, 24h/24, sans émotion. Toi, tu choisis comment trader :</p>
+  <div class="modes"><div class="mode"><span class="mic"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/></svg></span><div><b>En automatique</b><span>La stratégie prend les positions à ta place sur ton MetaTrader 5. Tu n'as rien à faire.</span></div></div><div class="mode"><span class="mic"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg></span><div><b>En manuel</b><span>Elle t'affiche l'entrée, le SL et le TP sur TradingView. Tu prends le trade si tu veux.</span></div></div></div>
+  <div class="ctas hcta"><a class="btn ghost" href="#strategies">Voir les stratégies</a><a class="btn gold" href="#tarifs" data-pack>Voir les tarifs</a></div>
  </div>
 </div></header>
 
-<div class="band"><div class="wrap" id="band"></div></div>
+<section id="strategies"><div class="wrap">
+ <div class="sh reveal"><span class="kicker">Les 4 stratégies</span><h2>Choisis ta <em>stratégie</em></h2><p>Chaque stratégie a son marché, son style et son caractère. Clique pour explorer ses résultats et ses captures TradingView réelles.</p></div>
+ <p class="shint" id="sHint"><svg class="shic" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g transform="matrix(1 0 0 -1 0 24)"><path d="M22 14a8 8 0 0 1-8 8"/><path d="M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1"/><path d="M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10"/><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></g></svg> Clique sur une stratégie pour voir ses détails</p>
+ <div class="tabs" role="tablist" id="tabs"></div>
+ <div class="sgrid" id="sDetail">
+  <div class="sbar"><button type="button" class="sback" id="sBack">↑ Voir les 4 stratégies</button><button type="button" class="sclose" id="sClose" aria-label="Fermer les détails">✕</button></div>
+  <div class="spanel"><h3 class="sname" id="sName"></h3><p class="stag" id="sTag"></p><div class="sch"><canvas id="cStrat" aria-label="Courbe de capital de la stratégie"></canvas></div><div class="gal"><h4>Captures TradingView réelles de cette stratégie (clique pour agrandir)</h4><div class="thumbs" id="sGal"></div></div></div>
+  <div class="spanel"><div class="skpis" id="sKpis"></div><div class="sfor" id="sFor"></div><div style="margin-top:14px;font-size:13.5px;color:var(--mute)">Résultat de chaque année</div><div class="ybars" id="sYears"></div><div style="height:22px"></div><a class="btn gold full" id="sCta" href="#tarifs">Obtenir maintenant</a><div class="sprice" id="sPrice" hidden></div></div>
+ </div>
+ <div class="squiz"><a class="btn ghost" href="#quiz">Quelle stratégie me faut-il ?</a></div>
+</div></section>
+
 
 <section id="probleme"><div class="wrap">
  <div class="sh reveal"><span class="kicker">Le vrai problème</span><h2>Tu as déjà payé pour <em>trader</em>. Et après ?</h2><p>Si tu es comme la plupart des traders particuliers, partout dans le monde, tu connais au moins une de ces situations.</p></div>
  <div class="pains">
-  <div class="pain reveal"><div class="ic" aria-hidden="true">⏰</div><h3>Pas le temps</h3><p>Travail, famille, études : impossible de rester devant les graphiques toute la journée.</p></div>
-  <div class="pain reveal"><div class="ic" aria-hidden="true">😰</div><h3>Les émotions</h3><p>Tu coupes tes gains trop tôt, tu laisses courir tes pertes, tu te venges du marché. Tout le monde l'a vécu.</p></div>
-  <div class="pain reveal"><div class="ic" aria-hidden="true">📉</div><h3>Les signaux « 100 % gagnants »</h3><p>Que des captures de gains, jamais une seule perte montrée. Trop beau pour être vrai ? Un jour, le groupe disparaît… avec ton abonnement.</p></div>
-  <div class="pain reveal"><div class="ic" aria-hidden="true">🎰</div><h3>Les « stratégies miracles »</h3><p>« +100 pips par jour garantis », « envoie-nous ton capital ». Ton argent part et ne revient pas.</p></div>
+  <div class="pain reveal"><div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2"/><path d="M5 4 2.5 6.5M19 4l2.5 2.5"/></svg></div><h3>Pas le temps</h3><p>Travail, famille, études : impossible de rester devant les graphiques toute la journée.</p></div>
+  <div class="pain reveal"><div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 16.5s1.5-2 4-2 4 2 4 2"/><path d="M9 9.5h.01M15 9.5h.01"/></svg></div><h3>Les émotions</h3><p>Tu coupes tes gains trop tôt, tu laisses courir tes pertes, tu te venges du marché. Tout le monde l'a vécu.</p></div>
+  <div class="pain reveal"><div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6.5 6.5 4-4L21 16"/><path d="M15 16h6v-6"/></svg></div><h3>Les signaux « 100 % gagnants »</h3><p>Que des captures de gains, jamais une seule perte montrée. Trop beau pour être vrai ? Un jour, le groupe disparaît… avec ton abonnement.</p></div>
+  <div class="pain reveal"><div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M8.5 8.5h.01M15.5 15.5h.01M12 12h.01M15.5 8.5h.01M8.5 15.5h.01" stroke-width="3"/></svg></div><h3>Les « stratégies miracles »</h3><p>« +100 pips par jour garantis », « envoie-nous ton capital ». Ton argent part et ne revient pas.</p></div>
  </div>
- <div class="turn reveal"><div class="big">0</div><div><h3>Zéro promesse miracle. Zéro argent à nous confier.</h3><p>Chez JAZ, tu investis dans un outil, pas dans un rêve. La stratégie tourne sur <b>ton</b> compte, chez <b>ton</b> courtier. Et on te montre tout : les bonnes années et les pertes.</p></div></div>
 </div></section>
 
-<section id="fonctionnement" style="background:var(--bg2)"><div class="wrap">
+<section id="fonctionnement"><div class="wrap">
  <div class="sh reveal"><span class="kicker">Comment ça marche</span><h2>Opérationnel en <em>moins de 24 heures</em></h2><p>Pas besoin d'être expert. Nos tutoriels vidéo te guident à chaque étape.</p></div>
  <div class="steps">
   <div class="step reveal"><h3>Tu choisis et tu paies</h3><p>Une stratégie ou le pack complet, pour 1 mois, 3 mois, 6 mois ou 1 an. Par le moyen de paiement qui te convient.</p></div>
@@ -352,27 +519,19 @@ body{top:0!important}.goog-text-highlight{background:none!important;box-shadow:n
  <div class="money reveal"><span style="font-size:28px" aria-hidden="true">🔒</span><div><b>Ton argent ne quitte jamais ton compte.</b> Tu ouvres ton compte chez le courtier de ton choix, tu gardes le contrôle total, tu peux tout arrêter en un clic. Nous ne demandons jamais ton capital.</div></div>
 </div></section>
 
-<section id="strategies" style="padding-bottom:20px"><div class="wrap">
- <div class="sh reveal"><span class="kicker">Les 4 stratégies</span><h2>Choisis ta <em>stratégie</em></h2><p>Chaque stratégie a son marché, son style et son caractère. Clique pour explorer ses résultats et ses captures TradingView réelles.</p></div>
- <div class="tabs" role="tablist" id="tabs"></div>
- <div class="sgrid">
-  <div class="spanel"><h3 class="sname" id="sName"></h3><p class="stag" id="sTag"></p><div class="sch"><canvas id="cStrat" aria-label="Courbe de capital de la stratégie"></canvas></div><div class="gal"><h4>Captures TradingView réelles de cette stratégie (clique pour agrandir)</h4><div class="thumbs" id="sGal"></div></div></div>
-  <div class="spanel"><div class="skpis" id="sKpis"></div><div class="sfor" id="sFor"></div><div style="margin-top:14px;font-size:13.5px;color:var(--mute)">Résultat de chaque année</div><div class="ybars" id="sYears"></div><div style="height:22px"></div><a class="btn gold full" id="sCta" href="#tarifs">Obtenir maintenant</a></div>
+<section id="tarifs"><div class="wrap">
+ <div class="sh c reveal"><span class="kicker">Tarifs</span><h2>Un prix pour <em>chaque budget</em></h2><p>Choisis une stratégie, ou prends les 4 avec le Pack. Plus ta durée est longue, moins tu paies.</p></div>
+ <div class="ptog">
+  <div class="seg" role="group" aria-label="Devise"><button data-cur="usd" aria-pressed="true">USD</button><button data-cur="eur" aria-pressed="false">EUR</button><button data-cur="xof" aria-pressed="false">FCFA</button></div>
+  <div class="seg" role="group" aria-label="Durée"><button data-d="0" aria-pressed="false">1 mois</button><button data-d="1" aria-pressed="false">3 mois<span class="off">−10 %</span></button><button data-d="2" aria-pressed="true">6 mois<span class="off">−15 %</span></button><button data-d="3" aria-pressed="false">1 an<span class="off">−25 %</span></button></div>
  </div>
- <p class="cnote">Résultats de backtest TradingView, avec 1 % de risque par trade sur le capital de départ, sans intérêts composés.</p>
+ <div class="incl"><b>Inclus avec chaque stratégie</b><span>Alertes PineConnector intégrées</span><span>En automatique sur MT5 ou en manuel sur TradingView</span><span>Entrées, SL et TP affichés sur ton graphique</span><span>Tutoriels vidéo d'installation</span><span>Mises à jour incluses</span></div>
+ <div class="plans" id="plans"></div>
+ <p class="costs">Chaque stratégie contient déjà les alertes PineConnector : tu choisis de l'automatiser sur ton MetaTrader 5, ou de prendre les positions toi-même depuis TradingView.</p>
 </div></section>
 
-<section id="preuves" style="padding-top:20px"><div class="wrap">
- <div class="sh reveal"><span class="kicker">Preuves</span><h2>Pas de montage. <em>Les vraies captures</em> de TradingView.</h2><p>Voici les rapports de performance officiels de TradingView pour chacune des 4 stratégies, avec le filigrane, les dates et la baisse maximale. Clique sur une image pour l'agrandir.</p></div>
- <div class="proofs" id="proofs"></div>
-</div></section>
-<section id="pack" style="background:var(--bg2)"><div class="wrap pgrid">
- <div class="reveal"><span class="kicker">Le secret des pros</span><h2>Une stratégie, c'est bien. <em>Quatre ensemble</em>, c'est mieux.</h2>
-  <p style="color:var(--soft);font-size:17px">Nos 4 stratégies ne perdent presque jamais en même temps : leurs résultats mensuels sont quasiment indépendants (corrélation entre −0,16 et 0,20). Quand l'or est difficile, l'USD ou le bitcoin compensent. Résultat : <b>21 années positives sur 21</b>. Depuis 2020, avec les 4 stratégies réunies sur un compte de 100 000 $ :</p>
-  <div class="plist" id="plist"></div>
-  <a class="btn gold" href="#tarifs" style="margin-top:20px">Je veux le Pack 4</a></div>
- <div class="hcard reveal"><small>Gain de chaque année · compte de 100 000 $ · 1 % par trade · la couleur s'éclaircit à chaque nouvelle stratégie (2016 : BTC H1, 2020 : USDJPY M5)</small><div class="hch" style="height:320px"><canvas id="cPack"></canvas></div></div>
-</div></section>
+
+
 
 <section id="simulateur"><div class="wrap">
  <div class="sh reveal"><span class="kicker">Calcule ce que tu peux gagner</span><h2>Et avec <em>ton</em> capital ?</h2><p>Entre ton capital et ton risque par trade : on te montre le gain moyen d'une année en backtest, mais aussi la baisse maximale possible.</p></div>
@@ -409,31 +568,11 @@ body{top:0!important}.goog-text-highlight{background:none!important;box-shadow:n
  </div>
 </div></section>
 
-<section id="verite" style="background:var(--bg2);padding-bottom:30px"><div class="wrap">
- <div class="sh reveal"><span class="kicker">Transparence totale</span><h2>Ce que la plupart des vendeurs <em>ne te montrent jamais</em></h2><p>Aucune stratégie ne gagne à tous les coups. Voici la baisse maximale de chacune en backtest, avec 1 % de risque par trade. Si un vendeur ne te montre pas ces chiffres, pose-toi des questions.</p></div>
- <div class="truth" id="truth"></div>
-</div></section>
-
-
-<section id="quiz" style="background:var(--bg2);padding-top:30px"><div class="wrap">
+<section id="quiz"><div class="wrap">
  <div class="sh c reveal"><span class="kicker">30 secondes</span><h2>Quelle stratégie est <em>faite pour toi</em> ?</h2><p>Réponds à 3 questions, on te dit par où commencer.</p></div>
  <div class="quiz reveal" id="quizBox"><div class="prog"><i id="qProg"></i></div><div id="qBody"></div></div>
 </div></section>
 
-<section id="tarifs"><div class="wrap">
- <div class="sh c reveal"><span class="kicker">Tarifs</span><h2>Un prix pour <em>chaque budget</em></h2><p>Choisis une stratégie, ou prends les 4 avec le Pack. Plus ta durée est longue, moins tu paies.</p></div>
- <div class="ptog">
-  <div class="seg" role="group" aria-label="Devise"><button data-cur="usd" aria-pressed="true">USD</button><button data-cur="eur" aria-pressed="false">EUR</button><button data-cur="xof" aria-pressed="false">FCFA</button></div>
-  <div class="seg" role="group" aria-label="Durée"><button data-d="0" aria-pressed="false">1 mois</button><button data-d="1" aria-pressed="false">3 mois<span class="off">−10 %</span></button><button data-d="2" aria-pressed="true">6 mois<span class="off">−15 %</span></button><button data-d="3" aria-pressed="false">1 an<span class="off">−25 %</span></button></div>
- </div>
- <div class="incl"><b>Inclus avec chaque stratégie</b><span>Alertes PineConnector intégrées</span><span>En automatique sur MT5 ou en manuel sur TradingView</span><span>Entrées, SL et TP affichés sur ton graphique</span><span>Tutoriels vidéo d'installation</span><span>Mises à jour incluses</span></div>
- <div class="plans" id="plans"></div>
- <p class="costs">Chaque stratégie contient déjà les alertes PineConnector : tu choisis de l'automatiser sur ton MetaTrader 5, ou de prendre les positions toi-même depuis TradingView.</p>
-</div></section>
-
-<section style="padding-top:0"><div class="wrap">
- <div class="guar reveal"><div class="seal"><div><b>5</b>JOURS</div></div><div><h3>Je veux tester avant de m'engager</h3><p>Prends l'<b>essai 5 jours du Pack</b> : les <b>4 stratégies</b> pour 14,99 $ (8 626 FCFA), avec un accès complet pour voir leurs trades en direct.</p></div></div>
-</div></section>
 
 <section id="faq" style="background:var(--bg2)"><div class="wrap">
  <div class="sh c reveal"><span class="kicker">Questions fréquentes</span><h2>Tout ce que tu veux <em>savoir</em></h2></div>
@@ -452,19 +591,19 @@ body{top:0!important}.goog-text-highlight{background:none!important;box-shadow:n
  </div>
 </div></section>
 
-<div class="final"><span class="kicker">Ta décision</span><h2>Dans 3 mois, tu seras content d'avoir commencé aujourd'hui.</h2><div class="ctas" style="justify-content:center;margin-top:28px"><a class="btn gold" href="#tarifs">Voir les tarifs</a></div></div>
+<div class="final"><span class="kicker">Ta décision</span><h2>Dans 1 mois, tu seras content d'avoir commencé aujourd'hui.</h2><div class="ctas" style="justify-content:center;margin-top:28px"><a class="btn gold" href="#tarifs" data-pack>Voir les tarifs</a></div></div>
 
-<footer><div class="wrap"><p>JAZ Trading donne accès à des stratégies de trading automatisées pour TradingView. Nous ne gérons aucun fonds : ton argent reste sur ton compte, et tu gardes le contrôle de tes décisions. Les résultats présentés sont calculés par TradingView sur l'historique des marchés, avec 1 % de risque par trade. Ceci n'est pas un conseil en investissement.</p>
+<footer><div class="wrap">
 <div class="social"><span>Suis-nous</span>
 <a href="https://t.me/+EI5mlKzcIJo5ZmNk" target="_blank" rel="noopener" aria-label="Canal Telegram JAZ Trading"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg></a>
 <a href="https://youtube.com/@jaztrading00?si=xEcVLV7RqeXekg4t" target="_blank" rel="noopener" aria-label="Chaîne YouTube JAZ Trading"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
 <a href="https://www.facebook.com/share/19FYCtB3bM/" target="_blank" rel="noopener" aria-label="Page Facebook JAZ Trading"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.9h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5h1.7V3.7c-.3 0-1.3-.1-2.5-.1-2.4 0-4.1 1.5-4.1 4.2V10H7.5v3.1h2.7V21h3.3z"/></svg></a>
 <a href="https://www.instagram.com/jaztrading?igsi=MXExeGZuc2xtY284Yg==" target="_blank" rel="noopener" aria-label="Instagram JAZ Trading"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
 </div>
-<div class="ft-legal"><div class="ft-links"><a href="mailto:jazgeneraltrading@gmail.com">Contact : jazgeneraltrading@gmail.com</a><a href="conditions-vente">Conditions de vente</a><a href="confidentialite">Confidentialité</a></div><p class="ft-copy">© 2026 JAZ TRADING FIMC. Tous droits réservés.</p></div></div></footer>
+<div class="ft-legal"><div class="ft-links"><a href="mailto:jazgeneraltrading@gmail.com">Contact : jazgeneraltrading@gmail.com</a><a href="conditions-strategies">Conditions de vente</a><a href="confidentialite">Confidentialité</a><a href="conditions-strategies#risques">Avertissement sur les risques</a></div><p class="ft-copy">© 2026 JAZ TRADING FIMC. Tous droits réservés.</p></div></div></footer>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Capture agrandie"><button class="x" id="lbX" aria-label="Fermer">×</button><button class="nav pv" id="lbP" aria-label="Précédente">‹</button><img id="lbI" alt=""><button class="nav nx" id="lbN" aria-label="Suivante">›</button><p id="lbT"></p></div>
-<div class="mbar"><a class="btn gold" href="#tarifs">Voir les tarifs</a></div>
+<div class="mbar"><a class="btn gold" href="#tarifs" data-pack>Voir les tarifs</a></div>
 
 <script>
 // ========================================================================================
@@ -491,8 +630,8 @@ for(const k in BT){const m=M[k],b=BT[k],sc=b.tot/m.eq[m.eq.length-1][1];
 const S=[
  {k:'gj',name:'JAZ GOLD JAZ',short:'GOLD JAZ',c:'#38BDF8',mk:'Or · XAUUSD · M15',tag:'Plus de 20 ans de backtest et 21 années positives sur 21. Très active : environ 44 trades par mois.',for:'Pour toi si tu veux la stratégie la plus testée, qui travaille tous les jours sur l\'or.'},
  {k:'orb',name:'JAZ OR BETA JAZ',short:'OR BETA JAZ',c:'#0088D4',mk:'Or · XAUUSD · M15',tag:'Des pertes courtes et des gains qui courent : le gain moyen est bien plus grand que la perte moyenne. 20 ans de backtest.',for:'Pour toi si tu acceptes de perdre souvent de petites sommes pour capter de gros mouvements de l\'or.'},
- {k:'btc',name:'JAZ BTC H1',short:'BTC H1',c:'#60A5FA',mk:'Crypto · BTCUSD · H1',tag:'Plus de 10 ans sur le Bitcoin, le meilleur profit factor (1,74) et la plus petite baisse des 4. Environ 6 trades par mois.',for:'Pour toi si tu débutes ou si tu veux une stratégie calme, sélective et peu stressante.'},
- {k:'jpy',name:'JAZ USDJPY M5',short:'USDJPY M5',c:'#93C5FD',mk:'Forex · USDJPY · M5',tag:'Le rendement le plus élevé des 4 : +81 % par an en moyenne. Scalping avec break-even et clôture de fin de session automatiques.',for:'Pour toi si tu cherches du rendement et une stratégie indépendante de l\'or.'}];
+ {k:'jpy',name:'JAZ USDJPY M5',short:'USDJPY M5',c:'#93C5FD',mk:'Forex · USDJPY · M5',tag:'Le rendement le plus élevé des 4 : +81 % par an en moyenne. Scalping avec break-even et clôture de fin de session automatiques.',for:'Pour toi si tu cherches du rendement et une stratégie indépendante de l\'or.'},
+ {k:'btc',name:'JAZ BTC H1',short:'BTC H1',c:'#60A5FA',mk:'Crypto · BTCUSD · H1',tag:'Plus de 10 ans sur le Bitcoin, le meilleur profit factor (1,74) et la plus petite baisse des 4. Environ 6 trades par mois.',for:'Pour toi si tu débutes ou si tu veux une stratégie calme, sélective et peu stressante.'}];
 // Taux de change (27/09/2026) : 1 USD = 0,8773 EUR ; 1 EUR = 655,957 FCFA (parité fixe)
 const FX={eur:0.8773,xof:0.8773*655.957};
 // Prix mensuels en USD ; 3 mois −10 %, 6 mois −15 %, 1 an −25 % (arrondis en ,99). EUR et FCFA convertis sans décimales
@@ -511,7 +650,7 @@ Chart.defaults.font.family='Manrope, system-ui, sans-serif';Chart.defaults.color
 const grad=(ctx,c,h)=>{const g=ctx.createLinearGradient(0,0,0,h);g.addColorStop(0,c+'66');g.addColorStop(1,c+'00');return g};
 const yearTicks={maxTicksLimit:7,callback:function(v){return this.getLabelForValue(v).slice(0,4)}};
 // HERO
-(()=>{const HK=10;const ctx=$('cHero').getContext('2d');const data=P.eq.map(e=>(e[1]-10000)*HK);
+(()=>{if(!$('cHero'))return;const HK=10;const ctx=$('cHero').getContext('2d');const data=P.eq.map(e=>(e[1]-10000)*HK);
  new Chart(ctx,{type:'line',data:{labels:P.eq.map(e=>e[0]),datasets:[{data,borderColor:'#38BDF8',backgroundColor:grad(ctx,'#0088D4',250),fill:true,pointRadius:0,borderWidth:2.5,tension:.2}]},
  options:{maintainAspectRatio:false,animation:RM?false:{duration:2200,easing:'easeOutQuart'},plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' +'+f(c.parsed.y)+' $'}}},scales:{x:{ticks:yearTicks,grid:{display:false}},y:{ticks:{callback:v=>(v>0?'+':v<0?'-':'')+(Math.abs(v)>=1e6?f(Math.abs(v)/1e6,1)+' M $':f(Math.abs(v)/1000)+'k $')}}}}});
  const tgt=(P.final-10000)*HK;let t0=null;const el=$('hv');
@@ -520,7 +659,7 @@ const yearTicks={maxTicksLimit:7,callback:function(v){return this.getLabelForVal
  $('hp').textContent=`${P.posy}/${P.ny} années positives`;
  $('hstats').innerHTML=[[P.posm2020+' %','mois gagnants depuis 2020'],['−'+f(P.dd*HK)+' $','baisse maximale'],[f(P.n),'trades testés']].map(x=>`<div><b>${x[0]}</b><small>${x[1]}</small></div>`).join('');
 })();
-$('band').innerHTML=[['4','stratégies automatiques'],['20 ans','d\'historique testé'],['21/21','années positives ensemble'],['3','marchés : or, USD, bitcoin']].map(x=>`<div><b>${x[0]}</b><small>${x[1]}</small></div>`).join('');
+if($('band'))$('band').innerHTML=[['4','stratégies automatiques'],['20 ans','d\'historique testé'],['21/21','années positives ensemble'],['3','marchés : or, USD, bitcoin']].map(x=>`<div><b>${x[0]}</b><small>${x[1]}</small></div>`).join('');
 // GALERIES + LIGHTBOX
 let LB=[],LI=0;
 function openLB(list,i){LB=list;LI=i;showLB();$('lb').classList.add('open');document.body.style.overflow='hidden'}
@@ -532,8 +671,8 @@ document.addEventListener('keydown',e=>{if(!$('lb').classList.contains('open'))r
 function drawGal(s){const l=IMG[s.k];$('sGal').innerHTML=l.map((x,i)=>`<button data-i="${i}" aria-label="Agrandir : ${x.alt}"><img src="${x.src}" alt="${x.alt}"><span class="badge">${i===0?'Statistiques':'Trades'}</span></button>`).join('');
  $('sGal').querySelectorAll('button').forEach(b=>b.onclick=()=>openLB(l,+b.dataset.i))}
 const ALLP=S.map(s=>IMG[s.k][0]);
-$('proofs').innerHTML=S.map((s,i)=>`<div class="proof reveal"><button data-i="${i}" aria-label="Agrandir : ${IMG[s.k][0].alt}"><img src="${IMG[s.k][0].src}" alt="${IMG[s.k][0].alt}"></button><div><b style="color:${s.c}">${s.short}</b> · ${s.mk} · ${M[s.k].start.slice(0,4)} → 2026 · ${IMG[s.k].length} captures dans l'onglet de la stratégie</div></div>`).join('');
-$('proofs').querySelectorAll('button').forEach(b=>b.onclick=()=>openLB(ALLP,+b.dataset.i));
+if($('proofs'))$('proofs').innerHTML=S.map((s,i)=>`<div class="proof reveal"><button data-i="${i}" aria-label="Agrandir : ${IMG[s.k][0].alt}"><img src="${IMG[s.k][0].src}" alt="${IMG[s.k][0].alt}"></button><div><b style="color:${s.c}">${s.short}</b> · ${s.mk} · ${M[s.k].start.slice(0,4)} → 2026 · ${IMG[s.k].length} captures dans l'onglet de la stratégie</div></div>`).join('');
+if($('proofs'))$('proofs').querySelectorAll('button').forEach(b=>b.onclick=()=>openLB(ALLP,+b.dataset.i));
 // STRATEGIES
 let sc;function showS(i){const s=S[i],m=M[s.k];
  document.querySelectorAll('.tab').forEach((t,j)=>t.setAttribute('aria-selected',j===i));
@@ -546,11 +685,57 @@ let sc;function showS(i){const s=S[i],m=M[s.k];
  const ys=Object.entries(m.years),mx=Math.max(...ys.map(y=>Math.abs(y[1])));
  $('sYears').innerHTML=ys.map(([y,v])=>`<div title="${y} : ${v>0?'+':''}${f(v,1)} %" style="height:${Math.max(4,Math.abs(v)/mx*100)}%;background:${v>=0?s.c:'#C5222E'}"><span>${ys.length>10?"'"+y.slice(2):y}</span></div>`).join('');
  drawGal(s);}
-$('tabs').innerHTML=S.map((s,i)=>`<button class="tab" role="tab" style="--c:${s.c}" data-i="${i}"><i style="background:${s.c}"></i>${s.short}</button>`).join('');
-document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>showS(+b.dataset.i));showS(0);
+$('tabs').innerHTML=S.map((s,i)=>{const m=M[s.k];return `<button class="tab" role="tab" aria-selected="false" aria-controls="sDetail" style="--c:${s.c}" data-i="${i}"><span class="tn"><i style="background:${s.c}"></i>${s.short}</span><span class="tm">${s.mk}</span><span class="tks"><span class="tk"><b style="color:${s.c}">+${f(m.an)} %</b><small>gain moyen par an</small></span><span class="tk"><b>${m.posy}/${m.ny}</b><small>années positives</small></span></span><span class="tv">Voir les détails <span aria-hidden="true">›</span></span></button>`}).join('');
+(function(){const D=$('sDetail');let cur=-1;
+ function fermer(){D.classList.remove('open');cur=-1;document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected','false'));$('sHint').classList.remove('off')}
+ function ouvrir(i){D.classList.add('open');cur=i;showS(i);$('sHint').classList.add('off');
+  setTimeout(()=>{const y=D.getBoundingClientRect().top+scrollY-70;scrollTo({top:y,behavior:RM?'auto':'smooth'})},30)}
+ document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;if(cur===i)fermer();else ouvrir(i)});
+ $('sDetail').addEventListener('click',e=>{const x=e.target.closest('#sPrice [data-bd],#sPrice [data-bc]');if(!x)return;
+  if(x.dataset.bd!==undefined)dur=+x.dataset.bd;else cur$set(x.dataset.bc);drawPlans()});
+ $('sClose').onclick=()=>{fermer();scrollTo({top:$('strategies').getBoundingClientRect().top+scrollY-60,behavior:RM?'auto':'smooth'})};
+ // « Obtenir maintenant » : va directement au tarif de la stratégie ouverte
+ // « Obtenir maintenant » : affiche le tarif de CETTE stratégie directement dans son détail
+ $('sCta').onclick=e=>{if(cur<0)return;e.preventDefault();const b=$('sPrice');
+  if(!b.hidden&&+b.dataset.i===cur){b.hidden=true;return}
+  b.dataset.i=cur;b.hidden=false;drawBox();
+  setTimeout(()=>{const r=b.getBoundingClientRect();scrollTo({top:r.top+scrollY-Math.max(70,(innerHeight-r.height)/2),behavior:RM?'auto':'smooth'})},30)};
+ const _ouvrir=ouvrir;ouvrir=function(i){$('sPrice').hidden=true;_ouvrir(i)};
+ $('sBack').onclick=()=>scrollTo({top:$('tabs').getBoundingClientRect().top+scrollY-120,behavior:RM?'auto':'smooth'});
+})();
+let pfT;function planFocus(c){clearTimeout(pfT);document.querySelectorAll('#plans .plan.focus').forEach(x=>x.classList.remove('focus'));void c.offsetWidth;c.classList.add('focus');pfT=setTimeout(()=>c.classList.remove('focus'),2600)}
+// « Le vrai problème » : défilement continu vers la gauche, en boucle (même mécanique que la page du pack) ;
+// s'arrête au doigt (ou à la souris), repart quand on lâche — téléphone uniquement
+(function(){const g=document.querySelector('#probleme .pains');if(!g||!matchMedia('(max-width:600px)').matches)return;
+ const cartes=[...g.children],n=cartes.length;
+ cartes.forEach(c=>{const d=c.cloneNode(true);d.setAttribute('aria-hidden','true');d.classList.remove('reveal');d.classList.add('in');g.appendChild(d)});
+ let pos=0,tenu=false,reprise=0,synchro=true,avant=0,glisse=false,x0=0,l0=0;
+ function boucle(t){const dt=Math.min(50,t-(avant||t));avant=t;
+  const L=g.children[n].offsetLeft-cartes[0].offsetLeft;
+  if(L>0&&!tenu&&!RM&&Date.now()>=reprise){if(synchro){pos=g.scrollLeft;synchro=false}pos+=dt*0.035;if(pos>=L)pos-=L;g.scrollLeft=pos}else synchro=true;
+  if(L>0&&g.scrollLeft>=L)g.scrollLeft-=L;
+  requestAnimationFrame(boucle)}
+ g.addEventListener('mousedown',e=>{glisse=tenu=true;x0=e.pageX;l0=g.scrollLeft;g.classList.add('is-dragging')});
+ addEventListener('mousemove',e=>{if(glisse){e.preventDefault();g.scrollLeft=l0-(e.pageX-x0)*1.4}});
+ addEventListener('mouseup',()=>{if(glisse){glisse=tenu=false;reprise=Date.now()+1200;g.classList.remove('is-dragging')}});
+ g.addEventListener('touchstart',()=>{tenu=true},{passive:true});
+ g.addEventListener('touchend',()=>{tenu=false;reprise=Date.now()+1200},{passive:true});
+ requestAnimationFrame(boucle)})();
+// « Voir les stratégies » : descend aux 4 cartes, sous l'en-tête fixe
+document.addEventListener('click',e=>{const a=e.target.closest('.hcta a[href="#strategies"]');if(!a)return;e.preventDefault();
+ const t=$('strategies');scrollTo({top:t.getBoundingClientRect().top+scrollY-58,behavior:RM?'auto':'smooth'})});
+// « Voir les tarifs » et « Je veux le Pack 4 » : arrivent sur la carte du Pack 4 stratégies
+document.addEventListener('click',e=>{const a=e.target.closest('a[data-pack]');if(!a)return;const c=document.querySelector('#plans .plan.hot');if(!c)return;e.preventDefault();
+ document.querySelectorAll('#plans .plan.focus').forEach(x=>x.classList.remove('focus'));
+ scrollTo({top:c.getBoundingClientRect().top+scrollY-Math.max(70,(innerHeight-c.offsetHeight)/2),behavior:RM?'auto':'smooth'});
+ planFocus(c)});
+// Sur téléphone : les 4 stratégies juste sous l'accroche, la courbe globale ensuite
+(function(){const mq=matchMedia('(max-width:600px)'),card=document.querySelector('.hero .hcard'),home=card&&card.parentNode,slot=$('heroCardSlot');
+ function place(){if(!card)return;if(mq.matches){if(card.parentNode!==slot){slot.appendChild(card);slot.className='wrap heroslot'}}else if(card.parentNode!==home){home.appendChild(card);slot.className=''}}
+ place();mq.addEventListener?mq.addEventListener('change',place):mq.addListener(place)})();
 // PACK
-$('plist').innerHTML=[['Gain moyen par an','+'+f(P.an2020*10)+' $'],['Soit sur 100 000 $','+'+f(P.an2020/100)+' % / an'],['Mois gagnants',P.posm2020+' %'],['Baisse maximale','−'+f(P.dd2020*10)+' $']].map(x=>`<div><span>${x[0]}</span><b>${x[1]}</b></div>`).join('');
-(()=>{const ys=Object.keys(P.years),v=ys.map(y=>P.years[y]*10);new Chart($('cPack'),{type:'bar',data:{labels:ys,datasets:[{data:v,backgroundColor:ys.map(y=>+y>=2020?'#38BDF8':+y>=2016?'#0088D4':'#1E40AF'),borderRadius:5}]},options:{maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' +'+f(c.parsed.y)+' $'+(+c.label<2016?' (2 stratégies or)':+c.label<2020?' (3 stratégies)':' (4 stratégies)')}}},scales:{x:{grid:{display:false},ticks:{callback:function(v){const l=this.getLabelForValue(v);return "'"+l.slice(2)}}},y:{ticks:{callback:v=>f(v/1000)+'k $'}}}}})})();
+if($('plist'))$('plist').innerHTML=[['Gain moyen par an','+'+f(P.an2020*10)+' $'],['Soit sur 100 000 $','+'+f(P.an2020/100)+' % / an'],['Mois gagnants',P.posm2020+' %'],['Baisse maximale','−'+f(P.dd2020*10)+' $']].map(x=>`<div><span>${x[0]}</span><b>${x[1]}</b></div>`).join('');
+(()=>{if(!$('cPack'))return;const ys=Object.keys(P.years),v=ys.map(y=>P.years[y]*10);new Chart($('cPack'),{type:'bar',data:{labels:ys,datasets:[{data:v,backgroundColor:ys.map(y=>+y>=2020?'#38BDF8':+y>=2016?'#0088D4':'#1E40AF'),borderRadius:5}]},options:{maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' +'+f(c.parsed.y)+' $'+(+c.label<2016?' (2 stratégies or)':+c.label<2020?' (3 stratégies)':' (4 stratégies)')}}},scales:{x:{grid:{display:false},ticks:{callback:function(v){const l=this.getLabelForValue(v);return "'"+l.slice(2)}}},y:{ticks:{callback:v=>f(v/1000)+'k $'}}}}})})();
 // CALCULATOR
 $('iStrat').innerHTML='<option value="pack">Pack 4 stratégies (depuis 2020)</option>'+S.map(s=>`<option value="${s.k}">${s.short}</option>`).join('');
 function calc(){const cap=Math.max(0,+$('iCap').value||0);
@@ -580,7 +765,7 @@ document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>syn
 ['iCap','iStrat'].forEach(id=>{if($(id))$(id).addEventListener('input',calc)});
 calc();
 // TRUTH
-$('truth').innerHTML=S.map(s=>{const m=M[s.k];return `<div class="tcard reveal" style="--c:${s.c}"><h3>${s.short}</h3><div><span>Baisse maximale</span><b class="neg">−${String(m.dd).replace('.',',')} %</b></div><div><span>Trades gagnants</span><b>${String(m.wr).replace('.',',')} %</b></div><div><span>Mois gagnants</span><b>${Math.round(m.posm/m.nm*100)} %</b></div></div>`}).join('');
+if($('truth'))$('truth').innerHTML=S.map(s=>{const m=M[s.k];return `<div class="tcard reveal" style="--c:${s.c}"><h3>${s.short}</h3><div><span>Baisse maximale</span><b class="neg">−${String(m.dd).replace('.',',')} %</b></div><div><span>Trades gagnants</span><b>${String(m.wr).replace('.',',')} %</b></div><div><span>Mois gagnants</span><b>${Math.round(m.posm/m.nm*100)} %</b></div></div>`}).join('');
 // QUIZ
 const Q=[{q:'Quel capital veux-tu utiliser ?',o:['Moins de 500 $','Entre 500 et 5 000 $','Entre 5 000 et 100 000 $','100 000 $ ou plus']},{q:'Quel est ton objectif principal ?',o:['Passer un challenge prop firm','Faire grandir mon capital','Un complément de revenu calme']},{q:'Quand ton compte baisse, tu…',o:['Je panique, je veux tout arrêter','Je stresse mais je tiens','Je sais que ça fait partie du jeu']}];
 const capTier=v=>v<500?0:v<5000?1:v<100000?2:3;
@@ -635,6 +820,18 @@ function drawPlans(){
 document.querySelectorAll('[data-cur]').forEach(b=>b.onclick=()=>{cur=b.dataset.cur;drawPlans()});
 document.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{dur=+b.dataset.d;drawPlans()});
 drawPlans();
+// Tarif d'une seule stratégie, affiché dans son détail (mêmes prix et liens que la partie Tarifs)
+function cur$set(c){cur=c}
+function drawBox(){const b=$('sPrice');if(!b||b.hidden)return;const s=S[+b.dataset.i];if(!s)return;
+ const v=price(s.k,dur,cur),was=dur>0?price(s.k,0,cur)*MO[dur]:null,off=['','−10 %','−15 %','−25 %'];
+ b.style.setProperty('--c',s.c);
+ b.innerHTML=`<div class="sp-h">Tarif <b style="color:${s.c}">${s.short}</b></div>
+ <div class="sp-seg" role="group" aria-label="Durée">${DN.map((n,d)=>`<button type="button" data-bd="${d}" aria-pressed="${d===dur}">${n}${off[d]?`<span class="off">${off[d]}</span>`:''}</button>`).join('')}</div>
+ <div class="sp-seg sp-cur" role="group" aria-label="Devise">${[['usd','USD'],['eur','EUR'],['xof','FCFA']].map(([c,l])=>`<button type="button" data-bc="${c}" aria-pressed="${c===cur}">${l}</button>`).join('')}</div>
+ <div class="sp-p"><div class="amt notranslate" translate="no">${fm(v)}</div><div class="pdur">pour ${DN[dur]}${cur!=='xof'?` · soit <span class="notranslate" translate="no">${f(price(s.k,dur,'xof'))} FCFA</span>`:''}</div>
+ <div class="sp-l">${was?`<span class="was">${fmT(Math.round(was*100)/100)}</span>`:''}<span class="perday">Soit ${perDay(v)} par jour</span></div></div>
+ ${payBtn(PAY[s.k].sub[dur],'btn gold full','Obtenir')}`}
+{const _dp=drawPlans;drawPlans=function(){_dp();drawBox()}}
 
 // ====== TRADUCTIONS (10 langues, intégrées à la page) ======
 // Ordre des traductions : [en, es, zh-CN, hi, ar, pt, ru, ja, de]
@@ -680,6 +877,15 @@ const I18N={
 "Подключите автоматические стратегии JAZ Trading: они открывают сделки за вас в TradingView круглосуточно и без эмоций. Проверены на истории рынка длиной до 20 лет. Ваши деньги остаются на <b>вашем</b> счёте.",
 "JAZ Tradingの自動戦略を有効にしましょう。TradingView上で24時間、感情に左右されずにあなたの代わりにトレードします。最大20年分の実際の相場データで検証済み。資金は<b>あなた自身</b>の口座に残ります。",
 "Aktiviere die automatischen Strategien von JAZ Trading: Sie eröffnen die Trades für dich auf TradingView, rund um die Uhr und ohne Emotionen. Getestet mit bis zu 20 Jahren echter Marktdaten. Dein Geld bleibt auf <b>deinem</b> Konto."],
+"Plus besoin de passer des heures à analyser les graphiques : <b>la stratégie fait l'analyse pour toi</b>, 24h/24, sans émotion. Toi, tu choisis comment trader :":["No more spending hours analyzing charts: <b>the strategy does the analysis for you</b>, 24/7, without emotion. You just choose how to trade:", "Se acabó pasar horas analizando gráficos: <b>la estrategia hace el análisis por ti</b>, 24 h al día, sin emociones. Tú solo eliges cómo operar:", "不用再花几个小时分析图表：<b>策略替你完成分析</b>，全天候、不受情绪影响。你只需选择交易方式：", "अब चार्ट का विश्लेषण करने में घंटों बिताने की ज़रूरत नहीं: <b>रणनीति आपके लिए विश्लेषण करती है</b>, 24 घंटे, बिना भावनाओं के। आप बस चुनें कि कैसे ट्रेड करना है:", "لا داعي بعد اليوم لقضاء ساعات في تحليل الرسوم البيانية: <b>الاستراتيجية تقوم بالتحليل نيابةً عنك</b>، على مدار الساعة ودون عواطف. أنت تختار فقط طريقة التداول:", "Chega de passar horas analisando gráficos: <b>a estratégia faz a análise por você</b>, 24h por dia, sem emoção. Você só escolhe como operar:", "Больше не нужно часами анализировать графики: <b>стратегия делает анализ за вас</b>, круглосуточно и без эмоций. Вы только выбираете, как торговать:", "チャート分析に何時間も費やす必要はもうありません。<b>戦略があなたの代わりに分析します</b>。24時間、感情に左右されずに。あなたはトレード方法を選ぶだけ：", "Schluss mit stundenlanger Chartanalyse: <b>Die Strategie übernimmt die Analyse für dich</b>, rund um die Uhr und ohne Emotionen. Du wählst nur, wie du tradest:"],
+"En automatique":["Fully automatic", "En automático", "全自动", "ऑटोमेटिक", "تلقائيًا", "No automático", "Автоматически", "自動で", "Automatisch"],
+"La stratégie prend les positions à ta place sur ton MetaTrader 5. Tu n'as rien à faire.":["The strategy opens the positions for you on your MetaTrader 5. You have nothing to do.", "La estrategia abre las posiciones por ti en tu MetaTrader 5. No tienes que hacer nada.", "策略在你的 MetaTrader 5 上替你开仓。你什么都不用做。", "रणनीति आपके MetaTrader 5 पर आपकी जगह पोज़ीशन लेती है। आपको कुछ नहीं करना है।", "تفتح الاستراتيجية الصفقات نيابةً عنك على MetaTrader 5 الخاص بك. لا شيء عليك فعله.", "A estratégia abre as posições por você no seu MetaTrader 5. Você não precisa fazer nada.", "Стратегия сама открывает позиции за вас в вашем MetaTrader 5. Вам ничего не нужно делать.", "戦略があなたのMetaTrader 5で代わりにポジションを取ります。あなたは何もする必要がありません。", "Die Strategie eröffnet die Positionen für dich auf deinem MetaTrader 5. Du musst nichts tun."],
+"En manuel":["Manual", "En manual", "手动", "मैनुअल", "يدويًا", "No manual", "Вручную", "手動で", "Manuell"],
+"Elle t'affiche l'entrée, le SL et le TP sur TradingView. Tu prends le trade si tu veux.":["It shows you the entry, SL and TP on TradingView. You take the trade if you want.", "Te muestra la entrada, el SL y el TP en TradingView. Tomas la operación si quieres.", "它在 TradingView 上为你标出入场点、止损和止盈。想做就做。", "यह TradingView पर आपको एंट्री, SL और TP दिखाती है। आप चाहें तो ट्रेड लें।", "تعرض لك نقطة الدخول ووقف الخسارة وجني الأرباح على TradingView. تأخذ الصفقة إن أردت.", "Ela mostra a entrada, o SL e o TP no TradingView. Você pega o trade se quiser.", "Она показывает вам вход, SL и TP в TradingView. Вы открываете сделку, если хотите.", "TradingView上でエントリー、SL、TPを表示します。取るかどうかはあなた次第。", "Sie zeigt dir Einstieg, SL und TP auf TradingView. Du nimmst den Trade, wenn du willst."],
+"Testées jusqu'à 20 ans sur l'historique réel. Ton argent reste sur <b>ton</b> compte.":["Tested on up to 20 years of real history. Your money stays in <b>your</b> account.", "Probadas con hasta 20 años de historial real. Tu dinero se queda en <b>tu</b> cuenta.", "经过最长 20 年真实历史数据测试。你的资金始终留在<b>你自己</b>的账户里。", "20 साल तक के असली इतिहास पर परखी गईं। आपका पैसा <b>आपके</b> ही खाते में रहता है।", "مختبرة على ما يصل إلى 20 عامًا من البيانات التاريخية الحقيقية. أموالك تبقى في حسابك <b>أنت</b>.", "Testadas em até 20 anos de histórico real. Seu dinheiro fica na <b>sua</b> conta.", "Проверены на истории рынка длиной до 20 лет. Ваши деньги остаются на <b>вашем</b> счёте.", "最大20年分の実際の相場データで検証済み。資金は<b>あなた自身</b>の口座に残ります。", "Getestet mit bis zu 20 Jahren echter Marktdaten. Dein Geld bleibt auf <b>deinem</b> Konto."],
+"<b>Avertissement :</b> le trading comporte un risque élevé de perte en capital. Les résultats affichés sont calculés sur l'historique des marchés et ne garantissent pas les résultats futurs. Réservé aux personnes majeures.":["<b>Warning:</b> trading carries a high risk of losing capital. The results shown are calculated on past market data and do not guarantee future results. For adults only.", "<b>Advertencia:</b> el trading conlleva un alto riesgo de pérdida de capital. Los resultados mostrados se calculan con el historial de los mercados y no garantizan resultados futuros. Solo para mayores de edad.", "<b>风险提示：</b>交易存在较高的本金亏损风险。所示结果基于市场历史数据计算，不保证未来收益。仅限成年人。", "<b>चेतावनी:</b> ट्रेडिंग में पूंजी खोने का उच्च जोखिम है। दिखाए गए परिणाम बाज़ार के इतिहास पर गणना किए गए हैं और भविष्य के परिणामों की गारंटी नहीं देते। केवल वयस्कों के लिए।", "<b>تحذير:</b> ينطوي التداول على مخاطر عالية لخسارة رأس المال. النتائج المعروضة محسوبة على تاريخ الأسواق ولا تضمن نتائج مستقبلية. للبالغين فقط.", "<b>Aviso:</b> o trading envolve alto risco de perda de capital. Os resultados exibidos são calculados com o histórico dos mercados e não garantem resultados futuros. Somente para maiores de idade.", "<b>Предупреждение:</b> торговля связана с высоким риском потери капитала. Показанные результаты рассчитаны на истории рынков и не гарантируют будущих результатов. Только для совершеннолетних.", "<b>注意：</b>トレードには元本を失う高いリスクがあります。表示されている結果は過去の相場データで計算したものであり、将来の成果を保証するものではありません。成人のみ対象。", "<b>Warnung:</b> Trading birgt ein hohes Risiko des Kapitalverlusts. Die gezeigten Ergebnisse wurden mit historischen Marktdaten berechnet und garantieren keine zukünftigen Ergebnisse. Nur für Volljährige."],
+"Avertissement sur les risques":["Risk warning", "Advertencia de riesgos", "风险提示", "जोखिम चेतावनी", "تحذير من المخاطر", "Aviso de riscos", "Предупреждение о рисках", "リスクに関する注意", "Risikohinweis"],
+"Voir les stratégies":["See the strategies", "Ver las estrategias", "查看策略", "रणनीतियाँ देखें", "عرض الاستراتيجيات", "Ver as estratégias", "Смотреть стратегии", "戦略を見る", "Strategien ansehen"],
 "Voir les tarifs":["See pricing","Ver precios","查看价格","कीमतें देखें","عرض الأسعار","Ver preços","Смотреть цены","料金を見る","Preise ansehen"],
 "Quelle stratégie me faut-il ?":["Which strategy do I need?","¿Qué estrategia necesito?","我需要哪个策略？","मुझे कौन-सी रणनीति चाहिए?","أي استراتيجية تناسبني؟","Qual estratégia eu preciso?","Какая стратегия мне нужна?","私に合う戦略は？","Welche Strategie brauche ich?"],
 "Les 4 stratégies JAZ réunies · compte de 100 000 $ · 1 % par trade · depuis 2006":["All 4 JAZ strategies combined · 100 000 $ account · 1% per trade · since 2006","Las 4 estrategias JAZ juntas · cuenta de 100 000 $ · 1 % por operación · desde 2006","4 个 JAZ 策略合并 · 100 000 $ 账户 · 每笔 1% · 自 2006 年起","सभी 4 JAZ रणनीतियाँ एक साथ · 100 000 $ का खाता · हर ट्रेड पर 1% · 2006 से","استراتيجيات JAZ الأربع معًا · حساب 100 000 $ · 1٪ لكل صفقة · منذ 2006","As 4 estratégias JAZ juntas · conta de 100 000 $ · 1% por operação · desde 2006","Все 4 стратегии JAZ вместе · счёт 100 000 $ · 1% на сделку · с 2006 года","JAZの4戦略を合算 · 100 000 $の口座 · 1トレードあたり1% · 2006年から","Alle 4 JAZ-Strategien zusammen · Konto mit 100 000 $ · 1 % pro Trade · seit 2006"],
@@ -904,7 +1110,7 @@ const I18N={
 "Oui, partout dans le monde. Tu paies avec le moyen de paiement qui te convient, et les tarifs sont affichés en dollars, en euros ou en FCFA.":["Yes, anywhere in the world. You pay with the payment method that suits you, and prices are shown in dollars, euros or FCFA.","Sí, en todo el mundo. Pagas con el método de pago que prefieras, y los precios se muestran en dólares, euros o FCFA.","可以，全球通用。你可以用方便的方式付款，价格以美元、欧元或西非法郎（FCFA）显示。","हाँ, दुनिया में कहीं से भी। आप अपनी पसंद के भुगतान तरीके से भुगतान करते हैं, और कीमतें डॉलर, यूरो या FCFA में दिखाई जाती हैं।","نعم، في أي مكان في العالم. تدفع بطريقة الدفع التي تناسبك، وتُعرض الأسعار بالدولار أو اليورو أو الفرنك الإفريقي (FCFA).","Sim, em qualquer lugar do mundo. Você paga com o meio de pagamento que preferir, e os preços são exibidos em dólares, euros ou FCFA.","Да, в любой точке мира. Вы платите удобным способом, а цены указаны в долларах, евро или франках КФА (FCFA).","はい、世界中どこからでも。お好きな方法で支払え、料金はドル・ユーロ・FCFAで表示されます。","Ja, überall auf der Welt. Du zahlst mit der Zahlungsart, die zu dir passt, und die Preise werden in Dollar, Euro oder FCFA angezeigt."],
 // ---------- Fin de page ----------
 "Ta décision":["Your decision","Tu decisión","你的决定","आपका फ़ैसला","قرارك","Sua decisão","Ваше решение","あなたの決断","Deine Entscheidung"],
-"Dans 3 mois, tu seras content d'avoir commencé aujourd'hui.":["In 3 months, you'll be glad you started today.","Dentro de 3 meses, te alegrarás de haber empezado hoy.","3 个月后，你会庆幸今天就开始了。","3 महीने बाद, आपको खुशी होगी कि आपने आज शुरुआत की।","بعد 3 أشهر، ستكون سعيدًا لأنك بدأت اليوم.","Daqui a 3 meses, você vai ficar feliz por ter começado hoje.","Через 3 месяца вы будете рады, что начали сегодня.","3ヶ月後、今日始めてよかったと思うはずです。","In 3 Monaten wirst du froh sein, heute angefangen zu haben."],
+"Dans 1 mois, tu seras content d'avoir commencé aujourd'hui.":["In 1 month, you'll be glad you started today.","Dentro de 1 mes, te alegrarás de haber empezado hoy.","1 个月后，你会庆幸今天就开始了。","1 महीने बाद, आपको खुशी होगी कि आपने आज शुरुआत की।","بعد شهر واحد، ستكون سعيدًا لأنك بدأت اليوم.","Daqui a 1 mês, você vai ficar feliz por ter começado hoje.","Через месяц вы будете рады, что начали сегодня.","1ヶ月後、今日始めてよかったと思うはずです。","In einem Monat wirst du froh sein, heute angefangen zu haben."],
 "JAZ Trading donne accès à des stratégies de trading automatisées pour TradingView. Nous ne gérons aucun fonds : ton argent reste sur ton compte, et tu gardes le contrôle de tes décisions. Les résultats présentés sont calculés par TradingView sur l'historique des marchés, avec 1 % de risque par trade. Ceci n'est pas un conseil en investissement.":["JAZ Trading provides access to automated trading strategies for TradingView. We do not manage any funds: your money stays in your account, and you stay in control of your decisions. The results shown are calculated by TradingView on market history, with 1% risk per trade. This is not investment advice.","JAZ Trading da acceso a estrategias de trading automatizadas para TradingView. No gestionamos ningún fondo: tu dinero se queda en tu cuenta y mantienes el control de tus decisiones. Los resultados presentados los calcula TradingView sobre el historial de los mercados, con un 1 % de riesgo por operación. Esto no es un consejo de inversión.","JAZ Trading 提供适用于 TradingView 的自动化交易策略。我们不管理任何资金：你的资金留在你自己的账户里，决策权始终在你手中。所展示的结果由 TradingView 基于市场历史数据计算，每笔交易风险 1%。本内容不构成投资建议。","JAZ Trading, TradingView के लिए ऑटोमेटेड ट्रेडिंग रणनीतियों की एक्सेस देता है। हम कोई फ़ंड मैनेज नहीं करते: आपका पैसा आपके खाते में रहता है, और फ़ैसलों का नियंत्रण आपके पास रहता है। दिखाए गए नतीजे TradingView ने बाज़ार के इतिहास पर, हर ट्रेड पर 1% जोखिम के साथ निकाले हैं। यह निवेश सलाह नहीं है।","توفر JAZ Trading الوصول إلى استراتيجيات تداول آلية لمنصة TradingView. لا ندير أي أموال: تبقى أموالك في حسابك، وتحتفظ بالتحكم في قراراتك. النتائج المعروضة يحسبها TradingView على البيانات التاريخية للأسواق، بمخاطرة 1٪ لكل صفقة. هذا ليس نصيحة استثمارية.","A JAZ Trading dá acesso a estratégias de trading automatizadas para o TradingView. Não gerimos nenhum fundo: seu dinheiro fica na sua conta e você mantém o controle das suas decisões. Os resultados apresentados são calculados pelo TradingView com base no histórico dos mercados, com 1% de risco por operação. Isto não é um conselho de investimento.","JAZ Trading предоставляет доступ к автоматическим торговым стратегиям для TradingView. Мы не управляем никакими средствами: ваши деньги остаются на вашем счёте, а решения принимаете вы. Представленные результаты рассчитаны TradingView на исторических данных рынка при риске 1% на сделку. Это не инвестиционная рекомендация.","JAZ Tradingは、TradingView向けの自動売買戦略へのアクセスを提供します。資金の運用は一切行いません。資金はあなたの口座に残り、判断はあなた自身が行います。掲載している結果は、TradingViewが相場の過去データをもとに1トレード1%のリスクで算出したものです。これは投資助言ではありません。","JAZ Trading bietet Zugang zu automatisierten Trading-Strategien für TradingView. Wir verwalten keine Gelder: Dein Geld bleibt auf deinem Konto, und du behältst die Kontrolle über deine Entscheidungen. Die dargestellten Ergebnisse werden von TradingView anhand der Markthistorie mit 1 % Risiko pro Trade berechnet. Dies ist keine Anlageberatung."],
 "Suis-nous":["Follow us","Síguenos","关注我们","हमें फ़ॉलो करें","تابعنا","Siga-nos","Подписывайтесь","フォローする","Folge uns"],
 "Contact : jazgeneraltrading@gmail.com":["Contact: jazgeneraltrading@gmail.com","Contacto: jazgeneraltrading@gmail.com","联系：jazgeneraltrading@gmail.com","संपर्क: jazgeneraltrading@gmail.com","تواصل: jazgeneraltrading@gmail.com","Contacto: jazgeneraltrading@gmail.com","Контакт: jazgeneraltrading@gmail.com","お問い合わせ：jazgeneraltrading@gmail.com","Kontakt: jazgeneraltrading@gmail.com"],
