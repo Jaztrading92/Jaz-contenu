@@ -374,6 +374,33 @@ footer{padding-bottom:80px!important}
 #probleme .pain{grid-template-columns:34px 1fr;column-gap:10px}#probleme .pain .ic{grid-row:auto;width:34px;height:34px;border-radius:10px;background:rgba(248,113,113,.12);color:#F87171;font-size:0}#probleme .pain .ic svg{width:18px;height:18px}#probleme .pain h3{align-self:center;margin:0;font-size:14.5px;line-height:1.25;white-space:normal}#probleme .pain p{grid-column:1 / -1;margin-top:9px;font-size:13px;line-height:1.5;color:var(--mute)}
 }
 .pain .ic svg{display:block}.pain .ic{color:#F87171}
+.btn{cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .15s ease,box-shadow .2s ease,filter .2s ease}
+.btn.gold{box-shadow:0 8px 20px -8px rgba(0,178,255,.65),inset 0 1px 0 rgba(255,255,255,.35)}
+.btn.gold:hover{transform:translateY(-2px);filter:brightness(1.07);box-shadow:0 12px 26px -8px rgba(0,178,255,.8),inset 0 1px 0 rgba(255,255,255,.35)}
+.btn.ghost{border:1px solid rgba(56,189,248,.55)!important;background:rgba(56,189,248,.08)!important;color:#fff}
+.btn.ghost:hover{transform:translateY(-2px);background:rgba(56,189,248,.16)!important}
+.btn:active,#tabs .tab:active,.sp-seg button:active,.seg button:active{transform:scale(.97)!important}
+.btn:focus-visible,#tabs .tab:focus-visible{outline:2px solid #38BDF8;outline-offset:2px}
+#tabs .tab{cursor:pointer;-webkit-tap-highlight-color:transparent;box-shadow:0 10px 22px -16px rgba(0,0,0,.9)}
+#tabs .tab:hover{box-shadow:0 14px 28px -14px color-mix(in srgb,var(--c) 55%,transparent)}
+#tabs .tv{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;margin-top:8px!important;padding:8px 10px;border-radius:10px;font-size:12.5px;font-weight:800;color:#fff!important;background:color-mix(in srgb,var(--c) 22%,transparent);border:1px solid color-mix(in srgb,var(--c) 70%,transparent);transition:background .2s}
+#tabs .tv span{display:inline-block;transition:transform .2s}
+#tabs .tab:hover .tv{background:color-mix(in srgb,var(--c) 38%,transparent)}#tabs .tab:hover .tv span{transform:translateX(3px)}
+#tabs .tab[aria-selected=true] .tv{opacity:1;background:var(--c);color:#03131F!important}
+@keyframes tvNudge{0%,80%,100%{transform:translateX(0)}88%{transform:translateX(4px)}}
+#tabs .tab:not([aria-selected=true]) .tv span{animation:tvNudge 2.4s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){#tabs .tv span{animation:none!important}}
+.shint{font-size:13.5px!important;line-height:1.35}
+/* Animation de tous les boutons : halo qui respire + reflet qui passe (bleus), contour qui pulse (clairs) */
+@keyframes jzGlow{0%,100%{box-shadow:0 8px 20px -8px rgba(0,178,255,.55),inset 0 1px 0 rgba(255,255,255,.35)}50%{box-shadow:0 10px 30px -6px rgba(0,178,255,.95),inset 0 1px 0 rgba(255,255,255,.35)}}
+@keyframes jzShine{0%,65%{left:-60%}100%{left:130%}}
+@keyframes jzEdge{0%,100%{border-color:rgba(56,189,248,.45);box-shadow:0 0 0 0 rgba(56,189,248,0)}50%{border-color:rgba(56,189,248,.95);box-shadow:0 0 14px -2px rgba(56,189,248,.45)}}
+.btn.gold{position:relative;overflow:hidden;animation:jzGlow 2.6s ease-in-out infinite!important}
+.btn.gold::after{content:""!important;display:block!important;position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-20deg);animation:jzShine 3.4s ease-in-out infinite!important;pointer-events:none}
+.btn.ghost{animation:jzEdge 2.6s ease-in-out infinite!important}
+.plans .btn.gold:nth-of-type(n),.plan:nth-child(2) .btn.gold::after{animation-delay:.4s!important}
+.plan:nth-child(3) .btn.gold::after{animation-delay:.8s!important}.plan:nth-child(4) .btn.gold::after{animation-delay:1.2s!important}
+@media (prefers-reduced-motion:reduce){.btn.gold,.btn.gold::after,.btn.ghost{animation:none!important}}
 #plans .plan.focus{animation:planFocus 2.6s ease}
 @keyframes planFocus{0%,70%{box-shadow:0 0 0 3px var(--c,var(--gold)),0 0 28px -4px var(--c,var(--gold))}100%{box-shadow:none}}
 .squiz{display:flex;justify-content:center;margin-top:16px}
@@ -488,7 +515,7 @@ section{padding:40px 0}
 
 <section id="strategies"><div class="wrap">
  <div class="sh reveal"><span class="kicker">Les 4 stratégies</span><h2>Choisis ta <em>stratégie</em></h2><p>Chaque stratégie a son marché, son style et son caractère. Clique pour explorer ses résultats et ses captures TradingView réelles.</p></div>
- <p class="shint" id="sHint"><svg class="shic" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g transform="matrix(1 0 0 -1 0 24)"><path d="M22 14a8 8 0 0 1-8 8"/><path d="M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1"/><path d="M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10"/><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></g></svg> Clique sur une stratégie pour voir ses détails</p>
+ <p class="shint" id="sHint"><svg class="shic" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g transform="matrix(1 0 0 -1 0 24)"><path d="M22 14a8 8 0 0 1-8 8"/><path d="M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1"/><path d="M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10"/><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></g></svg> Clique sur l'une de ces cases pour voir les détails de chaque stratégie</p>
  <div class="tabs" role="tablist" id="tabs"></div>
  <div class="sgrid" id="sDetail">
   <div class="sbar"><button type="button" class="sback" id="sBack">↑ Voir les 4 stratégies</button><button type="button" class="sclose" id="sClose" aria-label="Fermer les détails">✕</button></div>
@@ -886,6 +913,8 @@ const I18N={
 "<b>Avertissement :</b> le trading comporte un risque élevé de perte en capital. Les résultats affichés sont calculés sur l'historique des marchés et ne garantissent pas les résultats futurs. Réservé aux personnes majeures.":["<b>Warning:</b> trading carries a high risk of losing capital. The results shown are calculated on past market data and do not guarantee future results. For adults only.", "<b>Advertencia:</b> el trading conlleva un alto riesgo de pérdida de capital. Los resultados mostrados se calculan con el historial de los mercados y no garantizan resultados futuros. Solo para mayores de edad.", "<b>风险提示：</b>交易存在较高的本金亏损风险。所示结果基于市场历史数据计算，不保证未来收益。仅限成年人。", "<b>चेतावनी:</b> ट्रेडिंग में पूंजी खोने का उच्च जोखिम है। दिखाए गए परिणाम बाज़ार के इतिहास पर गणना किए गए हैं और भविष्य के परिणामों की गारंटी नहीं देते। केवल वयस्कों के लिए।", "<b>تحذير:</b> ينطوي التداول على مخاطر عالية لخسارة رأس المال. النتائج المعروضة محسوبة على تاريخ الأسواق ولا تضمن نتائج مستقبلية. للبالغين فقط.", "<b>Aviso:</b> o trading envolve alto risco de perda de capital. Os resultados exibidos são calculados com o histórico dos mercados e não garantem resultados futuros. Somente para maiores de idade.", "<b>Предупреждение:</b> торговля связана с высоким риском потери капитала. Показанные результаты рассчитаны на истории рынков и не гарантируют будущих результатов. Только для совершеннолетних.", "<b>注意：</b>トレードには元本を失う高いリスクがあります。表示されている結果は過去の相場データで計算したものであり、将来の成果を保証するものではありません。成人のみ対象。", "<b>Warnung:</b> Trading birgt ein hohes Risiko des Kapitalverlusts. Die gezeigten Ergebnisse wurden mit historischen Marktdaten berechnet und garantieren keine zukünftigen Ergebnisse. Nur für Volljährige."],
 "Avertissement sur les risques":["Risk warning", "Advertencia de riesgos", "风险提示", "जोखिम चेतावनी", "تحذير من المخاطر", "Aviso de riscos", "Предупреждение о рисках", "リスクに関する注意", "Risikohinweis"],
 "Voir les stratégies":["See the strategies", "Ver las estrategias", "查看策略", "रणनीतियाँ देखें", "عرض الاستراتيجيات", "Ver as estratégias", "Смотреть стратегии", "戦略を見る", "Strategien ansehen"],
+"Clique sur l'une de ces cases pour voir les détails de chaque stratégie":["Tap one of these boxes to see the details of each strategy", "Toca una de estas casillas para ver los detalles de cada estrategia", "点击任意方框，查看每个策略的详情", "हर रणनीति का विवरण देखने के लिए इनमें से किसी एक बॉक्स पर क्लिक करें", "انقر على أحد هذه المربعات لرؤية تفاصيل كل استراتيجية", "Toque em um destes quadros para ver os detalhes de cada estratégia", "Нажмите на один из блоков, чтобы увидеть детали каждой стратегии", "各戦略の詳細を見るには、いずれかのボックスをタップしてください", "Tippe auf eines dieser Felder, um die Details jeder Strategie zu sehen"],
+"Voir les détails":["See details", "Ver detalles", "查看详情", "विवरण देखें", "عرض التفاصيل", "Ver detalhes", "Подробнее", "詳細を見る", "Details ansehen"],
 "Voir les tarifs":["See pricing","Ver precios","查看价格","कीमतें देखें","عرض الأسعار","Ver preços","Смотреть цены","料金を見る","Preise ansehen"],
 "Quelle stratégie me faut-il ?":["Which strategy do I need?","¿Qué estrategia necesito?","我需要哪个策略？","मुझे कौन-सी रणनीति चाहिए?","أي استراتيجية تناسبني؟","Qual estratégia eu preciso?","Какая стратегия мне нужна?","私に合う戦略は？","Welche Strategie brauche ich?"],
 "Les 4 stratégies JAZ réunies · compte de 100 000 $ · 1 % par trade · depuis 2006":["All 4 JAZ strategies combined · 100 000 $ account · 1% per trade · since 2006","Las 4 estrategias JAZ juntas · cuenta de 100 000 $ · 1 % por operación · desde 2006","4 个 JAZ 策略合并 · 100 000 $ 账户 · 每笔 1% · 自 2006 年起","सभी 4 JAZ रणनीतियाँ एक साथ · 100 000 $ का खाता · हर ट्रेड पर 1% · 2006 से","استراتيجيات JAZ الأربع معًا · حساب 100 000 $ · 1٪ لكل صفقة · منذ 2006","As 4 estratégias JAZ juntas · conta de 100 000 $ · 1% por operação · desde 2006","Все 4 стратегии JAZ вместе · счёт 100 000 $ · 1% на сделку · с 2006 года","JAZの4戦略を合算 · 100 000 $の口座 · 1トレードあたり1% · 2006年から","Alle 4 JAZ-Strategien zusammen · Konto mit 100 000 $ · 1 % pro Trade · seit 2006"],
